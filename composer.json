@@ -1,0 +1,39 @@
+{
+  "name": "westng/ad-oceanengine-php",
+  "description": "巨量引擎开放平台PHP语言SDK",
+  "keywords": [
+    "巨量引擎",
+    "巨量千川",
+    "巨量本地推",
+    "巨量星图",
+    "sdk"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0",
+    "hyperf/http-server": "3.1.*",
+    "guzzlehttp/guzzle": "^7.9"
+  },
+  "authors": [
+    {
+      "name": "westng",
+      "email": "457395070@qq.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "OceanEngineSDK\\": "src/Core/Profile/",
+      "AdOauth\\": "src/AdOauth/",
+      "Core\\": "src/Core/",
+      "Api\\": "src/Api/",
+      "EnterpriseAccount\\": "src/Api/EnterpriseAccount/",
+      "JuLiangAds\\": "src/Api/JuLiangAds/",
+      "JuLiangLocalPush\\": "src/Api/JuLiangLocalPush/",
+      "JuLiangQianChuan\\": "src/Api/JuLiangQianChuan/",
+      "JuLiangStarMap\\": "src/Api/JuLiangStarMap/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

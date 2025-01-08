@@ -1,0 +1,65 @@
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+
+namespace Core\Exception;
+
+class OceanEngineException extends \Exception
+{
+    private string $errorCode;
+
+    private string $errorMessage;
+
+    private string $errorType;
+
+    /**
+     * ClientException constructor.
+     * @param mixed $errorMessage
+     * @param mixed $errorCode
+     */
+    public function __construct(string $errorMessage, $errorCode = '500') // 默认值为字符串 '500'
+    {
+        parent::__construct($errorMessage);
+        $this->errorMessage = $errorMessage;
+        $this->errorCode = $errorCode;
+        $this->setErrorType('OceanEngine');
+    }
+
+    public function getErrorCode(): string
+    {
+        return $this->errorCode;
+    }
+
+    public function setErrorCode($errorCode): void
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    public function setErrorMessage($errorMessage): void
+    {
+        $this->errorMessage = $errorMessage;
+    }
+
+    public function getErrorType(): string
+    {
+        return $this->errorType;
+    }
+
+    public function setErrorType($errorType): void
+    {
+        $this->errorType = $errorType;
+    }
+}
