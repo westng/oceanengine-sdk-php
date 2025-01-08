@@ -15,4 +15,4 @@ vendor/
 public
 *.lock
 *.phar
-/tests/config.php
+#/tests/config.php
