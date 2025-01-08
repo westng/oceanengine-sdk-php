@@ -23,7 +23,8 @@ class Module extends BaseModule
     private array $instances = [];
 
     private array $providers = [
-        'AccountMgmt' => AccountMgmt\AccountRel\Module::class,
+        'AccountRel' => AccountMgmt\AccountRel\Module::class,
+        'AccountInfo' => AccountMgmt\AccountInfo\Module::class,
     ];
 
     /**

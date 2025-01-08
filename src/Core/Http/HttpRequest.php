@@ -16,21 +16,15 @@ use Core\Exception\OceanEngineException;
 
 class HttpRequest
 {
-    /**
-     * @var int
-     */
     public static int $connectTimeout = 20; // 20 second
 
-    /**
-     * @var int
-     */
     public static int $readTimeout = 30; // 30 second
 
     /**
      * @param string $httpMethod
      * @param null $postFields
      * @param null $headers
-     * @return HttpResponse
+     * @param mixed $url
      * @throws OceanEngineException
      */
     public static function curl($url, $httpMethod = 'GET', $postFields = null, $headers = null): HttpResponse
@@ -77,6 +71,7 @@ class HttpRequest
         $httpResponse = new HttpResponse();
         $httpResponse->setBody(curl_exec($ch));
         $httpResponse->setStatus(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
         if (curl_errno($ch)) {
             throw new OceanEngineException(
                 'Server unreachable: Errno: ' . curl_errno($ch) . ' ' . curl_error($ch),
@@ -89,6 +84,7 @@ class HttpRequest
     }
 
     /**
+     * @param mixed $postFildes
      * @return bool|string
      */
     public static function getPostHttpBody($postFildes)
@@ -106,6 +102,7 @@ class HttpRequest
     }
 
     /**
+     * @param mixed $headers
      * @return array
      */
     public static function getHttpHearders($headers)

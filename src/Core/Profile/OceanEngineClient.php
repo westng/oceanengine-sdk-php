@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
+use Api\JuLiangAds\Module;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
@@ -32,14 +33,10 @@ class OceanEngineClient
     private static mixed $instance = null;
 
     // 禁止被实例化
-    private function __construct($access_token, $is_sanbox, $server_url, $box_url)
-    {
-    }
+    private function __construct($access_token, $is_sanbox, $server_url, $box_url) {}
 
     // 禁止clone
-    private function __clone()
-    {
-    }
+    private function __clone() {}
 
     //  实例化自己并保存到$instance中，已实例化则直接调用
     public static function getInstance($access_token, $is_sanbox, $server_url, $box_url): object
@@ -109,8 +106,8 @@ class OceanEngineClient
         return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
     }
 
-    public static function JuLiangAds(): \Api\JuLiangAds\Module
+    public static function JuLiangAds(): Module
     {
-        return new \Api\JuLiangAds\Module(self::$instance[static::$access_token]);
+        return new Module(self::$instance[static::$access_token]);
     }
 }
