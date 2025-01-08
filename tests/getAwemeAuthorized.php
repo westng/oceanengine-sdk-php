@@ -19,6 +19,7 @@ $client = $auth->makeClient(TOKEN);
 
 $args = [
     'advertiser_id' => ADVERTISER_ID,
+    'shop_id' => 23077751
 ];
-$req = $client::JuLiangAds()->AccountMgmt->AwemeAuthorizedGet()->setArgs($args)->send();
+$req = $client::JuLiangAds()->AccountMgmt->AgentAdvertiserSelect()->setArgs($args)->send();
 var_dump($req->getBody());

@@ -19,12 +19,12 @@ class HttpRequest
     /**
      * @var int
      */
-    public static $connectTimeout = 20; // 20 second
+    public static int $connectTimeout = 20; // 20 second
 
     /**
      * @var int
      */
-    public static $readTimeout = 30; // 30 second
+    public static int $readTimeout = 30; // 30 second
 
     /**
      * @param string $httpMethod
@@ -33,7 +33,7 @@ class HttpRequest
      * @return HttpResponse
      * @throws OceanEngineException
      */
-    public static function curl($url, $httpMethod = 'GET', $postFields = null, $headers = null)
+    public static function curl($url, $httpMethod = 'GET', $postFields = null, $headers = null): HttpResponse
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $httpMethod);
