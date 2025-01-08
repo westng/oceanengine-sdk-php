@@ -59,7 +59,7 @@ src/
 
 | 账号管理                |      |                                       |
 |---------------------|------|---------------------------------------|
-| 账户关系获取              | 开发进度 | 链名$xxx::JuLiangAds()->AccountRel->xxx |
+| **账户关系获取**              | **开发进度** | 链名$xxx::JuLiangAds()->AccountRel->xxx |
 | 获取千川账户下可投广抖音号       | ✔    | AwemeAuthorizedGet()                  |
 | 获取千川账户下抖音号授权列表      | ✔    | AwemeAuthListGet()                    |
 | 获取已授权的账户（店铺/代理商/组织） | ✔    | AdvertiserGet()                       |
@@ -68,7 +68,7 @@ src/
 | 获取纵横组织下账户列表         | ✔    | CustomerCenterAdvertiserList()        |
 | 广告主添加抖音号            | ✔    | ToolsAwemeAuth()                      |
 | 店铺新客定向授权            | ✔    | ToolsShopAuth()                       |
-| 账户信息获取              | 开发进度 | 链名$xxx::JuLiangAds()->AccountInfo     |
+| **账户信息获取**              | **开发进度** | 链名$xxx::JuLiangAds()->AccountInfo     |
 | 获取授权时登录用户信息            | ✔    | UserInfo()                       |
 | 获取店铺账户信息            | ✔    | QianchuanShopGet()                       |
 | 获取代理商账户信息            | ✔    | AgentInfo()                       |
@@ -76,7 +76,7 @@ src/
 | 获取千川广告账户全量信息            | ✔    | AdvertiserInfo()                       |
 | 获取千川账户类型            | ✔    | QianchuanAdvertiserTypeGet()                       |
 
-- 下次不写开发进度了，有这时间我都写完好几个接口了； 😠
+- 下次不写开发进度了，有这时间我都写完好几个接口了，**舅宠你一回** 😠
 
 ## 问题建议与反馈
 如果您在使用SDK过程中有任何问题与建议，请忽略！！！
