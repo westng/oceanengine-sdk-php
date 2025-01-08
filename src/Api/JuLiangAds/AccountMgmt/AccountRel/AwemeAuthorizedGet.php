@@ -16,6 +16,10 @@ use core\Exception\InvalidParamException;
 use core\Helper\RequestCheckUtil;
 use core\Profile\RpcRequest;
 
+/**
+ * Name 获取千川账户下可投广抖音号
+ * Class AwemeAuthorizedGet
+ */
 class AwemeAuthorizedGet extends RpcRequest
 {
     protected string $url = '/v1.0/qianchuan/aweme/authorized/get/';

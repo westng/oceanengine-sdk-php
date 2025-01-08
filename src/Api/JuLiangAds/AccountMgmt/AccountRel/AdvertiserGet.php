@@ -10,10 +10,14 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace AdOauth;
+namespace Api\JuLiangAds\AccountMgmt\AccountRel;
 
 use Core\Profile\RpcRequest;
 
+/**
+ * Name 获取已授权的账户（店铺/代理商/组织）
+ * Class AdvertiserGet
+ */
 class AdvertiserGet extends RpcRequest
 {
     protected string $method = 'GET';

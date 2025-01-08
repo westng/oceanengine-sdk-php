@@ -18,8 +18,10 @@ use OceanEngineSDK\OceanEngineClient;
 
 class RpcRequest implements RequestInteface
 {
-    protected OceanEngineClient $client;
-
+    /**
+     * @var OceanEngineClient
+     */
+    protected ?OceanEngineClient $client;
     /**
      * request url.
      */

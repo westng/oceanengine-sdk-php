@@ -15,6 +15,4 @@ require __DIR__ . '/../index.php';
 require __DIR__ . '/config.php';
 
 $auth = new OceanEngineAuth(APPID, SECRET);
-
-print_r($auth->getAuthCodeUrl(CALLBACK_URL, AUTH_CODE));
-
+print_r($auth->advertiserGet(TOKEN));
