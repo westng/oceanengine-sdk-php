@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FreestylePushPlcmnt;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 追加随心推订单预算
- * Class QianchuanAwemeOrderBudgetAdd
+ * Class QianchuanAwemeOrderBudgetAdd.
  */
 class QianchuanAwemeOrderBudgetAdd extends RpcRequest
 {

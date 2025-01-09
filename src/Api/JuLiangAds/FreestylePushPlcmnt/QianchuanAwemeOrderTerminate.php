@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FreestylePushPlcmnt;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 终止随心推订单
- * Class QianchuanAwemeOrderTerminate
+ * Class QianchuanAwemeOrderTerminate.
  */
 class QianchuanAwemeOrderTerminate extends RpcRequest
 {

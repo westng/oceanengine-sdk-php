@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountInfo;
 
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取千川账户类型
- * Class QianchuanAdvertiserTypeGet
+ * Class QianchuanAdvertiserTypeGet.
  */
 class QianchuanAdvertiserTypeGet extends RpcRequest
 {
@@ -37,9 +37,5 @@ class QianchuanAdvertiserTypeGet extends RpcRequest
         return $this;
     }
 
-    /**
-     */
-    public function check()
-    {
-    }
+    public function check() {}
 }

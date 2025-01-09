@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountInfo;
 
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取代理商账户信息
- * Class AgentInfo
+ * Class AgentInfo.
  */
 class AgentInfo extends RpcRequest
 {
@@ -37,9 +37,5 @@ class AgentInfo extends RpcRequest
         return $this;
     }
 
-    /**
-     */
-    public function check()
-    {
-    }
+    public function check() {}
 }

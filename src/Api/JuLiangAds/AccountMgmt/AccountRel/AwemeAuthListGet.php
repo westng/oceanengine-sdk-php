@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountRel;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取千川账户下抖音号授权列表
- * Class AwemeAuthListGet
+ * Class AwemeAuthListGet.
  */
 class AwemeAuthListGet extends RpcRequest
 {

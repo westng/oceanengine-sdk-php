@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountRel;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取代理商账户关联的广告账户列表
- * Class AgentAdvertiserSelect
+ * Class AgentAdvertiserSelect.
  */
 class AgentAdvertiserSelect extends RpcRequest
 {

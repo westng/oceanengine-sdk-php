@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FundsMgmt;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 【代理商】批量查询账户余额
- * Class AccountFundGet
+ * Class AccountFundGet.
  */
 class AccountFundGet extends RpcRequest
 {
@@ -27,7 +25,6 @@ class AccountFundGet extends RpcRequest
     protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
-
 
     /**
      * @return $this
@@ -40,7 +37,5 @@ class AccountFundGet extends RpcRequest
         return $this;
     }
 
-    public function check()
-    {
-    }
+    public function check() {}
 }

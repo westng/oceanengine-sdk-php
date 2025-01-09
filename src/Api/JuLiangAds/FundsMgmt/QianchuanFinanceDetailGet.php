@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FundsMgmt;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取财务流水信息
- * Class QianchuanFinanceDetailGet
+ * Class QianchuanFinanceDetailGet.
  */
 class QianchuanFinanceDetailGet extends RpcRequest
 {

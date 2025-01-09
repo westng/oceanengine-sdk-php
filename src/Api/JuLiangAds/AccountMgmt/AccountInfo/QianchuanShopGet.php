@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountInfo;
 
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取店铺账户信息
- * Class QianchuanShopGet
+ * Class QianchuanShopGet.
  */
 class QianchuanShopGet extends RpcRequest
 {
@@ -37,9 +37,5 @@ class QianchuanShopGet extends RpcRequest
         return $this;
     }
 
-    /**
-     */
-    public function check()
-    {
-    }
+    public function check() {}
 }

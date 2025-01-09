@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountRel;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取纵横组织下账户列表
- * Class CustomerCenterAdvertiserList
+ * Class CustomerCenterAdvertiserList.
  */
 class CustomerCenterAdvertiserList extends RpcRequest
 {
@@ -39,10 +37,5 @@ class CustomerCenterAdvertiserList extends RpcRequest
         return $this;
     }
 
-    /**
-     */
-    public function check(): void
-    {
-
-    }
+    public function check(): void {}
 }

@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FundsMgmt;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 工作台转账-发起转账
- * Class CgTransferTransferCreate
+ * Class CgTransferTransferCreate.
  */
 class CgTransferTransferCreate extends RpcRequest
 {
@@ -27,7 +25,6 @@ class CgTransferTransferCreate extends RpcRequest
     protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
-
 
     /**
      * @return $this
@@ -40,7 +37,5 @@ class CgTransferTransferCreate extends RpcRequest
         return $this;
     }
 
-    public function check()
-    {
-    }
+    public function check() {}
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Api\JuLiangAds;
 
 use Core\Exception\OceanEngineException;
-use core\Profile\BaseModule;
+use Core\Profile\BaseModule;
 
 class Module extends BaseModule
 {

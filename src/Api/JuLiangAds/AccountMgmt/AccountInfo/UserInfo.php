@@ -12,18 +12,17 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AccountMgmt\AccountInfo;
 
-use core\Exception\InvalidParamException;
-use core\Helper\RequestCheckUtil;
-use core\Profile\RpcRequest;
+use Core\Profile\RpcRequest;
 
 /**
  * Name 获取授权时登录用户信息
- * Class UserInfo
+ * Class UserInfo.
  */
 class UserInfo extends RpcRequest
 {
     protected string $url = 'https://ad.oceanengine.com/open_api/2/user/info/';
 
     protected string $method = 'GET';
+
     protected string $content_type = 'application/json';
 }
