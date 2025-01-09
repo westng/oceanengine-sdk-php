@@ -64,25 +64,43 @@ class Module extends BaseModule
     private function discoverProviders(): array
     {
         $providers = [];
-        $baseDir = __DIR__;
-        $namespace = __NAMESPACE__;
+        $this->scanDirectory(__DIR__, __NAMESPACE__, '', $providers);
+        return $providers;
+    }
 
-        $dirs = scandir($baseDir);
-        foreach ($dirs as $dir) {
-            if ($dir !== '.' && $dir !== '..' && is_dir($baseDir . '/' . $dir)) {
-                // 遍历子目录下的所有目录
-                $subDirs = scandir($baseDir . '/' . $dir);
-                foreach ($subDirs as $subDir) {
-                    if ($subDir !== '.' && $subDir !== '..' && is_dir($baseDir . '/' . $dir . '/' . $subDir)) {
-                        $moduleFile = $baseDir . '/' . $dir . '/' . $subDir . '/Module.php';
-                        if (file_exists($moduleFile)) {
-                            $providers[$subDir] = "{$namespace}\\{$dir}\\{$subDir}\\Module";
-                        }
+    /**
+     * Recursively scan directory to find Module.php files.
+     */
+    private function scanDirectory(string $baseDir, string $baseNamespace, string $relativePath, array &$providers): void
+    {
+        $currentDir = $baseDir . ($relativePath ? '/' . $relativePath : '');
+        $currentNamespace = $baseNamespace . ($relativePath ? '\\' . str_replace('/', '\\', $relativePath) : '');
+
+        $items = scandir($currentDir);
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+
+            $path = $currentDir . '/' . $item;
+
+            if (is_dir($path)) {
+                // Check if current directory has a Module.php
+                $moduleFile = $path . '/Module.php';
+                if (file_exists($moduleFile)) {
+                    $key = $item;
+                    if ($relativePath) {
+                        // For nested modules, use the last directory name as the key
+                        $pathParts = explode('/', $relativePath);
+                        $key = end($pathParts);
                     }
+                    $providers[$key] = $currentNamespace . '\\' . $item . '\Module';
                 }
+
+                // Recursively scan subdirectories
+                $newRelativePath = $relativePath ? $relativePath . '/' . $item : $item;
+                $this->scanDirectory($baseDir, $baseNamespace, $newRelativePath, $providers);
             }
         }
-
-        return $providers;
     }
 }
