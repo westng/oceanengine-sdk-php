@@ -81,20 +81,19 @@ class Module extends BaseModule
             if ($item === '.' || $item === '..') {
                 continue;
             }
-
             $path = $currentDir . '/' . $item;
-
             if (is_dir($path)) {
-                // Check if current directory has a Module.php
-                $moduleFile = $path . '/Module.php';
-                if (file_exists($moduleFile)) {
-                    $key = $item;
-                    if ($relativePath) {
-                        // For nested modules, use the last directory name as the key
-                        $pathParts = explode('/', $relativePath);
-                        $key = end($pathParts);
+                // For Tools directory, use the subdirectory name as the key
+                if ($relativePath === 'Tools') {
+                    if (file_exists($path . '/Module.php')) {
+                        $providers[$item] = $currentNamespace . '\\' . $item . '\Module';
                     }
-                    $providers[$key] = $currentNamespace . '\\' . $item . '\Module';
+                } else {
+                    // Check if current directory has a Module.php
+                    $moduleFile = $path . '/Module.php';
+                    if (file_exists($moduleFile)) {
+                        $providers[$item] = $currentNamespace . '\\' . $item . '\Module';
+                    }
                 }
 
                 // Recursively scan subdirectories
