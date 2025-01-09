@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\FundsMgmt;
 
-use core\Profile\BaseModule;
+use Core\Profile\BaseModule;
 
 class Module extends BaseModule
 {

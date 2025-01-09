@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\AccountMgmt\AccountRel;
+namespace Api\JuLiangAds\FreestylePushPlcmnt;
 
 use Core\Profile\BaseModule;
 

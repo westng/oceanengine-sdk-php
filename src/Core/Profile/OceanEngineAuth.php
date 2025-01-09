@@ -56,6 +56,7 @@ class OceanEngineAuth
     /**
      * 获取access_token.
      * @param mixed $auth_code
+     * @return string
      * @throws OceanEngineException
      */
     public function getAccessToken(mixed $auth_code): string
