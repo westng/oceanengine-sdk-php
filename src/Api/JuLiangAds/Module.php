@@ -22,10 +22,16 @@ class Module extends BaseModule
      */
     private array $instances = [];
 
-    private array $providers = [
-        'AccountRel' => AccountMgmt\AccountRel\Module::class,
-        'AccountInfo' => AccountMgmt\AccountInfo\Module::class,
-    ];
+    /**
+     * @var array<string, string>
+     */
+    private array $providers;
+
+    public function __construct($client)
+    {
+        parent::__construct($client);
+        $this->providers = $this->discoverProviders();
+    }
 
     /**
      * @return mixed
@@ -33,16 +39,16 @@ class Module extends BaseModule
      */
     public function __get(string $name)
     {
-        // 如果实例已经存在，直接返回
+        // Return cached instance if exists
         if (isset($this->instances[$name])) {
             return $this->instances[$name];
         }
 
-        // 如果在 providers 中定义了该属性
+        // Check if provider exists
         if (array_key_exists($name, $this->providers)) {
             $className = $this->providers[$name];
             if (class_exists($className)) {
-                // 创建实例并缓存
+                // Create and cache instance
                 $this->instances[$name] = new $className($this->client);
                 return $this->instances[$name];
             }
@@ -50,5 +56,33 @@ class Module extends BaseModule
         }
 
         throw new OceanEngineException("Undefined property {$name}", '500');
+    }
+
+    /**
+     * Automatically discover providers from subdirectories.
+     */
+    private function discoverProviders(): array
+    {
+        $providers = [];
+        $baseDir = __DIR__;
+        $namespace = __NAMESPACE__;
+
+        $dirs = scandir($baseDir);
+        foreach ($dirs as $dir) {
+            if ($dir !== '.' && $dir !== '..' && is_dir($baseDir . '/' . $dir)) {
+                // 遍历子目录下的所有目录
+                $subDirs = scandir($baseDir . '/' . $dir);
+                foreach ($subDirs as $subDir) {
+                    if ($subDir !== '.' && $subDir !== '..' && is_dir($baseDir . '/' . $dir . '/' . $subDir)) {
+                        $moduleFile = $baseDir . '/' . $dir . '/' . $subDir . '/Module.php';
+                        if (file_exists($moduleFile)) {
+                            $providers[$subDir] = "{$namespace}\\{$dir}\\{$subDir}\\Module";
+                        }
+                    }
+                }
+            }
+        }
+
+        return $providers;
     }
 }
