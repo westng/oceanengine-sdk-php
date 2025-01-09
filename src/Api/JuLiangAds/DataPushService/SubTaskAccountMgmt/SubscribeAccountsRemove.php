@@ -10,19 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\FundsMgmt;
+namespace Api\JuLiangAds\DataPushService\SubTaskAccountMgmt;
 
 use Core\Profile\RpcRequest;
 
 /**
- * Name 【代理商】批量查询账户余额
- * Class AccountFundGet.
+ * Name 取消 Adv 订阅
+ * Class SubscribeAccountsRemove.
  */
-class AccountFundGet extends RpcRequest
+class SubscribeAccountsRemove extends RpcRequest
 {
-    protected string $url = '/v3.0/account/fund/get/';
+    protected string $url = '/v3.0/subscribe/accounts/remove/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
