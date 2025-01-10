@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
-use Api\JuLiangAds\Module;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
-use Psr\Http\Message\RequestInterface;
 
 class OceanEngineClient
 {
@@ -33,10 +31,14 @@ class OceanEngineClient
     private static mixed $instance = null;
 
     // 禁止被实例化
-    private function __construct($access_token, $is_sanbox, $server_url, $box_url) {}
+    private function __construct($access_token, $is_sanbox, $server_url, $box_url)
+    {
+    }
 
     // 禁止clone
-    private function __clone() {}
+    private function __clone()
+    {
+    }
 
     //  实例化自己并保存到$instance中，已实例化则直接调用
     public static function getInstance($access_token, $is_sanbox, $server_url, $box_url): object
@@ -59,12 +61,12 @@ class OceanEngineClient
 
     /**
      * 执行 HTTP 请求并返回响应.
-     * @param RequestInterface $request 包含请求信息的请求对象，必须实现 RequestInterface 接口
-     * @param null|string $url 目标 URL，可选参数
+     * @param RequestInteface $request 包含请求信息的请求对象，必须实现 RequestInterface 接口
+     * @param string|null $url 目标 URL，可选参数
      * @return HttpResponse 包含 HTTP 响应的 HttpResponse 对象
      * @throws OceanEngineException 当请求校验失败或出现错误时抛出异常
      */
-    public function excute(RequestInteface $request, $url = null): HttpResponse
+    public function excute(RequestInteface $request, string $url = null): HttpResponse
     {
         // 检查请求对象的有效性，确保请求信息的正确性
         $request->check();
@@ -106,8 +108,13 @@ class OceanEngineClient
         return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
     }
 
-    public static function JuLiangAds(): Module
+    public static function JuLiangAds(): \Api\JuLiangAds\Module
     {
-        return new Module(self::$instance[static::$access_token]);
+        return new \Api\JuLiangAds\Module(self::$instance[static::$access_token]);
+    }
+
+    public static function JuLiangStarMap(): \Api\JuLiangStarMap\Module
+    {
+        return new \Api\JuLiangStarMap\Module(self::$instance[static::$access_token]);
     }
 }
