@@ -11,9 +11,7 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": ">=8.0",
-    "hyperf/http-server": "3.1.*",
-    "guzzlehttp/guzzle": "^7.9"
+    "php": ">=8.0"
   },
   "authors": [
     {
