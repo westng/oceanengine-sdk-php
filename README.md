@@ -55,6 +55,18 @@ $auth->getAccessToken(AUTH_CODE)
 // 刷新授权
 $auth->refreshToken(REFRESH_TOKEN)
 
+// 业务接口需要调用
+$client = $auth->makeClient(TOKEN);
+$args = [
+    // 业务接口请求参数
+];
+$req = $client::JuLiangAds()
+        ->AccountRel
+        ->AwemeAuthorizedGet()
+        ->setArgs($args)
+        ->send();
+
+var_dump($req->getBody());
 ```
 
 ### SDK包结构
