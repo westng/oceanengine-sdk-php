@@ -19,7 +19,43 @@
 composer require westng/oceanengine-sdk-php
 ```
 
-## 使用
+## 快速入门
+
+### 申请广告主授权
+- getAuthCodeUrl 参数说明
+- 
+| 参数       | 说明                | 默认值                | 示例值                 | 	版本   |
+|----------|-------------------|--------------------|---------------------|-------|
+| `cb_url` | 即回调链接             | -                  | https://xxx.xxx.xxx | 1.0.0 |
+| `scope`  | 即授权范围(全部权限null即可) | -                  | -                   | 1.0.0 |
+| `state`  | 自定义参数             | your_custom_params | -                   | 1.0.0 |
+| `type`   | 授权类型              | QC                 | `QC`｜`AD`           | 1.0.0 |
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+use OceanEngineSDK\OceanEngineAuth;
+
+// 申请广告主授权URL
+$auth = new OceanEngineAuth(APPID, SECRET);
+$auth->getAuthCodeUrl(CALLBACK_URL, null, AUTH_CODE, 'AD')
+
+// 获取授权
+$auth->getAccessToken(AUTH_CODE)
+
+// 刷新授权
+$auth->refreshToken(REFRESH_TOKEN)
+
+```
 
 ### SDK包结构
 ```php
