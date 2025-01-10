@@ -60,7 +60,7 @@ $client = $auth->makeClient(TOKEN);
 $args = [
     // 业务接口请求参数
 ];
-$req = $client::JuLiangAds()
+$req = $client::JuLiangQianChuan()
         ->AccountRel
         ->AwemeAuthorizedGet()
         ->setArgs($args)
@@ -103,10 +103,10 @@ src/
 
 ## 开发进度
 
-## 巨量千川 $xxx::JuLiangAds()
+## 巨量千川 $xxx::JuLiangQianChuan()
 | 账号管理                |      |                                       |
 |---------------------|------|---------------------------------------|
-| **账户关系获取**              | **开发进度** | 链名$xxx::JuLiangAds()->AccountRel->xxx |
+| **账户关系获取**              | **开发进度** | 链名$xxx::JuLiangQianChuan()->AccountRel->xxx |
 | 获取千川账户下可投广抖音号       | ✔    | AwemeAuthorizedGet()                  |
 | 获取千川账户下抖音号授权列表      | ✔    | AwemeAuthListGet()                    |
 | 获取已授权的账户（店铺/代理商/组织） | ✔    | AdvertiserGet()                       |
