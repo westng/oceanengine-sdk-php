@@ -115,7 +115,7 @@ src/
 | 获取纵横组织下账户列表         | ✔    | CustomerCenterAdvertiserList()        |
 | 广告主添加抖音号            | ✔    | ToolsAwemeAuth()                      |
 | 店铺新客定向授权            | ✔    | ToolsShopAuth()                       |
-| **账户信息获取**              | **开发进度** | 链名$xxx::JuLiangAds()->AccountInfo     |
+| **账户信息获取**              | **开发进度** | 链名$xxx::JuLiangQianChuan()->AccountInfo     |
 | 获取授权时登录用户信息            | ✔    | UserInfo()                       |
 | 获取店铺账户信息            | ✔    | QianchuanShopGet()                       |
 | 获取代理商账户信息            | ✔    | AgentInfo()                       |
