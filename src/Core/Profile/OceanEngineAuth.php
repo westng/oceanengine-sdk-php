@@ -30,13 +30,14 @@ class OceanEngineAuth
 
     public string $box_url = 'https://api.oceanengine.com/open_api';
 
+    public string $qc_auth_url = 'https://qianchuan.jinritemai.com/openapi/qc/audit/oauth.html';
+
+    public string $ad_auth_url = 'https://open.oceanengine.com/audit/oauth.html';
+
     public bool $is_sanbox = false;
 
     /**
      * AuthClient constructor.
-     * @param mixed $app_id
-     * @param mixed $secret
-     * @param bool $is_sanbox
      * @param null $server_url
      * @param null $box_url
      */
@@ -55,8 +56,6 @@ class OceanEngineAuth
 
     /**
      * 获取access_token.
-     * @param mixed $auth_code
-     * @return string
      * @throws OceanEngineException
      */
     public function getAccessToken(mixed $auth_code): string
@@ -69,8 +68,6 @@ class OceanEngineAuth
 
     /**
      * 刷新access_token.
-     * @param mixed $refresh_token
-     * @return string
      * @throws OceanEngineException
      */
     public function refreshToken(mixed $refresh_token): string
@@ -83,15 +80,13 @@ class OceanEngineAuth
     /**
      * 获取Autocode Url.
      *
-     * @param mixed $cb_url
-     * @param mixed $scope
-     * @param string $state
-     * @return string
+     * @param string $type 'QC' for qianchuan or 'AD' for advertising
      */
-    public function getAuthCodeUrl(mixed $cb_url, mixed $scope, string $state = 'your_custom_params'): string
+    public function getAuthCodeUrl(mixed $cb_url, mixed $scope, string $state = 'your_custom_params', string $type = 'qc'): string
     {
         $cb_url_encode = urlencode($cb_url);
-        return "https://qianchuan.jinritemai.com/openapi/qc/audit/oauth.html?app_id={$this->app_id}&state={$state}&material_auth=1&redirect_uri={$cb_url_encode}";
+        $auth_url = $type === 'QC' ? $this->qc_auth_url : $this->ad_auth_url;
+        return "{$auth_url}?app_id={$this->app_id}&state={$state}&material_auth=1&redirect_uri={$cb_url_encode}";
     }
 
     public function makeClient($access_token): OceanEngineClient
