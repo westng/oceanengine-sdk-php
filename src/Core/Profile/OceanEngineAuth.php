@@ -14,7 +14,7 @@ namespace OceanEngineSDK;
 
 use AdOauth\GetAccessToken;
 use AdOauth\RefreshToken;
-use Api\JuLiangAds\AccountMgmt\AccountRel\AdvertiserGet;
+use Api\JuLiangQianChuan\AccountMgmt\AccountRel\AdvertiserGet;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
