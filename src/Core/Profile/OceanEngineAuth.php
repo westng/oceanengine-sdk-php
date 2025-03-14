@@ -58,7 +58,7 @@ class OceanEngineAuth
      * 获取access_token.
      * @throws OceanEngineException
      */
-    public function getAccessToken(mixed $auth_code): string
+    public function getAccessToken(mixed $auth_code)
     {
         $request = new GetAccessToken();
         $request->setParams(['grant_type' => 'auth_code', 'app_id' => $this->app_id, 'secret' => $this->secret]);
@@ -70,7 +70,7 @@ class OceanEngineAuth
      * 刷新access_token.
      * @throws OceanEngineException
      */
-    public function refreshToken(mixed $refresh_token): string
+    public function refreshToken(mixed $refresh_token)
     {
         $request = new RefreshToken();
         $request->setParams(['grant_type' => 'refresh_token', 'app_id' => $this->app_id, 'secret' => $this->secret, 'refresh_token' => $refresh_token]);

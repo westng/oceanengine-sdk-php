@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangQianChuan\DataReport\AdsDataReport;
+namespace Api\JuLiangQianChuan\Tools\GlobalPlanningTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取全域推广账户维度数据
- * Class ReportUniPromotionGet.
+ * Name 创建调控任务
+ * Class AdControlTaskCreate.
  */
-class ReportUniPromotionGet extends RpcRequest
+class AdControlTaskCreate extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/report/uni_promotion/get/';
+    protected string $url = '/v1.0/qianchuan/uni_promotion/ad/control_task/create/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
