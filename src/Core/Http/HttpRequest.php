@@ -21,13 +21,14 @@ class HttpRequest
     public static int $readTimeout = 30; // 30 second
 
     /**
+     * @param mixed $url
      * @param string $httpMethod
      * @param null $postFields
      * @param null $headers
-     * @param mixed $url
+     * @return HttpResponse
      * @throws OceanEngineException
      */
-    public static function curl($url, $httpMethod = 'GET', $postFields = null, $headers = null): HttpResponse
+    public static function curl(mixed $url, string $httpMethod = 'GET', $postFields = null, $headers = null): HttpResponse
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $httpMethod);
@@ -56,7 +57,7 @@ class HttpRequest
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
         if (is_array($headers) && 0 < count($headers)) {
-            $httpHeaders = self::getHttpHearders($headers);
+            $httpHeaders = self::getHttpHeaders($headers);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeaders);
         }
 
@@ -87,11 +88,11 @@ class HttpRequest
      * @param mixed $postFildes
      * @return bool|string
      */
-    public static function getPostHttpBody($postFildes)
+    public static function getPostHttpBody(mixed $postFildes): bool|string
     {
         $isMultipart = false;
         foreach ($postFildes as $apiParamKey => $apiParamValue) {
-            if (substr($apiParamValue, 0, 1) == '@') {
+            if (str_starts_with($apiParamValue, '@')) {
                 $isMultipart = true;
                 if (class_exists('\CURLFile')) {
                     $postFildes[$apiParamKey] = new \CURLFile(substr($apiParamValue, 1));
@@ -105,7 +106,7 @@ class HttpRequest
      * @param mixed $headers
      * @return array
      */
-    public static function getHttpHearders($headers)
+    public static function getHttpHeaders(mixed $headers): array
     {
         $httpHeader = [];
         foreach ($headers as $key => $value) {
@@ -114,7 +115,7 @@ class HttpRequest
         return $httpHeader;
     }
 
-    public static function renderJSON($data = [], $msg = 'ok', $code = 200)
+    public static function renderJSON($data = [], $msg = 'ok', $code = 200): bool|string
     {
         return json_encode([
             'code' => $code,

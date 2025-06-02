@@ -54,5 +54,14 @@ class HttpResponse
     {
         return 200 <= $this->status && 300 > $this->status;
     }
+
+    public function getJsonBody(): array
+    {
+        $data = json_decode($this->body, true);
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+            throw new \RuntimeException('Failed to decode JSON body: ' . json_last_error_msg());
+        }
+        return $data;
+    }
 }
 

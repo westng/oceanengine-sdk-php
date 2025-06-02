@@ -18,15 +18,21 @@ $auth = new OceanEngineAuth(APPID, SECRET);
 $client = $auth->makeClient(TOKEN);
 
 $args = [
-//    'advertiser_id' => ADVERTISER_ID,
-//    'shop_id' => 23077751
-    'advertiser_ids' => json_encode([
-        1805994941666500
-    ])
+    'advertiser_id' => ADVERTISER_ID,
 ];
-$req = $client::JuLiangAds()
-    ->AccountInfo
-    ->QianchuanAdvertiserTypeGet()
+
+// 巨量千川
+$req = $client::JuLiangQianChuan()
+    ->FreestylePushPlcmnt
+    ->QianchuanAwemeInterestActionInterestKeyword()
     ->setArgs($args)
     ->send();
 var_dump($req->getBody());
+
+//// 巨量星图
+//$req = $client::JuLiangStarMap()
+//    ->AdvertiserInfoMgmt
+//    ->StarInfo()
+//    ->setArgs($args)
+//    ->send();
+//var_dump($req->getBody());
