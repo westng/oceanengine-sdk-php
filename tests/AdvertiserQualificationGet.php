@@ -23,7 +23,7 @@ $args = [
 
 // 巨量千川
 $req = $client::JuLiangAds()
-    ->Account
+    ->Advertiser
     ->AdvertiserQualificationGet()
     ->setArgs($args)
     ->send();
