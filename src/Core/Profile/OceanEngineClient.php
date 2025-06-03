@@ -108,6 +108,11 @@ class OceanEngineClient
         return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
     }
 
+    public static function JuLiangAds(): \Api\JuLiangAds\Module
+    {
+        return new \Api\JuLiangAds\Module(self::$instance[static::$access_token]);
+    }
+
     public static function JuLiangQianChuan(): \Api\JuLiangQianChuan\Module
     {
         return new \Api\JuLiangQianChuan\Module(self::$instance[static::$access_token]);
