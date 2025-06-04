@@ -15,4 +15,5 @@ vendor/
 public
 *.lock
 *.phar
-/tests/config.php
+.gitignore
+tests/config.php
