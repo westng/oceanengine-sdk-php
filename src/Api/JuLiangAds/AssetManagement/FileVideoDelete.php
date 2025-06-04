@@ -10,29 +10,33 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\ProductManagement;
+namespace Api\JuLiangAds\AssetManagement;
 
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 上传短剧剧目.
+ * 批量删除视频素材.
  *
- * 创建短剧为异步动作，提交创建任务→上传短剧完成耗时较长，创建完后返回的album_id未必处于正常状态，
- * 建议您定时轮询「查询短剧可投状态」，获取短剧创建结果和短剧是否可投。
+ * 通过此接口，用户可以对素材视频进行批量删除。
  *
  * 特别注意：
- * 1. 请求本接口时需要使用APP Access Token
- * 2. 通过【获取APP Access Token】接口获取token
- * 3. 同时传入token对应的app_id请求
- * 4. 短剧标题命名需符合 https://www.volcengine.com/docs/4/1200126 规则
+ * 1. 当素材删除失败时，会展示在video_id列表
+ * 2. 不在此列表内的素材表示删除成功
  */
-class DpaAlbumCreateGet extends RpcRequest
+class FileVideoDelete extends RpcRequest
 {
-    protected string $url = '/v3.0/dpa/album/create/';
+    protected string $url = '/2/file/video/delete/';
 
     protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
+
+    /**
+     * 素材归属的广告主.
+     */
+    protected int $advertiser_id;
 
     /**
      * @return $this
@@ -43,5 +47,13 @@ class DpaAlbumCreateGet extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
+    }
+
+    /**
+     * @throws InvalidParamException
+     */
+    public function check(): void
+    {
+        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }

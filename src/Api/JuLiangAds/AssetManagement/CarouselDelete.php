@@ -10,27 +10,26 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\ProductManagement;
+namespace Api\JuLiangAds\AssetManagement;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取投放条件列表（通用版）.
+ * 批量删除图文.
  *
- * 该接口主要查询汽车行业投放条件信息，根据商品id查询投放条件列表。
+ * 通过此接口，用户可以对图文素材进行批量删除。
  *
- * 投放说明：
- * 1. 投放汽车行业商品广告，需要在计划中传入商品信息（商品库ID+商品ID）+投放条件信息（投放条件ID）
- * 2. 投放条件状态（status）为启用，才可以用于商品广告投放
- * 3. 投放条件类型（asset_type）目前仅支持汽车
+ * 特别注意：
+ * 1. 当素材删除失败时，会展示在carousel_id列表
+ * 2. 不在此列表内的素材表示删除成功
  */
-class DpaAssetsListGet extends RpcRequest
+class CarouselDelete extends RpcRequest
 {
-    protected string $url = '/2/dpa/assets/list/';
+    protected string $url = '/2/carousel/delete/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 

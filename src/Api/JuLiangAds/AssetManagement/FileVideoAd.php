@@ -10,25 +10,27 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\ProductManagement;
+namespace Api\JuLiangAds\AssetManagement;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 批量修改DPA商品状态.
+ * 上传视频.
  *
- * 此接口用于批量修改DPA商品状态。
- * 支持批量修改多个商品的状态，提高操作效率。
+ * 通过此接口，用户可以上传和广告相关的素材视频。
+ *
+ * 建议：
+ * 对于连山url链接上传视频，请及时切换至异步上传接口。
  */
-class DpaProductStatusBatchUpdateGet extends RpcRequest
+class FileVideoAd extends RpcRequest
 {
-    protected string $url = '/2/dpa/product_status/batch_update/';
+    protected string $url = '/2/file/video/ad/';
 
     protected string $method = 'POST';
 
-    protected string $content_type = 'application/json';
+    protected string $content_type = 'multipart/form-data';
 
     /**
      * 广告主ID.

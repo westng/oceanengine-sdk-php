@@ -37,7 +37,7 @@ use Core\Profile\RpcRequest;
  * - 查询升级版商品列表：https://open.oceanengine.com/labels/34/docs/1779430442685440
  * - 查询升级版商品详情：https://open.oceanengine.com/labels/34/docs/1779436000953415
  */
-class DpaClueProductSaveGet extends RpcRequest
+class DpaClueProductSave extends RpcRequest
 {
     protected string $url = '/2/dpa/clue_product/save/';
 

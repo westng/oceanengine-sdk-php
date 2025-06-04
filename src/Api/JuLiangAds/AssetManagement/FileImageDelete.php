@@ -10,38 +10,20 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\ProductManagement;
+namespace Api\JuLiangAds\AssetManagement;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 删除升级版商品.
+ * 批量删除图片素材.
  *
- * 对广告主创建的「升级版」商品进行删除操作。
- *
- * 注意事项：
- * 1. 已经关联计划的商品不允许进行删除
- * 2. 支持批量删除，一次性调用最大个数为100
- * 3. 服务为部分成功部分失败
- *
- * 支持的删除方式：
- * 1. 电商店铺商品（category_id: 140000000）
- *    - 支持按照店铺ID+外部商品ID删除
- *
- * 2. 其他类目商品（按照product_id指定删除）：
- *    - 活动商品（category_id: 250000000）
- *    - 房产（category_id: 130000000）
- *    - 招商加盟（category_id: 240000000）
- *    - 教育培训（category_id: 40000000）
- *    - 医疗服务（category_id: 50900000）
- *    - 人资代招（category_id: 110100000）
- *    - 岗位招聘（category_id: 120000000）
+ * 通过此接口，用户可以批量删除广告主下创意素材库的图片。
  */
-class DpaClueProductDeleteGet extends RpcRequest
+class FileImageDelete extends RpcRequest
 {
-    protected string $url = '/2/dpa/clue_product/delete/';
+    protected string $url = '/v3.0/file/image/delete/';
 
     protected string $method = 'POST';
 

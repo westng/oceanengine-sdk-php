@@ -17,21 +17,20 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 新版】创建DPA商品（已有商品id）/修改DPA商品.
+ * 获取投放条件详情（通用版）.
  *
- * 此接口适用于：
- * 1. 基于已有商品id创建商品：广告主侧已有商品id，希望媒体侧直接该商品id作为商品索引
- * 2. 更新商品：已知某商品的商品id，对已有的商品信息进行修改
+ * 该接口主要查询汽车行业投放条件信息，根据商品id查询投放条件详情。
  *
- * 注意：
- * - 若希望创建商品并由媒体侧自动生成商品id，请使用【创建DPA商品（无商品id）】接口
- * - 请求参数中必须填写商品库ID和商品ID
+ * 查询说明：
+ * 1. 查询的是广告主名下对应商品库的投放条件详情，会有广告主归属校验证
+ * 2. 投放条件类型目前只支持汽车
+ * 3. 只有启用的投放条件才可以在广告投放中添加
  */
-class DpaProductUpdateGet extends RpcRequest
+class DpaAssetsDetailRead extends RpcRequest
 {
-    protected string $url = '/2/dpa/product/update/';
+    protected string $url = '/2/dpa/assets/detail/read/';
 
-    protected string $method = 'POST';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

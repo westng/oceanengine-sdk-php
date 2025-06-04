@@ -10,27 +10,33 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangAds\ProductManagement;
+namespace Api\JuLiangAds\AssetManagement;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取升级版商品列表.
+ * 上传图文.
  *
- * 获取行业产品中心「产品管理-升级版」商品列表。
+ * 利用图片和音频塑造图文。图文是一种创意内容体裁，在包含多张图片和一段背景音乐，支持自动轮播图片。
+ *
+ * 使用说明：
+ * 1. 通过上传广告图片接口按顺序上传图文素材中的图片，获取图片id
+ * 2. 通过上传图文内音频素材接口上传音频（audio_file或audio_url），获取音频id（audio_id）
+ * 3. 利用上述两步的图片、音频id塑造图文，获取出参图文mid
+ * 4. 不同图片顺序对应不同的图文mid（即接口应答参数中的carousel_id）
  */
-class DpaClueProductListGet extends RpcRequest
+class CarouselCreate extends RpcRequest
 {
-    protected string $url = '/2/dpa/clue_product/list/';
+    protected string $url = '/2/carousel/create/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
     /**
-     * 广告主ID.
+     * 广告主id.
      */
     protected int $advertiser_id;
 
