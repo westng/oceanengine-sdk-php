@@ -31,6 +31,7 @@ class Module extends BaseModule
     {
         parent::__construct($client);
         $this->providers = $this->discoverProviders();
+
     }
 
     /**
@@ -83,20 +84,13 @@ class Module extends BaseModule
             }
             $path = $currentDir . '/' . $item;
             if (is_dir($path)) {
-                // For Tools directory, use the subdirectory name as the key
-                if ($relativePath === 'Tools') {
-                    if (file_exists($path . '/Module.php')) {
-                        $providers[$item] = $currentNamespace . '\\' . $item . '\Module';
-                    }
-                } else {
-                    // Check if current directory has a Module.php
-                    $moduleFile = $path . '/Module.php';
-                    if (file_exists($moduleFile)) {
-                        $providers[$item] = $currentNamespace . '\\' . $item . '\Module';
-                    }
+                // 统一处理所有目录，不再特殊处理 Tools
+                $moduleFile = $path . '/Module.php';
+                if (file_exists($moduleFile)) {
+                    $providers[$item] = $currentNamespace . '\\' . $item . '\Module';
                 }
 
-                // Recursively scan subdirectories
+                // 递归扫描子目录
                 $newRelativePath = $relativePath ? $relativePath . '/' . $item : $item;
                 $this->scanDirectory($baseDir, $baseNamespace, $newRelativePath, $providers);
             }

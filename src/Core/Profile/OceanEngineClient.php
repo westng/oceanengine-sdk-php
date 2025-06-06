@@ -12,13 +12,20 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
-use Api\JuLiangAds\Module;
+use Api\JuLiangAds\Module as JuLiangAdsModule;
+use Api\JuLiangQianChuan\Module as JuLiangQianChuanModule;
+use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
 
+/**
+ * @method static \Api\JuLiangQianChuan\Module JuLiangQianChuan()
+ * @method static \Api\JuLiangAds\Module JuLiangAds()
+ * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
+ */
 class OceanEngineClient
 {
     public static string $access_token;
@@ -29,7 +36,16 @@ class OceanEngineClient
 
     public static bool $is_sanbox = false;
 
-    private static mixed $instance = null;
+    private static array $instance = [];
+
+    /**
+     * 模块映射，统一调用.
+     */
+    private static array $moduleMap = [
+        'JuLiangAds' => JuLiangAdsModule::class,
+        'JuLiangQianChuan' => JuLiangQianChuanModule::class,
+        'JuLiangStarMap' => JuLiangStarMapModule::class,
+    ];
 
     // 禁止被实例化
     private function __construct($access_token, $is_sanbox, $server_url, $box_url) {}
@@ -37,19 +53,43 @@ class OceanEngineClient
     // 禁止clone
     private function __clone() {}
 
-    //  实例化自己并保存到$instance中，已实例化则直接调用
-    public static function getInstance($access_token, $is_sanbox, $server_url, $box_url): object
+    /**
+     * 静态魔术方法，动态调用模块.
+     *
+     * @throws \RuntimeException
+     * @throws \BadMethodCallException
+     */
+    public static function __callStatic(string $name, array $arguments)
+    {
+        if (! isset(static::$access_token)) {
+            throw new \RuntimeException('请先调用 OceanEngineClient::getInstance() 初始化客户端，设置 access_token');
+        }
+        if (! isset(self::$instance[static::$access_token])) {
+            throw new \RuntimeException('当前 access_token 未初始化，请先调用 getInstance() 方法');
+        }
+
+        if (isset(self::$moduleMap[$name])) {
+            $className = self::$moduleMap[$name];
+            return new $className(self::$instance[static::$access_token]);
+        }
+        throw new \BadMethodCallException("未定义的静态方法 '{$name}'。");
+    }
+
+    /**
+     * 获取单例实例.
+     */
+    public static function getInstance(string $access_token, bool $is_sanbox = false, ?string $server_url = null, ?string $box_url = null): self
     {
         static::$access_token = $access_token;
-        if ($is_sanbox !== null) {
-            static::$is_sanbox = $is_sanbox;
-        }
+        static::$is_sanbox = $is_sanbox;
+
         if ($server_url !== null) {
             static::$server_url = $server_url;
         }
         if ($box_url !== null) {
             static::$box_url = $box_url;
         }
+
         if (empty(self::$instance[$access_token])) {
             self::$instance[$access_token] = new self($access_token, $is_sanbox, $server_url, $box_url);
         }
@@ -58,65 +98,50 @@ class OceanEngineClient
 
     /**
      * 执行 HTTP 请求并返回响应.
-     * @param RequestInteface $request 包含请求信息的请求对象，必须实现 RequestInterface 接口
-     * @param null|string $url 目标 URL，可选参数
-     * @return HttpResponse 包含 HTTP 响应的 HttpResponse 对象
-     * @throws OceanEngineException 当请求校验失败或出现错误时抛出异常
+     *
+     * @throws OceanEngineException
      */
     public function excute(RequestInteface $request, ?string $url = null): HttpResponse
     {
-        // 检查请求对象的有效性，确保请求信息的正确性
         $request->check();
-        // 获取请求参数
         $params = $request->getParams();
-        // 构建请求头，包括 Access-Token 和 Content-Type
         $headers = [
             'Access-Token' => static::$access_token,
             'Content-Type' => $request->getContentType(),
         ];
-        // 如果没有提供 URL，从请求对象中获取 URL
-        if ($url == null) {
+
+        if ($url === null) {
             $url = $request->getUrl();
-            // 检查 URL 是否为空
-            if ($url == '') {
+            if ($url === '') {
                 throw new InvalidParamException('HTTP URL is required, and now the URL is empty');
             }
-
-            // 如果 URL 不以 "http" 开头，根据环境配置拼接完整的 URL
             if (! str_starts_with($url, 'http')) {
-                $url = (static::$is_sanbox ? static::$box_url : static::$server_url) . $request->getUrl();
+                $url = (static::$is_sanbox ? static::$box_url : static::$server_url) . $url;
             }
         }
 
-        // 如果请求方式为GET将参数转换拼接在URL中
-        if ($request->getMethod() == 'GET') {
+        if ($request->getMethod() === 'GET') {
             $url .= '?' . http_build_query($params);
-            $params = null; // 释放内存，避免内存溢出
+            $params = null;
         }
 
-        // 如果 Content-Type 包含 "json"，则将请求参数转换为 JSON 格式
-        if (strpos($request->getContentType(), 'json') > 0) {
+        if (strpos($request->getContentType(), 'json') !== false) {
             $params = json_encode($params);
         }
 
-        // 设置请求超时时间
         HttpRequest::$readTimeout = $request->getTimeout();
-        // 调用 HttpRequest::sendRequest 方法，发送 HTTP 请求并获取响应
         return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
     }
 
-    public static function JuLiangAds(): Module
+    /**
+     * 备用调用模块接口方法（非静态）.
+     */
+    public function module(string $name)
     {
-        return new Module(self::$instance[static::$access_token]);
-    }
-
-    public static function JuLiangQianChuan(): \Api\JuLiangQianChuan\Module
-    {
-        return new \Api\JuLiangQianChuan\Module(self::$instance[static::$access_token]);
-    }
-
-    public static function JuLiangStarMap(): \Api\JuLiangStarMap\Module
-    {
-        return new \Api\JuLiangStarMap\Module(self::$instance[static::$access_token]);
+        if (! isset(self::$moduleMap[$name])) {
+            throw new \InvalidArgumentException("模块 {$name} 不存在。");
+        }
+        $className = self::$moduleMap[$name];
+        return new $className($this);
     }
 }
