@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
-use Account\Module as AccountModule;
+use Api\Account\Module as AccountModule;
 use Api\JuLiangAds\Module as JuLiangAdsModule;
 use Api\JuLiangQianChuan\Module as JuLiangQianChuanModule;
 use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
@@ -26,7 +26,7 @@ use Core\Profile\RequestInteface;
  * @method static \Api\JuLiangQianChuan\Module JuLiangQianChuan()
  * @method static \Api\JuLiangAds\Module JuLiangAds()
  * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
- * @method static \Account\Module Account()
+ * @method static \Api\Account\Module Account()
  */
 class OceanEngineClient
 {

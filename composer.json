@@ -24,7 +24,7 @@
     "psr-4": {
       "OceanEngineSDK\\": "src/Core/Profile/",
       "AdOauth\\": "src/AdOauth/",
-      "Account\\": "src/Account/",
+      "Account\\": "src/Api/Account/",
       "Core\\": "src/Core/",
       "Api\\": "src/Api/",
       "EnterpriseAccount\\": "src/Api/EnterpriseAccount/",

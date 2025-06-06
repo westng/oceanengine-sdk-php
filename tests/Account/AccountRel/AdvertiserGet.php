@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace AccountRel;
+namespace Api\Account\Rel;
 
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
