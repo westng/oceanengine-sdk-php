@@ -26,6 +26,17 @@
 | 广告主添加抖音号                     | AccountRel->ToolsAwemeAuth()               |
 | 店铺新客定向授权                     | AccountRel->ToolsShopAuth()                |
 
+### Agency 代理商帐户管理
+| 方法名称                             | 调用方法                                   |
+| ------------------------------------ | ------------------------------------------ |
+| 获取代理商账户关联的广告账户列表         | Agency->AgentAdvertiserSelect()             |
+| 获取代理商账户信息         | Agency->AgentInfo()           |
+
+### Workbench 工作台帐户管理
+| 方法名称                             | 调用方法                                   |
+| ------------------------------------ | ------------------------------------------ |
+| 获取纵横工作台下账户列表         | Workbench->CustomerCenterAdvertiserList()             |
+
 ## AdvertiserMgmt 投放管理
 
 ### AdvertiserAccountBudget 广告账户预算
