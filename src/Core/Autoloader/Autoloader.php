@@ -17,12 +17,11 @@ class Autoloader
     private static array $autoloadPathArray = [
         'Core',      // src/Core
         'Api',       // src/Api
-        'Api/JuLiangAds',       // src/Api
         'AdOauth',   // src/AdOauth
     ];
 
     private static array $replacePath = [
-        'OceanEngineSDK\\' => 'Core\\Profile\\',
+        'OceanEngineSDK\\' => 'Core\Profile\\',
     ];
 
     /**

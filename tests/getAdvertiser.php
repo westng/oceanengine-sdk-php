@@ -9,6 +9,8 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
+
+use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
 require_once __DIR__ . '/../index.php';
@@ -26,8 +28,10 @@ class AdvertiserGet
             $auth = new OceanEngineAuth(APPID, SECRET);
             $result = $auth->advertiserGet(TOKEN);
             print_r($result);
-        } catch (Throwable $e) {
-            fwrite(STDERR, '[请求失败] ' . $e->getMessage() . PHP_EOL);
+        } catch (OceanEngineException $e) {
+            echo '错误类型: ' . $e->getErrorType() . PHP_EOL;
+            echo '错误码: ' . $e->getErrorCode() . PHP_EOL;
+            echo '错误信息: ' . $e->getErrorMessage() . PHP_EOL;
             exit(1);
         }
     }
