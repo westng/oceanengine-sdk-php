@@ -75,13 +75,13 @@ src/
 
 ## 当前开发进度
 
-| 模块       | 实例调用模块                           | 静态调用模块                | 状态      | 文档链接                             |
-| ---------- | -------------------------------------- | --------------------------- | --------- | ------------------------------------ |
+| 模块       | 实例调用模块                           | 静态调用模块                | 状态    | 文档链接                             |
+| ---------- | -------------------------------------- | --------------------------- |-------| ------------------------------------ |
 | 巨量广告   | `$client->module('JuLiangAds')`        | `$sdk::JuLiangAds()`        | ✅ 已完成 | [点击查看](docs/JULIANGADS.md)       |
 | 巨量千川   | `$client->module('JuLiangQianChuan')`  | `$sdk::JuLiangQianChuan()`  | ✅ 已完成 | [点击查看](docs/JULIANGQIANCHUAN.md) |
 | 巨量星图   | `$client->module('JuLiangStarMap')`    | `$sdk::JuLiangStarMap()`    | ✅ 已完成 | [点击查看](docs/JULIANGSTARMAP.md)   |
-| 企业号     | `$client->module('EnterpriseAccount')` | `$sdk::EnterpriseAccount()` | ⏳ 开发中 | -                                    |
-| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$sdk::JuLiangLocalPush()`  | ⏳ 开发中 | -                                    |
+| 企业号     | `$client->module('EnterpriseAccount')` | `$sdk::EnterpriseAccount()` | ⏳ 未开始 | -                                    |
+| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$sdk::JuLiangLocalPush()`  | ⏳ 开发中 | [点击查看](docs/JULIANGLOCALPUSH.md)    |
 | 账户管理   | `$client->module('Account')`           | `$sdk::Account()`           | ✅ 已完成 | [点击查看](docs/ACCOUNT.md)          |
 > ⚠️ 账户管理 【千川｜广告｜本地推｜星图】接口通用都在这里面。   
 > ⚠️ 上述进度仅供参考，实际以源码为准。  
