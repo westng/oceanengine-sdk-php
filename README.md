@@ -9,6 +9,7 @@
 这简直荒谬至极。PHP 开发者们为互联网立下汗马功劳，如今却像被抛弃的孩子。看着其他语言开发者仗着官方 SDK 大步快跑，自己只能徒手在荆棘中挣扎，太不公平！好比马拉松赛场，别人装备精良、补给充足，自己却赤脚前行、无水可饮。
 
 幸有补救性 SDK，让 PHP 开发者不至于掉队，能凭本事搭起投放管理系统，但背后是他们付出的诸多额外心血。官方这种"偏心"做法，实在该反省，给 PHP 开发者们一个交代！
+
 ## 使用条件
 
 1. 使用 SDK 需要首先注册成为巨量引擎开发者，请参考[开发者快速入门文档](https://open.oceanengine.com/labels/7/docs/1696710498372623)
@@ -25,15 +26,15 @@ composer require westng/oceanengine-sdk-php
 ### 申请广告主授权
 
 #### 参数说明
-getAuthCodeUrl 参数说明   
 
-| 参数     | 说明                           | 默认值             | 示例值              | 版本  |
-| -------- | ------------------------------ | ------------------ | ------------------- | ----- |
-| `cb_url` | 即回调链接                     | -                  | https://xxx.xxx.xxx | 1.0.0 |
-| `scope`  | 即授权范围（全部权限 null 即可）| -                  | -                   | 1.0.0 |
-| `state`  | 自定义参数                     | your_custom_params | -                   | 1.0.0 |
-| `type`   | 授权类型                       | QC                 | `QC`｜`AD`          | 1.0.0 |
+getAuthCodeUrl 参数说明
 
+| 参数     | 说明                             | 默认值             | 示例值              | 版本  |
+| -------- | -------------------------------- | ------------------ | ------------------- | ----- |
+| `cb_url` | 即回调链接                       | -                  | https://xxx.xxx.xxx | 1.0.0 |
+| `scope`  | 即授权范围（全部权限 null 即可） | -                  | -                   | 1.0.0 |
+| `state`  | 自定义参数                       | your_custom_params | -                   | 1.0.0 |
+| `type`   | 授权类型                         | QC                 | `QC`｜`AD`          | 1.0.0 |
 
 ### SDK 包结构
 
@@ -41,6 +42,7 @@ getAuthCodeUrl 参数说明
 docs/
 ├── JULIANGQIANCHUAN.md
 ├── JULIANGADS.md
+├── ACCOUNT.md
 └── JULIANGSTARMAP.md
 src/
 ├── AdOauth/
@@ -72,22 +74,24 @@ src/
 
 ## 当前开发进度
 
-| 模块         | 实例调用模块              | 静态调用模块                   | 状态       | 文档链接                         |
-|--------------|---------------------------------|--------------------------------|------------|----------------------------------|
-| 巨量广告     | `$client->module('JuLiangAds')`          | `$sdk::JuLiangAds()`           | ✅ 已完成  | [点击查看](docs/JULIANGADS.md)  |
-| 巨量千川     | `$client->module('JuLiangQianChuan')`    | `$sdk::JuLiangQianChuan()`     | ✅ 已完成  | [点击查看](docs/JULIANGQIANCHUAN.md) |
-| 巨量星图     | `$client->module('JuLiangStarMap')`      | `$sdk::JuLiangStarMap()`       | ✅ 已完成  | [点击查看](docs/JULIANGSTARMAP.md)   |
-| 企业号       | `$client->module('EnterpriseAccount')`   | `$sdk::EnterpriseAccount()`    | ⏳ 开发中 | -                                |
-| 巨量本地推   | `$client->module('JuLiangLocalPush')`    | `$sdk::JuLiangLocalPush()`     | ⏳ 开发中 | -                                |
-
+| 模块       | 实例调用模块                           | 静态调用模块                | 状态      | 文档链接                             |
+| ---------- | -------------------------------------- | --------------------------- | --------- | ------------------------------------ |
+| 巨量广告   | `$client->module('JuLiangAds')`        | `$sdk::JuLiangAds()`        | ✅ 已完成 | [点击查看](docs/JULIANGADS.md)       |
+| 巨量千川   | `$client->module('JuLiangQianChuan')`  | `$sdk::JuLiangQianChuan()`  | ✅ 已完成 | [点击查看](docs/JULIANGQIANCHUAN.md) |
+| 巨量星图   | `$client->module('JuLiangStarMap')`    | `$sdk::JuLiangStarMap()`    | ✅ 已完成 | [点击查看](docs/JULIANGSTARMAP.md)   |
+| 企业号     | `$client->module('EnterpriseAccount')` | `$sdk::EnterpriseAccount()` | ⏳ 开发中 | -                                    |
+| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$sdk::JuLiangLocalPush()`  | ⏳ 开发中 | -                                    |
+| 账户管理   | `$client->module('Account')`           | `$sdk::Account()`           | ✅ 已完成 | [点击查看](docs/ACCOUNT.md)          |
+> ⚠️ 账户管理 【千川｜广告｜本地推｜星图】接口通用都在这里面。   
 > ⚠️ 上述进度仅供参考，实际以源码为准。  
-> 🧠 欢迎查看源码深入探索，接口比文档更诚实！     
+> 🧠 欢迎查看源码深入探索，接口比文档更诚实！  
 > 舅宠你一回 😠
 
 ## 问题反馈
 
 如在使用过程中遇到问题、建议或灵感……请无视（开玩笑的）。
->📨 实在憋不住可以提 Issue 或 PR～
+
+> 📨 实在憋不住可以提 Issue 或 PR ～
 
 ## 后续计划
 
