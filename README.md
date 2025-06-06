@@ -25,53 +25,15 @@ composer require westng/oceanengine-sdk-php
 ### 申请广告主授权
 
 #### 参数说明
-- getAuthCodeUrl 参数说明
-- | 参数     | 说明                           | 默认值             | 示例值              | 版本  |
-  | -------- | ------------------------------ | ------------------ | ------------------- | ----- |
-  | `cb_url` | 即回调链接                     | -                  | https://xxx.xxx.xxx | 1.0.0 |
-  | `scope`  | 即授权范围(全部权限 null 即可) | -                  | -                   | 1.0.0 |
-  | `state`  | 自定义参数                     | your_custom_params | -                   | 1.0.0 |
-  | `type`   | 授权类型                       | QC                 | `QC`｜`AD`          | 1.0.0 |
+getAuthCodeUrl 参数说明   
 
-```php
-<?php
+| 参数     | 说明                           | 默认值             | 示例值              | 版本  |
+| -------- | ------------------------------ | ------------------ | ------------------- | ----- |
+| `cb_url` | 即回调链接                     | -                  | https://xxx.xxx.xxx | 1.0.0 |
+| `scope`  | 即授权范围（全部权限 null 即可）| -                  | -                   | 1.0.0 |
+| `state`  | 自定义参数                     | your_custom_params | -                   | 1.0.0 |
+| `type`   | 授权类型                       | QC                 | `QC`｜`AD`          | 1.0.0 |
 
-declare(strict_types=1);
-/**
- * This file is part of Marketing PHP SDK.
- *
- * @link     https://github.com/westng/oceanengine-sdk-php
- * @document https://github.com/westng/oceanengine-sdk-php
- * @contact  westng
- * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
- */
-use OceanEngineSDK\OceanEngineAuth;
-
-// 申请广告主授权URL
-$auth = new OceanEngineAuth(APPID, SECRET);
-$auth->getAuthCodeUrl(CALLBACK_URL, null, AUTH_CODE, 'AD'); // 获取授权码链接
-
-// 获取授权
-$auth->getAccessToken(AUTH_CODE);
-
-// 刷新授权
-$auth->refreshToken(REFRESH_TOKEN);
-
-// 业务接口需要调用
-$client = $auth->makeClient(TOKEN);
-$args = [
-    // 业务接口请求参数
-];
-
-// 支持静态方式调用模块（等同于 ormodel('JuLiangQianChuan')）
-$req = $client::JuLiangQianChuan()
-        ->AccountRel
-        ->AwemeAuthorizedGet()
-        ->setArgs($args)
-        ->send();
-
-var_dump($req->getBody());
-```
 
 ### SDK 包结构
 
@@ -80,7 +42,6 @@ docs/
 ├── JULIANGQIANCHUAN.md
 ├── JULIANGADS.md
 └── JULIANGSTARMAP.md
-
 src/
 ├── AdOauth/
 │   ├── GetAccessToken.php         // 获取 AccessToken
@@ -100,9 +61,11 @@ src/
 │   │   │   │   ├── AwemeAuthorizedGet.php // 具体接口
 │   │   │   │   └── Module.php
 │   │   └── Module.php
+│   ├── JuLiangQianChuan/         // 巨量千川
+│   ├── JuLiangStarMap/           // 巨量星图
 │   ├── EnterpriseAccount/        // 企业号
 │   └── JuLiangLocalPush/         // 本地推
-├── test/
+├── tests/
 ├── LICENSE
 └── README.md
 ```
@@ -117,8 +80,8 @@ src/
 | 企业号       | `$client->module('EnterpriseAccount')`   | `$sdk::EnterpriseAccount()`    | ⏳ 开发中 | -                                |
 | 巨量本地推   | `$client->module('JuLiangLocalPush')`    | `$sdk::JuLiangLocalPush()`     | ⏳ 开发中 | -                                |
 
-> ⚠️ 上述进度仅供参考，实际以源码为准。
-> 🧠 欢迎查看源码深入探索，接口比文档更诚实！  
+> ⚠️ 上述进度仅供参考，实际以源码为准。  
+> 🧠 欢迎查看源码深入探索，接口比文档更诚实！     
 > 舅宠你一回 😠
 
 ## 问题反馈
