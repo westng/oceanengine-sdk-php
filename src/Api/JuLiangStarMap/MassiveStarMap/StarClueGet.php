@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangStarMap\MassiveStarMap;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -37,9 +35,5 @@ class StarClueGet extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    public function check()
-    {
     }
 }

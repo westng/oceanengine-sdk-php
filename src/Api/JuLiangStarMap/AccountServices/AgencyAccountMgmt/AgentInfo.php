@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangStarMap\AccountServices\AgencyAccountMgmt;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -37,10 +35,5 @@ class AgentInfo extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    public function check()
-    {
-
     }
 }
