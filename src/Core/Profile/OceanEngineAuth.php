@@ -121,7 +121,7 @@ class OceanEngineAuth
     }
 
     /**
-     * 获取广告主信息.
+     * 获取已授权的账户（店铺/代理商/组织）.
      *
      * @throws OceanEngineException
      */

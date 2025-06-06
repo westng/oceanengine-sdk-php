@@ -10,10 +10,10 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 const APPID = '';
-// Secret
 const SECRET = '';
 const AUTH_CODE = '';
 const TOKEN = '';
 const REFRESH_TOKEN = '';
 const ADVERTISER_ID = null;
+const ADVERTISER_IDS = [];
 const CALLBACK_URL = '';
