@@ -1,42 +1,4 @@
 # JuLiangQianChuan 巨量千川 API 结构
-
-## AccountMgmt 账户管理
-
-### AccountInfo 账户信息获取
-
-| 方法名称                 | 调用方法                                  |
-| ------------------------ | ----------------------------------------- |
-| 获取千川广告账户全量信息 | AccountInfo->AdvertiserInfo()             |
-| 获取千川广告账户基础信息 | AccountInfo->AdvertiserPublicInfo()       |
-| 获取代理商账户信息       | AccountInfo->AgentInfo()                  |
-| 获取店铺账户信息         | AccountInfo->QianchuanShopGet()           |
-| 获取授权时登录用户信息   | AccountInfo->UserInfo()                   |
-| 获取千川账户类型         | AccountInfo->QianchuanAdvertiserTypeGet() |
-
-### AccountRel 账户关系获取
-
-| 方法名称                             | 调用方法                                   |
-| ------------------------------------ | ------------------------------------------ |
-| 获取千川账户下抖音号授权列表         | AccountRel->AwemeAuthListGet()             |
-| 获取千川账户下抖音号授权信息         | AccountRel->AwemeAuthorizedGet()           |
-| 获取已授权的账户（店铺/代理商/组织） | AccountRel->AdvertiserGet()                |
-| 获取店铺账户关联的广告账户列表       | AccountRel->ShopAdvertiserList()           |
-| 获取代理商账户关联的广告账户列表     | AccountRel->AgentAdvertiserSelect()        |
-| 获取纵横组织下账户列表               | AccountRel->CustomerCenterAdvertiserList() |
-| 广告主添加抖音号                     | AccountRel->ToolsAwemeAuth()               |
-| 店铺新客定向授权                     | AccountRel->ToolsShopAuth()                |
-
-### Agency 代理商帐户管理
-| 方法名称                             | 调用方法                                   |
-| ------------------------------------ | ------------------------------------------ |
-| 获取代理商账户关联的广告账户列表         | Agency->AgentAdvertiserSelect()             |
-| 获取代理商账户信息         | Agency->AgentInfo()           |
-
-### Workbench 工作台帐户管理
-| 方法名称                             | 调用方法                                   |
-| ------------------------------------ | ------------------------------------------ |
-| 获取纵横工作台下账户列表         | Workbench->CustomerCenterAdvertiserList()             |
-
 ## AdvertiserMgmt 投放管理
 
 ### AdvertiserAccountBudget 广告账户预算

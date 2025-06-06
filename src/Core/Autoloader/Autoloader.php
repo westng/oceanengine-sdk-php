@@ -15,9 +15,10 @@ namespace Core\Autoloader;
 class Autoloader
 {
     private static array $autoloadPathArray = [
-        'Core',      // src/Core
-        'Api',       // src/Api
-        'AdOauth',   // src/AdOauth
+        'Core',      // src/Core 核心包
+        'Api',       // src/Api API接口
+        'AdOauth',   // src/AdOauth Oauth2.0授权
+        'Account',   // src/Account 账号服务
     ];
 
     private static array $replacePath = [

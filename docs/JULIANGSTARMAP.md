@@ -1,30 +1,4 @@
 # JuLiangStarMap 巨量星图 API 结构
-
-## AccountServices 账号服务
-
-### AdvertiserInfoMgmt 广告主信息与资质管理
-
-| 方法名称         | 方法名                            |
-| ---------------- |--------------------------------|
-| 获取星图账户信息 | AdvertiserInfoMgmt->StarInfo() |
-
-### AgencyAccountMgmt 代理商账号管理
-
-| 方法名称           | 方法名                            |
-| ------------------ |--------------------------------|
-| 获取代理商信息     | AgencyAccountMgmt->AgentInfo() |
-| 二级代理商列表     | AgencyAccountMgmt->AgentChildAgentSelect()        |
-| 代理商管理账户列表 | AgencyAccountMgmt->AgentAdvertiserSelect()        |
-
-### FundsTransactionMgmt 资金和流水管理
-
-| 方法名称           | 方法名                                                  |
-| ------------------ |------------------------------------------------------|
-| 查询账号流水明细   | FundsTransactionMgmt->AdvertiserFundTransactionGet() |
-| 查询代理商转账记录 | FundsTransactionMgmt->AgentTransferTransactionRecord()                     |
-| 查询账户日流水     | FundsTransactionMgmt->AdvertiserFundDailyStat()                            |
-| 批量查询账户余额   | FundsTransactionMgmt->AccountFundGet()                                     |
-
 ## MassiveStarMap 巨量星图
 
 | 方法名称                         | 方法名                                       |

@@ -14,7 +14,6 @@ namespace OceanEngineSDK;
 
 use AdOauth\GetAccessToken;
 use AdOauth\RefreshToken;
-use Api\JuLiangQianChuan\AccountMgmt\AccountRel\AdvertiserGet;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
@@ -34,7 +33,7 @@ class OceanEngineAuth
 
     public string $ad_auth_url = 'https://open.oceanengine.com/audit/oauth.html';
 
-    public bool $is_sanbox = false;
+    public bool $is_sandbox = false;
 
     /**
      * AuthClient constructor.
@@ -118,23 +117,6 @@ class OceanEngineAuth
     public function makeClient(string $access_token): OceanEngineClient
     {
         return OceanEngineClient::getInstance($access_token, $this->is_sandbox, $this->server_url, $this->box_url);
-    }
-
-    /**
-     * 获取已授权的账户（店铺/代理商/组织）.
-     *
-     * @throws OceanEngineException
-     */
-    public function advertiserGet(string $access_token): array
-    {
-        $request = new AdvertiserGet();
-        $request->setParams([
-            'access_token' => $access_token,
-            'app_id' => $this->app_id,
-            'secret' => $this->secret,
-        ]);
-
-        return $this->execute($request)->getJsonBody();
     }
 
     /**

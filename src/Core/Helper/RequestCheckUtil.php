@@ -23,7 +23,7 @@ class RequestCheckUtil
      * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkNotNull($value, $fieldName): void
+    public static function checkNotNull(mixed $value, mixed $fieldName): void
     {
         if (self::checkEmpty($value)) {
             throw new InvalidParamException('client-check-error:Missing Required Arguments: ' . $fieldName, 40);
@@ -96,7 +96,7 @@ class RequestCheckUtil
      * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkMaxValue($value, $maxValue, $fieldName): void
+    public static function checkMaxValue(mixed $value, mixed $maxValue, mixed $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
@@ -115,7 +115,7 @@ class RequestCheckUtil
      * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkMinValue($value, $minValue, $fieldName): void
+    public static function checkMinValue(mixed $value, mixed $minValue, mixed $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
@@ -163,7 +163,7 @@ class RequestCheckUtil
      * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    protected static function checkNumeric($value, $fieldName): void
+    public static function checkNumeric(mixed $value, mixed $fieldName): void
     {
         if (! is_numeric($value)) {
             throw new InvalidParamException('client-check-error:Invalid Arguments:the value of ' . $fieldName . ' is not number : ' . $value . ' .', 41);
