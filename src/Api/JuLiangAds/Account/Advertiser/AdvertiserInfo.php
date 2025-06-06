@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\Account\Advertiser;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -29,11 +27,6 @@ class AdvertiserInfo extends RpcRequest
     protected string $content_type = 'application/json';
 
     /**
-     * 操作的广告主id.
-     */
-    protected int $advertiser_id;
-
-    /**
      * @return $this
      */
     public function setArgs(mixed $args): static
@@ -42,13 +35,5 @@ class AdvertiserInfo extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }
