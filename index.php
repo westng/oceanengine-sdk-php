@@ -9,7 +9,6 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
-
 use Core\Autoloader\Autoloader;
 
 require_once __DIR__ . '/src/Core/Autoloader/Autoloader.php';

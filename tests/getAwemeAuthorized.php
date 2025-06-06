@@ -29,10 +29,10 @@ $req = $client::JuLiangQianChuan()
     ->send();
 var_dump($req->getBody());
 
-//// 巨量星图
-//$req = $client::JuLiangStarMap()
+// // 巨量星图
+// $req = $client::JuLiangStarMap()
 //    ->AdvertiserInfoMgmt
 //    ->StarInfo()
 //    ->setArgs($args)
 //    ->send();
-//var_dump($req->getBody());
+// var_dump($req->getBody());

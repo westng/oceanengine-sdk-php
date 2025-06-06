@@ -35,6 +35,9 @@
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "scripts": {
+    "cs-fix": "php-cs-fixer fix"
+  },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.75"
   }

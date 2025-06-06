@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
+
 namespace Core\Autoloader;
 
 class Autoloader
@@ -21,11 +22,11 @@ class Autoloader
     ];
 
     private static array $replacePath = [
-        "OceanEngineSDK\\" => "Core\\Profile\\"
+        'OceanEngineSDK\\' => 'Core\\Profile\\',
     ];
 
     /**
-     * 自动加载类
+     * 自动加载类.
      *
      * @param string $className 类名
      */
@@ -63,11 +64,11 @@ class Autoloader
         }
 
         // 如果没有找到文件，抛出错误
-        echo "File not found for class: $className\n";
+        echo "File not found for class: {$className}\n";
     }
 
     /**
-     * 加载当前目录下的所有子目录
+     * 加载当前目录下的所有子目录.
      */
     public static function loadDirectories(): void
     {
@@ -80,7 +81,7 @@ class Autoloader
     }
 
     /**
-     * 添加新的自动加载路径
+     * 添加新的自动加载路径.
      *
      * @param string $path 新的路径
      */

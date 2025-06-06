@@ -38,11 +38,6 @@ class OceanEngineAuth
 
     /**
      * AuthClient constructor.
-     * @param string $app_id
-     * @param string $secret
-     * @param bool $is_sandbox
-     * @param string|null $server_url
-     * @param string|null $box_url
      */
     public function __construct(
         string $app_id,
@@ -74,9 +69,9 @@ class OceanEngineAuth
         $request = new GetAccessToken();
         $request->setParams([
             'grant_type' => 'auth_code',
-            'app_id'     => $this->app_id,
-            'secret'     => $this->secret,
-            'auth_code'  => $auth_code,
+            'app_id' => $this->app_id,
+            'secret' => $this->secret,
+            'auth_code' => $auth_code,
         ]);
         return $this->execute($request)->getJsonBody();
     }
@@ -92,14 +87,13 @@ class OceanEngineAuth
     {
         $request = new RefreshToken();
         $request->setParams([
-            'grant_type'    => 'refresh_token',
-            'app_id'        => $this->app_id,
-            'secret'        => $this->secret,
+            'grant_type' => 'refresh_token',
+            'app_id' => $this->app_id,
+            'secret' => $this->secret,
             'refresh_token' => $refresh_token,
         ]);
         return $this->execute($request)->getJsonBody();
     }
-
 
     /**
      * 构建授权 URL.
@@ -120,7 +114,6 @@ class OceanEngineAuth
      * 获取客户端实例.
      *
      * @param string $access_token Access Token
-     * @return OceanEngineClient
      */
     public function makeClient(string $access_token): OceanEngineClient
     {
@@ -130,8 +123,6 @@ class OceanEngineAuth
     /**
      * 获取广告主信息.
      *
-     * @param string $access_token
-     * @return array
      * @throws OceanEngineException
      */
     public function advertiserGet(string $access_token): array
@@ -139,13 +130,12 @@ class OceanEngineAuth
         $request = new AdvertiserGet();
         $request->setParams([
             'access_token' => $access_token,
-            'app_id'       => $this->app_id,
-            'secret'       => $this->secret,
+            'app_id' => $this->app_id,
+            'secret' => $this->secret,
         ]);
 
         return $this->execute($request)->getJsonBody();
     }
-
 
     /**
      * 执行 HTTP 请求.

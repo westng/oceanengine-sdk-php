@@ -20,7 +20,7 @@ use Core\Profile\RpcRequest;
  */
 class UserInfo extends RpcRequest
 {
-    protected string $url = 'https://ad.oceanengine.com/open_api/2/user/info/';
+    protected string $url = '/2/user/info/';
 
     protected string $method = 'GET';
 

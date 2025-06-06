@@ -16,7 +16,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取已授权的账户（店铺/代理商/组织）
- * Class AdvertiserGet
+ * Class AdvertiserGet.
  */
 class AdvertiserGet extends RpcRequest
 {

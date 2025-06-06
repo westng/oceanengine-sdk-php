@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangQianChuan\Tools\QueryTool;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -39,8 +37,5 @@ class ToolsIndustryGet extends RpcRequest
         return $this;
     }
 
-    public function check()
-    {
-
-    }
+    public function check() {}
 }

@@ -22,7 +22,7 @@ use Core\Profile\RpcRequest;
  */
 class ToolsAwemeAuth extends RpcRequest
 {
-    protected string $url = 'https://api.oceanengine.com/open_api/v1.0/qianchuan/tools/aweme_auth/';
+    protected string $url = '/v1.0/qianchuan/tools/aweme_auth/';
 
     protected string $method = 'POST';
 

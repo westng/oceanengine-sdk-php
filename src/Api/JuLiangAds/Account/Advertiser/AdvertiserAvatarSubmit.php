@@ -52,4 +52,3 @@ class AdvertiserAvatarSubmit extends RpcRequest
         RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }
-

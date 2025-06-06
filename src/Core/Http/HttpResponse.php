@@ -23,33 +23,21 @@ class HttpResponse
         return $this->body;
     }
 
-    /**
-     * @param $body
-     */
     public function setBody($body): void
     {
         $this->body = $body;
     }
 
-    /**
-     * @return int
-     */
     public function getStatus(): int
     {
         return $this->status;
     }
 
-    /**
-     * @param $status
-     */
     public function setStatus($status): void
     {
         $this->status = $status;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return 200 <= $this->status && 300 > $this->status;
@@ -58,10 +46,9 @@ class HttpResponse
     public function getJsonBody(): array
     {
         $data = json_decode($this->body, true);
-        if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+        if (json_last_error() !== JSON_ERROR_NONE || ! is_array($data)) {
             throw new \RuntimeException('Failed to decode JSON body: ' . json_last_error_msg());
         }
         return $data;
     }
 }
-

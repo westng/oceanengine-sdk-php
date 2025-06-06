@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\Account\Advertiser;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**

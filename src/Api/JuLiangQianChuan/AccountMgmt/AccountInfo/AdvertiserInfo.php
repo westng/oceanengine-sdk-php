@@ -36,6 +36,4 @@ class AdvertiserInfo extends RpcRequest
         }
         return $this;
     }
-
-    public function check() {}
 }

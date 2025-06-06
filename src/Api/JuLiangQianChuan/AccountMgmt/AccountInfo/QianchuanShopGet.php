@@ -20,7 +20,7 @@ use Core\Profile\RpcRequest;
  */
 class QianchuanShopGet extends RpcRequest
 {
-    protected string $url = 'https://api.oceanengine.com/open_api/v1.0/qianchuan/shop/get/';
+    protected string $url = '/v1.0/qianchuan/shop/get/';
 
     protected string $method = 'GET';
 
@@ -36,6 +36,4 @@ class QianchuanShopGet extends RpcRequest
         }
         return $this;
     }
-
-    public function check() {}
 }

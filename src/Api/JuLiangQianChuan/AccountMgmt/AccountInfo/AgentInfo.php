@@ -20,7 +20,7 @@ use Core\Profile\RpcRequest;
  */
 class AgentInfo extends RpcRequest
 {
-    protected string $url = 'https://ad.oceanengine.com/open_api/2/agent/info/';
+    protected string $url = '/2/agent/info/';
 
     protected string $method = 'GET';
 
@@ -36,6 +36,4 @@ class AgentInfo extends RpcRequest
         }
         return $this;
     }
-
-    public function check() {}
 }

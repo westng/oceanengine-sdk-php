@@ -21,14 +21,11 @@ class HttpRequest
     public static int $readTimeout = 30; // 30 second
 
     /**
-     * @param mixed $url
-     * @param string $httpMethod
-     * @param null $postFields
-     * @param null $headers
-     * @return HttpResponse
+     * @param mixed|null $postFields
+     * @param mixed|null $headers
      * @throws OceanEngineException
      */
-    public static function curl(mixed $url, string $httpMethod = 'GET', $postFields = null, $headers = null): HttpResponse
+    public static function curl(mixed $url, string $httpMethod = 'GET', mixed $postFields = null, mixed $headers = null): HttpResponse
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $httpMethod);
@@ -84,10 +81,6 @@ class HttpRequest
         return $httpResponse;
     }
 
-    /**
-     * @param mixed $postFildes
-     * @return bool|string
-     */
     public static function getPostHttpBody(mixed $postFildes): bool|string
     {
         $isMultipart = false;
@@ -102,10 +95,6 @@ class HttpRequest
         return $isMultipart ? $postFildes : http_build_query($postFildes);
     }
 
-    /**
-     * @param mixed $headers
-     * @return array
-     */
     public static function getHttpHeaders(mixed $headers): array
     {
         $httpHeader = [];

@@ -37,7 +37,5 @@ class SubscribeAccountsAdd extends RpcRequest
         return $this;
     }
 
-    public function check()
-    {
-    }
+    public function check() {}
 }

@@ -16,11 +16,11 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取千川广告账户基础信息
- * Class AdvertiserPublicInfo
+ * Class AdvertiserPublicInfo.
  */
 class AdvertiserPublicInfo extends RpcRequest
 {
-    protected string $url = 'https://ad.oceanengine.com/open_api/2/advertiser/public_info/';
+    protected string $url = '/2/advertiser/public_info/';
 
     protected string $method = 'GET';
 
@@ -35,11 +35,5 @@ class AdvertiserPublicInfo extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    /**
-     */
-    public function check()
-    {
     }
 }

@@ -22,7 +22,7 @@ use Core\Profile\RpcRequest;
  */
 class AgentAdvertiserSelect extends RpcRequest
 {
-    protected string $url = 'https://ad.oceanengine.com/open_api/2/agent/advertiser/select/';
+    protected string $url = '/2/agent/advertiser/select/';
 
     protected string $method = 'GET';
 

@@ -22,7 +22,7 @@ use Core\Profile\RpcRequest;
  */
 class ToolsShopAuth extends RpcRequest
 {
-    protected string $url = 'https://api.oceanengine.com/open_api/v1.0/qianchuan/tools/shop_auth/';
+    protected string $url = '/v1.0/qianchuan/tools/shop_auth/';
 
     protected string $method = 'POST';
 

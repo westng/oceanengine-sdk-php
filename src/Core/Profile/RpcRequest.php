@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Core\Profile;
 
 use Core\Exception\OceanEngineException;
+use core\Http\HttpResponse;
 use OceanEngineSDK\OceanEngineClient;
 
 class RpcRequest implements RequestInteface
@@ -21,6 +22,7 @@ class RpcRequest implements RequestInteface
      * @var OceanEngineClient
      */
     protected $client;
+
     /**
      * request url.
      */
@@ -112,9 +114,9 @@ class RpcRequest implements RequestInteface
     /**
      * @throws OceanEngineException
      */
-    public function send(): \core\Http\HttpResponse
+    public function send(): HttpResponse
     {
-        if (!$this->client instanceof OceanEngineClient) {
+        if (! $this->client instanceof OceanEngineClient) {
             throw new OceanEngineException('Request can not be send by null, TouTiaoClent`s instance should be set before send', 500);
         }
         return $this->client->excute($this);
