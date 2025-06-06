@@ -56,17 +56,18 @@ src/
 │   ├── Http/
 │   └── Profile/
 ├── Api/
-│   ├── JuLiangAds/                // 巨量广告
-│   │   ├── AccountMgmt/
-│   │   │   ├── AccountInfo/
-│   │   │   ├── AccountRel/
-│   │   │   │   ├── AwemeAuthorizedGet.php // 具体接口
-│   │   │   │   └── Module.php
+│   ├── Account/                                // 账号管理  
+│   ├── JuLiangAds/                             // 巨量广告
+│   │   ├── AdsPro/                             // 巨量广告升级版
+│   │   │   ├── AdAccountBudget/                // 广告账户预算
+│   │   │   ├── AdManagement/                   // 广告管理模块
+│   │   │   │   ├── CdpBrandGet.php             // 获取关联云图的广告主账户信息
+│   │   │   │   └── Module.php                  // 模型
 │   │   └── Module.php
-│   ├── JuLiangQianChuan/         // 巨量千川
-│   ├── JuLiangStarMap/           // 巨量星图
-│   ├── EnterpriseAccount/        // 企业号
-│   └── JuLiangLocalPush/         // 本地推
+│   ├── JuLiangQianChuan/                       // 巨量千川
+│   ├── JuLiangStarMap/                         // 巨量星图
+│   ├── EnterpriseAccount/                      // 企业号
+│   └── JuLiangLocalPush/                       // 本地推
 ├── tests/
 ├── LICENSE
 └── README.md
