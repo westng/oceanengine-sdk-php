@@ -110,9 +110,9 @@ src/
 
 ## 开发进度
 
-- [x] 巨量广告：`$sdk::JuLiangAds()` [使用文档](doce/JULIANGADS.md)
-- [x] 巨量千川：`$sdk::JuLiangQianChuan()` [使用文档](doce/JULIANGQIANCHUAN.md)
-- [x] 巨量星图：`$sdk::JuLiangStarMap()` [使用文档](doce/JULIANGSTARMAP.md)
+- [x] 巨量广告：`$sdk::JuLiangAds()` [使用文档](docs/JULIANGADS.md)
+- [x] 巨量千川：`$sdk::JuLiangQianChuan()` [使用文档](docs/JULIANGQIANCHUAN.md)
+- [x] 巨量星图：`$sdk::JuLiangStarMap()` [使用文档](docs/JULIANGSTARMAP.md)
 - [ ] 企业号：`$sdk::EnterpriseAccount()`
 - [ ] 巨量本地推：`$sdk::JuLiangLocalPush()`
 
