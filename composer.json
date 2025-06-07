@@ -26,6 +26,7 @@
       "AdOauth\\": "src/AdOauth/",
       "Account\\": "src/Api/Account/",
       "Tools\\": "src/Api/Tools",
+      "Materials\\": "src/Api/Materials",
       "Core\\": "src/Core/",
       "Api\\": "src/Api/",
       "EnterpriseAccount\\": "src/Api/EnterpriseAccount/",

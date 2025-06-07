@@ -16,6 +16,7 @@ use Api\Account\Module as AccountModule;
 use Api\JuLiangAds\Module as JuLiangAdsModule;
 use Api\Tools\Module as JuLiangQianChuanModule;
 use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
+use Api\Materials\Module as MaterialsModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
@@ -27,6 +28,7 @@ use Core\Profile\RequestInteface;
  * @method static \Api\JuLiangAds\Module JuLiangAds()
  * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
  * @method static \Api\Account\Module Account()
+ * @method static \Api\Materials\Module Materials()
  */
 class OceanEngineClient
 {
@@ -48,6 +50,7 @@ class OceanEngineClient
         'JuLiangQianChuan' => JuLiangQianChuanModule::class,
         'JuLiangStarMap' => JuLiangStarMapModule::class,
         'Account' => AccountModule::class,
+        'Materials' => MaterialsModule::class,
     ];
 
     // 禁止被实例化
