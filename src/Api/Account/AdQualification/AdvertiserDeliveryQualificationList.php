@@ -18,6 +18,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取投放资质（新版）
+ * 用于查询账户投放资质
  * Class AdvertiserDeliveryQualificationList.
  */
 class AdvertiserDeliveryQualificationList extends RpcRequest

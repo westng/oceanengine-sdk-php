@@ -18,6 +18,8 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 上传资质图片
+ * 通过此接口，用户可以按照一定方式上传符合格式的广告主投放资质、主体资质相关图片，例如营业执照等，接口会返回"code_0"和"message_OK"，代表上传成功
+ * 图片格式：jpg、jpeg、png、bmp、gif，大小5M内
  * Class FileImageAdvertiser.
  */
 class FileImageAdvertiser extends RpcRequest

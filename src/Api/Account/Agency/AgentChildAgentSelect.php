@@ -18,7 +18,6 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 二级代理商列表
- * Describe 该接口广告&千川&本地推&星图
  * Class AgentChildAgentSelect.
  */
 class AgentChildAgentSelect extends RpcRequest

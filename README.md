@@ -1,4 +1,4 @@
-⚠️⚠️⚠️ 项目正在进行重构 期待2.0正式版本
+⚠️⚠️⚠️ 项目正在进行重构 期待 2.0 正式版本
 
 # Marketing PHP SDK
 
@@ -58,7 +58,8 @@ src/
 │   ├── Http/
 │   └── Profile/
 ├── Api/
-│   ├── Account/                                // 账号管理  
+│   ├── Account/                                // 账号管理
+│   │   ├── AdQualification/                    // 广告主信息与资质管理
 │   ├── JuLiangAds/                             // 巨量广告
 │   │   ├── AdsPro/                             // 巨量广告升级版
 │   │   │   ├── AdAccountBudget/                // 广告账户预算
@@ -77,15 +78,16 @@ src/
 
 ## 当前开发进度
 
-| 模块       | 实例调用模块                           | 静态调用模块                | 状态    | 文档链接                             |
-| ---------- | -------------------------------------- | --------------------------- |-------| ------------------------------------ |
+| 模块       | 实例调用模块                           | 静态调用模块                | 状态      | 文档链接                             |
+| ---------- | -------------------------------------- | --------------------------- | --------- | ------------------------------------ |
 | 巨量广告   | `$client->module('JuLiangAds')`        | `$sdk::JuLiangAds()`        | ✅ 已完成 | [点击查看](docs/JULIANGADS.md)       |
 | 巨量千川   | `$client->module('JuLiangQianChuan')`  | `$sdk::JuLiangQianChuan()`  | ✅ 已完成 | [点击查看](docs/JULIANGQIANCHUAN.md) |
 | 巨量星图   | `$client->module('JuLiangStarMap')`    | `$sdk::JuLiangStarMap()`    | ✅ 已完成 | [点击查看](docs/JULIANGSTARMAP.md)   |
 | 企业号     | `$client->module('EnterpriseAccount')` | `$sdk::EnterpriseAccount()` | ⏳ 未开始 | -                                    |
-| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$sdk::JuLiangLocalPush()`  | ⏳ 开发中 | [点击查看](docs/JULIANGLOCALPUSH.md)    |
+| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$sdk::JuLiangLocalPush()`  | ⏳ 开发中 | [点击查看](docs/JULIANGLOCALPUSH.md) |
 | 账户管理   | `$client->module('Account')`           | `$sdk::Account()`           | ✅ 已完成 | [点击查看](docs/ACCOUNT.md)          |
-> ⚠️ 账户管理 【千川｜广告｜本地推｜星图】接口通用都在这里面。   
+
+> ⚠️ 账户管理 【千川｜广告｜本地推｜星图】接口通用都在这里面。  
 > ⚠️ 上述进度仅供参考，实际以源码为准。  
 > 🧠 欢迎查看源码深入探索，接口比文档更诚实！  
 > 舅宠你一回 😠

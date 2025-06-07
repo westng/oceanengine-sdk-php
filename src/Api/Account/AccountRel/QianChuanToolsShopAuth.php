@@ -17,14 +17,14 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取千川账户下可投广抖音号
- * Class AwemeAuthorizedGet.
+ * Name 店铺新客定向授权
+ * Class QianChuanToolsShopAuth.
  */
-class AwemeAuthorizedGet extends RpcRequest
+class QianChuanToolsShopAuth extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/aweme/authorized/get/';
+    protected string $url = '/v1.0/qianchuan/tools/shop_auth/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 

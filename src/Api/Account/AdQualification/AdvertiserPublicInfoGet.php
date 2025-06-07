@@ -10,28 +10,22 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Account\AccountRel;
+namespace Api\Account\AdQualification;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取千川账户下抖音号授权列表
- * Class AwemeAuthListGet.
+ * Name 获取广告主公开信息.
+ * 获取广告主账户基础信息，无需申请权限
+ * Class AdvertiserPublicInfoGet.
  */
-class AwemeAuthListGet extends RpcRequest
+class AdvertiserPublicInfoGet extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/aweme_auth_list/get/';
+    protected string $url = '/2/advertiser/public_info/';
 
     protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
-
-    /**
-     * 操作的广告主id.
-     */
-    protected int $advertiser_id;
 
     /**
      * @return $this
@@ -42,13 +36,5 @@ class AwemeAuthListGet extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }

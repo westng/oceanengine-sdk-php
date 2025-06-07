@@ -16,7 +16,6 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取工作台下账户列表
- * Describe 该接口广告&千川共用
  * Class CustomerCenterAdvertiserList.
  */
 class CustomerCenterAdvertiserList extends RpcRequest

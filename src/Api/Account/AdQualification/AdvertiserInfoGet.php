@@ -10,19 +10,20 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Account\AccountRel;
+namespace Api\Account\AdQualification;
 
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取已授权的账户（店铺/代理商/组织）
- * Class AdvertiserGet.
+ * Name 获取广告主信息.
+ * 获取广告主账户详细信息
+ * Class AdvertiserInfoGet.
  */
-class AdvertiserGet extends RpcRequest
+class AdvertiserInfoGet extends RpcRequest
 {
-    protected string $method = 'GET';
+    protected string $url = '/2/advertiser/info/';
 
-    protected string $url = '/oauth2/advertiser/get/';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

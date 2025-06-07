@@ -16,7 +16,6 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取千川广告账户全量信息
- * Describe 该接口广告&千川&本地推&星图
  * Class AdvertiserInfo.
  */
 class AdvertiserInfo extends RpcRequest

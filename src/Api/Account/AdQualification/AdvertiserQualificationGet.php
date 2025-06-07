@@ -18,6 +18,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取主体资质（新版）
+ * 获取广告主的主体资质信息为全量接口，会返回广告主所有主体资质，注意如果广告主没有任何主体资质，这个接口的data将会是空。
  * Class AdvertiserQualificationGet.
  */
 class AdvertiserQualificationGet extends RpcRequest

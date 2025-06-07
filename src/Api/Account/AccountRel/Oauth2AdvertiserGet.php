@@ -12,26 +12,22 @@ declare(strict_types=1);
 
 namespace Api\Account\AccountRel;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 广告主添加抖音号
- * Class ToolsAwemeAuth.
+ * Name 获取已授权的账户（店铺/代理商/组织）
+ * 此接口用于获取已经授权的账号列表，账号包含了店铺、代理商、组织等角色；
+ * 一次授权多个账号，共用一个Access Token; 一个Access Token可用于操作授权的多个账号；
+ * Access token 与账户之间对应关系不要弄混，以免后续调用广告主相关接口报No permission错误；
+ * Class Oauth2AdvertiserGet.
  */
-class ToolsAwemeAuth extends RpcRequest
+class Oauth2AdvertiserGet extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/tools/aweme_auth/';
+    protected string $method = 'GET';
 
-    protected string $method = 'POST';
+    protected string $url = '/oauth2/advertiser/get/';
 
     protected string $content_type = 'application/json';
-
-    /**
-     * 操作的广告主id.
-     */
-    protected int $advertiser_id;
 
     /**
      * @return $this
@@ -42,13 +38,5 @@ class ToolsAwemeAuth extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }

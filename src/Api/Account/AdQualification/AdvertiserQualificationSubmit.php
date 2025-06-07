@@ -18,6 +18,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 上传主体资质（新版）
+ * 提交广告主的主体资质信息为全量接口。更新的时候需要全量先获取所有的主体资质，然后更新相应主体资质。
  * Class AdvertiserQualificationSubmit.
  */
 class AdvertiserQualificationSubmit extends RpcRequest

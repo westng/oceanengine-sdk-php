@@ -18,6 +18,8 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取投放资质（旧版）
+ * 获取广告主资质信息，资质分为描述，营业执照，开户资质，投放资质。不同类型的资质有不同的字段，具体字段见下表。
+ * 【注意】本接口不再维护，建议使用「获取投放资质（新版）」接口
  * Class AdvertiserQualificationSelectV2.
  */
 class AdvertiserQualificationSelectV2 extends RpcRequest

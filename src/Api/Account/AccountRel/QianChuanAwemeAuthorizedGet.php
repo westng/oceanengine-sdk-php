@@ -17,12 +17,16 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取店铺账户关联的广告账户列表
- * Class ShopAdvertiserList.
+ * Name 获取千川账户下可投广抖音号
+ * 获取千川账户下可投广抖音号，对齐千川PC创编链路的抖音号选择列表
+ * 注意：使用抖音号用来创建广告投放时，在原有的“抖音号带货状态”校验下会新增如下校验
+ * 1、对于短视频投放，会额外校验抖音号是否具有“短视频带货权限”
+ * 2、对于直播投放，会额外校验抖音号是否具有“直播带货权限”以及“抖音号是否有全域推广计划投放”
+ * Class QianChuanAwemeAuthorizedGet.
  */
-class ShopAdvertiserList extends RpcRequest
+class QianChuanAwemeAuthorizedGet extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/shop/advertiser/list/';
+    protected string $url = '/v1.0/qianchuan/aweme/authorized/get/';
 
     protected string $method = 'GET';
 
@@ -31,7 +35,7 @@ class ShopAdvertiserList extends RpcRequest
     /**
      * 操作的广告主id.
      */
-    protected int $shop_id;
+    protected int $advertiser_id;
 
     /**
      * @return $this
@@ -49,6 +53,6 @@ class ShopAdvertiserList extends RpcRequest
      */
     public function check(): void
     {
-        RequestCheckUtil::checkNotNull($this->shop_id, 'shop_id');
+        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }

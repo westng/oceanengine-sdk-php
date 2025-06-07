@@ -1,5 +1,7 @@
 # JuLiangLocalPush 巨量本地推 API 结构
 
+> 账号服务、数据报表、素材管理、工具 API请移步单独的MD
+
 ## LocalPushAds 本地推投放能力
 
 ### ProjectManagement 项目管理模块

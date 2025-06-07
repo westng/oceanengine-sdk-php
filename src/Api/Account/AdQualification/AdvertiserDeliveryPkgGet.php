@@ -18,6 +18,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取推广产品资质
+ * 用于查询广告主以推广产品形式提交的投放资质，可以获取到资质审核状态等信息
  * Class AdvertiserDeliveryPkgGet.
  */
 class AdvertiserDeliveryPkgGet extends RpcRequest
