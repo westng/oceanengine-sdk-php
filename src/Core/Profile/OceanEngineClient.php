@@ -13,10 +13,11 @@ declare(strict_types=1);
 namespace OceanEngineSDK;
 
 use Api\Account\Module as AccountModule;
+use Api\DataReports\Module as DataReportsModule;
 use Api\JuLiangAds\Module as JuLiangAdsModule;
-use Api\Tools\Module as JuLiangQianChuanModule;
 use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
 use Api\Materials\Module as MaterialsModule;
+use Api\Tools\Module as JuLiangQianChuanModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
@@ -29,6 +30,7 @@ use Core\Profile\RequestInteface;
  * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
  * @method static \Api\Account\Module Account()
  * @method static \Api\Materials\Module Materials()
+ * @method static \Api\DataReports\Module DataReports()
  */
 class OceanEngineClient
 {
@@ -51,6 +53,7 @@ class OceanEngineClient
         'JuLiangStarMap' => JuLiangStarMapModule::class,
         'Account' => AccountModule::class,
         'Materials' => MaterialsModule::class,
+        'DataReports' => DataReportsModule::class,
     ];
 
     // 禁止被实例化
@@ -131,7 +134,7 @@ class OceanEngineClient
             $params = null;
         }
 
-        if (strpos($request->getContentType(), 'json') !== false) {
+        if (str_contains($request->getContentType(), 'json')) {
             $params = json_encode($params);
         }
 
