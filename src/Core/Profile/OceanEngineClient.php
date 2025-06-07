@@ -14,7 +14,7 @@ namespace OceanEngineSDK;
 
 use Api\Account\Module as AccountModule;
 use Api\JuLiangAds\Module as JuLiangAdsModule;
-use Api\JuLiangQianChuan\Module as JuLiangQianChuanModule;
+use Api\Tools\Module as JuLiangQianChuanModule;
 use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
@@ -23,7 +23,7 @@ use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
 
 /**
- * @method static \Api\JuLiangQianChuan\Module JuLiangQianChuan()
+ * @method static \Api\Tools\Module JuLiangQianChuan()
  * @method static \Api\JuLiangAds\Module JuLiangAds()
  * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
  * @method static \Api\Account\Module Account()
