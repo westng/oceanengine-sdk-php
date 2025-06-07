@@ -25,6 +25,7 @@
       "OceanEngineSDK\\": "src/Core/Profile/",
       "AdOauth\\": "src/AdOauth/",
       "Account\\": "src/Api/Account/",
+      "DataReports\\": "src/Api/DataReports/",
       "Tools\\": "src/Api/Tools",
       "Materials\\": "src/Api/Materials",
       "Core\\": "src/Core/",
