@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\AudienceMgmt;
+namespace Api\Tools\QueryTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 推送人群
- * Class AudiencePush.
+ * Name 获取白名单能力
+ * Class ToolsGray.
  */
-class AudiencePush extends RpcRequest
+class QianChuanToolsGray extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/audience/push/';
+    protected string $url = '/v1.0/qianchuan/tools/gray/';
 
-    protected string $method = 'POST';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

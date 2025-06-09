@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\CommentManagement\BlockedWordsUsers;
+namespace Api\Tools\AudienceMgmt;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 删除屏蔽用户
- * Class ToolsAwemeBannedDelete.
+ * Name 获取定向包列表
+ * Class QianChuanOrientationPackageGet.
  */
-class ToolsAwemeBannedDelete extends RpcRequest
+class QianChuanOrientationPackageGet extends RpcRequest
 {
-    protected string $url = '/v3.0/tools/aweme_banned/delete/';
+    protected string $url = '/v1.0/qianchuan/orientation_package/get/';
 
-    protected string $method = 'POST';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

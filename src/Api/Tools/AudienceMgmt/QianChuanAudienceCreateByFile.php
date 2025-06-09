@@ -10,27 +10,26 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\CommentManagement;
+namespace Api\Tools\AudienceMgmt;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取评论回复.
- *
- * 获取广告账号下的评论回复（用于获取二级评论）
+ * Name 上传人群
+ * Class QianChuanAudienceCreateByFile.
  */
-class ToolsCommentReplyGet extends RpcRequest
+class QianChuanAudienceCreateByFile extends RpcRequest
 {
-    protected string $url = '/v3.0/tools/comment_reply/get/';
+    protected string $url = '/v1.0/qianchuan/audience/create_by_file/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
     /**
-     * 广告主ID.
+     * 操作的广告主id.
      */
     protected int $advertiser_id;
 

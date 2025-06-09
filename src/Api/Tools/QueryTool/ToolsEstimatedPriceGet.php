@@ -19,7 +19,7 @@ use Core\Profile\RpcRequest;
 /**
  * Name 获取预估点击成本.
  *
- * 获取预估点击成本
+ * Class ToolsEstimatedPriceGet.
  */
 class ToolsEstimatedPriceGet extends RpcRequest
 {

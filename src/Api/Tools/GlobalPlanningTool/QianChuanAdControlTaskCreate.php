@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\AudienceMgmt;
+namespace Api\Tools\GlobalPlanningTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取人群分组
- * Class AudienceGroupGet.
+ * Name 创建调控任务
+ * Class QianChuanAdControlTaskCreate.
  */
-class AudienceGroupGet extends RpcRequest
+class QianChuanAdControlTaskCreate extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/audience_group/get/';
+    protected string $url = '/v1.0/qianchuan/uni_promotion/ad/control_task/create/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 

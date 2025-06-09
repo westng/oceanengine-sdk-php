@@ -10,19 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\QueryTool;
+namespace Api\Tools\AudienceMgmt;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 智能优惠券白名单
- * Class ToolsAllowCoupon.
+ * Name 获取人群分组
+ * Class QianChuanAudienceGroupGet.
  */
-class ToolsAllowCoupon extends RpcRequest
+class QianChuanAudienceGroupGet extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/tools/allow_coupon/';
+    protected string $url = '/v1.0/qianchuan/audience_group/get/';
 
     protected string $method = 'GET';
 

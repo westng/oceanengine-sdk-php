@@ -17,12 +17,12 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取定向包列表
- * Class OrientationPackageGet.
+ * Name 获取人群管理列表
+ * Class QianChuanAudienceListGet.
  */
-class OrientationPackageGet extends RpcRequest
+class QianChuanAudienceListGet extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/orientation_package/get/';
+    protected string $url = '/v1.0/qianchuan/audience_list/get/';
 
     protected string $method = 'GET';
 

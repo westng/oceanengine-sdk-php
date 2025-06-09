@@ -10,19 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\CommentManagement\BlockedWordsUsers;
+namespace Api\Tools\AudienceMgmt;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 更新屏蔽词
- * Class ToolsCommentTermsBannedUpdate.
+ * Name 小文件直接上传
+ * Class QianChuanAudienceFileUpload.
  */
-class ToolsCommentTermsBannedUpdate extends RpcRequest
+class QianChuanAudienceFileUpload extends RpcRequest
 {
-    protected string $url = '/v3.0/tools/comment/terms_banned/update/';
+    protected string $url = '/v1.0/qianchuan/audience_file/upload/';
 
     protected string $method = 'POST';
 

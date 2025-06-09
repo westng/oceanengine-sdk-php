@@ -18,8 +18,7 @@ use Core\Profile\RpcRequest;
 
 /**
  * Name 获取快投推荐出价系数.
- *
- * 获取快投推荐出价系数
+ * Class ToolsSearchBidRatioGet.
  */
 class ToolsSearchBidRatioGet extends RpcRequest
 {

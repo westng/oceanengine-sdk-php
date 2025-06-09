@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取抖音授权关系.
  *
  * 可以获取账户下抖音号授权关系以及授权视频
+ * Class ToolsAwemeAuthList.
  */
 class ToolsAwemeAuthList extends RpcRequest
 {

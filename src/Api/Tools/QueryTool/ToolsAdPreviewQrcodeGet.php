@@ -21,6 +21,7 @@ use Core\Profile\RpcRequest;
  *
  * 新建广告审核通过后支持生成获取预览二维码，项目/广告暂停不支持获取预览二维码
  * 注意：通过本接口获取到的预览url，需要自行转换为二维码，使用巨量引擎app或抖音app扫码预览
+ * Class ToolsAdPreviewQrcodeGet.
  */
 class ToolsAdPreviewQrcodeGet extends RpcRequest
 {

@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取推荐使用的视频素材.
  *
  * 本接口暂仅支持白名单客户使用，如有诉求可联系对接销售/运营
+ * Class RecommendVideoList.
  */
 class RecommendVideoList extends RpcRequest
 {

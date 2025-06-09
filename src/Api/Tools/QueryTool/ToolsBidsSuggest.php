@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 查询建议出价（巨量广告升级版）.
  *
  * 通过广告分析查询广告的建议出价
+ * CLass ToolsBidsSuggest.
  */
 class ToolsBidsSuggest extends RpcRequest
 {

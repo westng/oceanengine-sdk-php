@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\GlobalPlanningTool;
+namespace Api\Tools\QueryTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取调控任务列表
- * Class AdControlTaskList.
+ * Name 智能优惠券白名单
+ * Class QianChuanToolsAllowCoupon.
  */
-class AdControlTaskList extends RpcRequest
+class QianChuanToolsAllowCoupon extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/uni_promotion/ad/control_task/list/';
+    protected string $url = '/v1.0/qianchuan/tools/allow_coupon/';
 
-    protected string $method = 'POST';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

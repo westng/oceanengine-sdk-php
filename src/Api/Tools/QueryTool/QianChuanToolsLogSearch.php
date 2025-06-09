@@ -10,21 +10,21 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\AudienceMgmt;
+namespace Api\Tools\QueryTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 小文件直接上传
- * Class AudienceFileUpload.
+ * Name 获取千川操作日志
+ * Class QianChuanToolsLogSearch.
  */
-class AudienceFileUpload extends RpcRequest
+class QianChuanToolsLogSearch extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/audience_file/upload/';
+    protected string $url = '/v1.0/qianchuan/tools/log_search/';
 
-    protected string $method = 'POST';
+    protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 

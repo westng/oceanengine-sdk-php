@@ -10,27 +10,26 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\CommentManagement;
+namespace Api\Tools\GlobalPlanningTool;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取评论列表.
- *
- * 获取广告账号下的所有评论列表
+ * Name 获取调控任务列表
+ * Class QianChuanAdControlTaskList.
  */
-class ToolsCommentGet extends RpcRequest
+class QianChuanAdControlTaskList extends RpcRequest
 {
-    protected string $url = '/v3.0/tools/comment/get/';
+    protected string $url = '/v1.0/qianchuan/uni_promotion/ad/control_task/list/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
     /**
-     * 广告主ID.
+     * 操作的广告主id.
      */
     protected int $advertiser_id;
 

@@ -17,19 +17,21 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 获取定向受众预估
- * Class ToolsEstimateAudience.
+ * Name 查询受众预估结果.
+ *
+ * 通过此接口你可以查询计划的受众条件，预估其在今日头条、抖音短视频、火山小视频和西瓜视频中的覆盖用户量，当受众预估的结果低于3万时，建议重新设置受众选项。
+ * CLass ToolsEstimateAudience.
  */
 class ToolsEstimateAudience extends RpcRequest
 {
-    protected string $url = '/v1.0/qianchuan/tools/estimate_audience/';
+    protected string $url = '/2/tools/estimate_audience/';
 
     protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
 
     /**
-     * 操作的广告主id.
+     * 广告账户id.
      */
     protected int $advertiser_id;
 

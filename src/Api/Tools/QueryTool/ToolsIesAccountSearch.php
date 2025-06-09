@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取绑定的抖音号.
  *
  * 此接口可以帮助查询广告主账户当前绑定的抖音号信息
+ * Class ToolsIesAccountSearch.
  */
 class ToolsIesAccountSearch extends RpcRequest
 {

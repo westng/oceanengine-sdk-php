@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取创编可用的抖音图文素材.
  *
  * 该接口用于获取「巨量广告平台」创建广告时可用的抖音图文素材，您可以获取抖音图文素材的item_id，在广告创编接口使用
+ * Class FileCarouselAwemeGet.
  */
 class FileCarouselAwemeGet extends RpcRequest
 {

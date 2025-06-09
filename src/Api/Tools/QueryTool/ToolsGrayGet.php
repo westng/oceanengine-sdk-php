@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 查询白名单能力.
  *
  * 支持客户通过接口查询广告主是否命中各项灰度/白名单功能
+ * Class ToolsGrayGet.
  */
 class ToolsGrayGet extends RpcRequest
 {

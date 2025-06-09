@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 查询应用信息.
  *
  * 如果在创建计划时你需要设置APP行为定向，那么可以使用此接口搜索对应的APP的ID
+ * Class ToolsAppSearch.
  */
 class ToolsAppSearch extends RpcRequest
 {

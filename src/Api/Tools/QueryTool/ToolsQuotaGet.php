@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 查询在投计划配额.
  *
  * 该接口用于查询广告账户的在投计划配额和使用进度
+ * CLass ToolsQuotaGet.
  */
 class ToolsQuotaGet extends RpcRequest
 {

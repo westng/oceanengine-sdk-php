@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 查询推广卡片推荐内容（新版）.
  *
  * 注意：此接口不再维护！即将下线，请勿接入！
+ * Class ToolsPromotionCardRecommendTitleGet.
  */
 class ToolsPromotionCardRecommendTitleGet extends RpcRequest
 {

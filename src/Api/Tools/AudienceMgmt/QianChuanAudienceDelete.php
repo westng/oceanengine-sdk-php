@@ -10,27 +10,26 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\CommentManagement;
+namespace Api\Tools\AudienceMgmt;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取评论统计指标.
- *
- * 获取广告账户下评论的「可见评论数」、「可见负评数」、「可见评论负评率」
+ * Name 删除人群
+ * Class QianChuanAudienceDelete.
  */
-class ToolsCommentMetricsGet extends RpcRequest
+class QianChuanAudienceDelete extends RpcRequest
 {
-    protected string $url = '/v3.0/tools/comment_metrics/get/';
+    protected string $url = '/v1.0/qianchuan/audience/delete/';
 
-    protected string $method = 'GET';
+    protected string $method = 'POST';
 
     protected string $content_type = 'application/json';
 
     /**
-     * 广告主ID.
+     * 操作的广告主id.
      */
     protected int $advertiser_id;
 

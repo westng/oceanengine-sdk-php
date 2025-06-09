@@ -19,6 +19,7 @@ use Core\Profile\RpcRequest;
  *
  * 支持获取在投放中图片、视频和落地页被拒审的巨量广告信息，仅展示广告拒审时的信息
  * 支持获取广告中未过审的素材信息以及这个素材还在同代理商的哪些广告下（只披露近7天有消耗的关联广告）
+ * Class AgentQueryRiskPromotionList.
  */
 class AgentQueryRiskPromotionList extends RpcRequest
 {
