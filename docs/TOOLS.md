@@ -12,35 +12,35 @@
 
 ## QueryTool 查询工具
 
-| 方法名称                       | 调用方法                                         | 支持平台           |
-| ------------------------------ | ------------------------------------------------ | ------------------ |
-| 获取行业列表                   | QueryTool->ToolsIndustryGet()                    | 巨量广告、巨量千川 |
-| 操作日志查询                   | QueryTool->ToolsLogSearch()                      | 巨量广告、巨量千川 |
-| 获取千川操作日志               | QueryTool->QianChuanToolsLogSearch()             | 巨量千川           |
-| 获取定向受众预估               | QueryTool->QianChuanToolsEstimateAudience()      | 巨量千川           |
-| 获取在投计划配额信息           | QueryTool->QianChuanAdQuotaGet()                 | 巨量千川           |
-| 获取白名单能力                 | QueryTool->QianChuanToolsGray()                  | 巨量千川           |
-| 智能优惠券白名单               | QueryTool->QianChuanToolsAllowCoupon()           | 巨量千川           |
-| 查询违规积分明细               | QueryTool->SecurityScoreViolationEventGet()      | 巨量广告、巨量千川 |
-| 查询账户累计积分               | QueryTool->SecurityScoreTotalGet()               | 巨量广告、巨量千川 |
-| 查看积分处置详情               | QueryTool->SecurityScoreDisposalInfoGet()        | 巨量广告、巨量千川 |
-| 积分处置详情列表               | QueryTool->SecurityScoreDisposalListGet()        | 巨量千川           |
-| 查询在投计划配额               | QueryTool->ToolsQuotaGet()                       | 巨量广告           |
-| 查询受众预估结果               | QueryTool->ToolsEstimateAudience()               | 巨量广告           |
-| 查询应用信息                   | QueryTool->ToolsAppSearch()                      | 巨量广告           |
-| 获取绑定的抖音号               | QueryTool->ToolsIesAccountSearch()               | 巨量广告           |
-| 行动号召字段内容获取           | QueryTool->ToolsActionTextGet()                  | 巨量广告           |
-| 查询推广卡片推荐内容（新版）   | QueryTool->ToolsPromotionCardRecommendTitleGet() | 巨量广告           |
-| 获取预估点击成本               | QueryTool->ToolsEstimatedPriceGet()              | 巨量广告           |
-| 获取抖音授权关系               | QueryTool->ToolsAwemeAuthList()                  | 巨量广告           |
-| 获取创编可用的抖音图文素材     | QueryTool->FileCarouselAwemeGet()                | 巨量广告           |
-| 获取推荐使用的视频素材         | QueryTool->RecommendVideoList()                  | 巨量广告           |
-| 查询视频是否挂载下载类锚点     | QueryTool->ToolsVideoCheckAvailableAnchor()      | 巨量广告           |
-| 获取快投推荐出价系数           | QueryTool->ToolsSearchBidRatioGet()              | 巨量广告           |
-| 获取广告预览二维码（升级版）   | QueryTool->ToolsAdPreviewQrcodeGet()             | 巨量广告           |
-| 查询白名单能力                 | QueryTool->ToolsGrayGet()                        | 巨量广告           |
-| 查询建议出价（巨量广告升级版） | QueryTool->ToolsBidsSuggest()                    | 巨量广告           |
-| 【代理商】查询广告违规信息     | QueryTool->AgentQueryRiskPromotionList()         | 巨量广告           |
+| 方法名称                       | 调用方法                                         | 支持平台                       |
+| ------------------------------ | ------------------------------------------------ | ------------------------------ |
+| 获取行业列表                   | QueryTool->ToolsIndustryGet()                    | 巨量广告、巨量千川             |
+| 操作日志查询                   | QueryTool->ToolsLogSearch()                      | 巨量广告、巨量千川、巨量本地推 |
+| 获取千川操作日志               | QueryTool->QianChuanToolsLogSearch()             | 巨量千川                       |
+| 获取定向受众预估               | QueryTool->QianChuanToolsEstimateAudience()      | 巨量千川                       |
+| 获取在投计划配额信息           | QueryTool->QianChuanAdQuotaGet()                 | 巨量千川                       |
+| 获取白名单能力                 | QueryTool->QianChuanToolsGray()                  | 巨量千川                       |
+| 智能优惠券白名单               | QueryTool->QianChuanToolsAllowCoupon()           | 巨量千川                       |
+| 查询违规积分明细               | QueryTool->SecurityScoreViolationEventGet()      | 巨量广告、巨量千川             |
+| 查询账户累计积分               | QueryTool->SecurityScoreTotalGet()               | 巨量广告、巨量千川             |
+| 查看积分处置详情               | QueryTool->SecurityScoreDisposalInfoGet()        | 巨量广告、巨量千川             |
+| 积分处置详情列表               | QueryTool->SecurityScoreDisposalListGet()        | 巨量千川                       |
+| 查询在投计划配额               | QueryTool->ToolsQuotaGet()                       | 巨量广告                       |
+| 查询受众预估结果               | QueryTool->ToolsEstimateAudience()               | 巨量广告                       |
+| 查询应用信息                   | QueryTool->ToolsAppSearch()                      | 巨量广告                       |
+| 获取绑定的抖音号               | QueryTool->ToolsIesAccountSearch()               | 巨量广告                       |
+| 行动号召字段内容获取           | QueryTool->ToolsActionTextGet()                  | 巨量广告                       |
+| 查询推广卡片推荐内容（新版）   | QueryTool->ToolsPromotionCardRecommendTitleGet() | 巨量广告                       |
+| 获取预估点击成本               | QueryTool->ToolsEstimatedPriceGet()              | 巨量广告                       |
+| 获取抖音授权关系               | QueryTool->ToolsAwemeAuthList()                  | 巨量广告                       |
+| 获取创编可用的抖音图文素材     | QueryTool->FileCarouselAwemeGet()                | 巨量广告                       |
+| 获取推荐使用的视频素材         | QueryTool->RecommendVideoList()                  | 巨量广告                       |
+| 查询视频是否挂载下载类锚点     | QueryTool->ToolsVideoCheckAvailableAnchor()      | 巨量广告                       |
+| 获取快投推荐出价系数           | QueryTool->ToolsSearchBidRatioGet()              | 巨量广告                       |
+| 获取广告预览二维码（升级版）   | QueryTool->ToolsAdPreviewQrcodeGet()             | 巨量广告                       |
+| 查询白名单能力                 | QueryTool->ToolsGrayGet()                        | 巨量广告                       |
+| 查询建议出价（巨量广告升级版） | QueryTool->ToolsBidsSuggest()                    | 巨量广告                       |
+| 【代理商】查询广告违规信息     | QueryTool->AgentQueryRiskPromotionList()         | 巨量广告                       |
 
 ## DouYinInfluencerMgmt 抖音达人定向管理
 
@@ -119,7 +119,7 @@
 
 ## GeographicInformationMgmt 地理信息管理
 
-| 方法名称          | 调用方法                                        | 支持平台 |
-| ----------------- | ----------------------------------------------- | -------- |
-| 查询国家/区域信息 | GeographicInformationMgmt->OpenApiFileImageAd() | 巨量千川 |
-| 获取行政信息      | GeographicInformationMgmt->ToolsAdminInfo()     | 巨量千川 |
+| 方法名称          | 调用方法                                        | 支持平台             |
+| ----------------- | ----------------------------------------------- | -------------------- |
+| 查询国家/区域信息 | GeographicInformationMgmt->OpenApiFileImageAd() | 巨量千川、巨量本地推 |
+| 获取行政信息      | GeographicInformationMgmt->ToolsAdminInfo()     | 巨量千川、巨量本地推 |
