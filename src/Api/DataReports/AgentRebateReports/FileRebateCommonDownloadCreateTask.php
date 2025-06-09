@@ -15,10 +15,11 @@ namespace Api\DataReports\AgentRebateReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 【代理返点】创建下载任务-通用.
+ * Name 【代理返点】创建下载任务-通用.
  * 根据筛选条件下载任务,返回用户query_id,用于后续的文件下载.
  *
  * 文档可参考：https://bytedance.larkoffice.com/docx/Lhl7dU9vNowuySxFZIWcErgynCf
+ * Class FileRebateCommonDownloadCreateTask.
  */
 class FileRebateCommonDownloadCreateTask extends RpcRequest
 {

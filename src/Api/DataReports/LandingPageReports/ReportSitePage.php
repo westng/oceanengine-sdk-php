@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 橙子建站落地页数据.
+ * Name 橙子建站落地页数据.
  *
  * 获取橙子建站和程序化落地页的数据。不包含第三方落地页。
  *
@@ -30,6 +30,7 @@ use Core\Profile\RpcRequest;
  * 平均访问时长:平均在落地页的停留时长
  *
  * 落地页数据以当日前两天的方式返回，如：当3号入参查询周期1天，返回1号数据
+ * Class ReportSitePage.
  */
 class ReportSitePage extends RpcRequest
 {

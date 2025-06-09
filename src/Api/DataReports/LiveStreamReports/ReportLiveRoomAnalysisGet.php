@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 直播间分析报表.
+ * Name 直播间分析报表.
  *
  * 此接口用于获取直播间的基础分析数据、互动分析数据、商品转化数据；
  *
@@ -32,6 +32,7 @@ use Core\Profile\RpcRequest;
  * 数据更新频率：
  * 数据5～10分钟更新一次
  * 一般历史数据都不会变，除了数据有问题有校对的情况会更新历史数据，第二天10点可以获取前一天稳定的消耗数据
+ * Class ReportLiveRoomAnalysisGet.
  */
 class ReportLiveRoomAnalysisGet extends RpcRequest
 {

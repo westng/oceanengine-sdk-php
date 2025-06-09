@@ -15,9 +15,10 @@ namespace Api\DataReports\AgentRebateReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建【核算明细数据】下载任务.
+ * Name 创建【核算明细数据】下载任务.
  *
  * 返回文件详细内容请查看：https://bytedance.larkoffice.com/docx/EBETdc8IIonmWoxWYJ7c1dNtndg
+ * Class FileRebateRebateDownloadCreateTask.
  */
 class FileRebateRebateDownloadCreateTask extends RpcRequest
 {

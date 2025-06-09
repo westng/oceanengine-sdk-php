@@ -10,26 +10,28 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\DataReports\AdsProDataReports;
+namespace Api\DataReports\GlobalData;
 
+use Core\Exception\InvalidParamException;
+use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * Name 代理商数据.
- *
- * 此接口用于获取代理商下所有广告主的消耗数据包括实时与历史。
- * 对应一站式代理商平台-优化管理模块-客户列表数据（包括实时数据与历史数据），非商务管理模块数据。
- * 实时数据指标和历史数据指标不同，请仔细确认；
- * 获取代理商侧直接管理的广告主数据，非跨级广告主数据
- * Class ReportAgentGetV2.
+ * Name 获取全域数据
+ * Class QianChuanReportUniPromotionDataGet.
  */
-class ReportAgentGetV2 extends RpcRequest
+class QianChuanReportUniPromotionDataGet extends RpcRequest
 {
-    protected string $url = '/2/report/agent/get_v2/';
+    protected string $url = '/v1.0/qianchuan/report/uni_promotion/data/get/';
 
     protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
+
+    /**
+     * 操作的广告主id.
+     */
+    protected int $advertiser_id;
 
     /**
      * @return $this
@@ -40,5 +42,13 @@ class ReportAgentGetV2 extends RpcRequest
             $this->params[$key] = $this->{$key} = $value;
         }
         return $this;
+    }
+
+    /**
+     * @throws InvalidParamException
+     */
+    public function check(): void
+    {
+        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
     }
 }

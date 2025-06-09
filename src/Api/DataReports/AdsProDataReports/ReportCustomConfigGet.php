@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取自定义报表可用指标和维度.
+ * Name 获取自定义报表可用指标和维度.
  *
  * 获取自定义报表可用指标和维度
+ * Class ReportCustomConfigGet.
  */
 class ReportCustomConfigGet extends RpcRequest
 {

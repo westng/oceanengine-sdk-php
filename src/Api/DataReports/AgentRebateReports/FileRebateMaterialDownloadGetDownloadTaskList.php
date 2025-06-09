@@ -15,8 +15,9 @@ namespace Api\DataReports\AgentRebateReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询下载任务.
+ * Name （2024）查询下载任务.
  * 查询指定query_id的所有下载任务
+ * Class FileRebateMaterialDownloadGetDownloadTaskList.
  */
 class FileRebateMaterialDownloadGetDownloadTaskList extends RpcRequest
 {

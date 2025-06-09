@@ -15,8 +15,9 @@ namespace Api\DataReports\AgentRebateReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 下载任务结果.
+ * Name （2024）下载任务结果.
  * 通过指定的task_id,获取对应的数据明细文件.
+ * Class FileRebateMaterialDownloadDownloadFile.
  */
 class FileRebateMaterialDownloadDownloadFile extends RpcRequest
 {

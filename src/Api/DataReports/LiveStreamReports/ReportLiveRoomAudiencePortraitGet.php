@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 直播受众分析报表.
+ * Name 直播受众分析报表.
  *
  * 此接口用于进行直播间的受众分析、获取直播间用户画像数据；
  *
@@ -28,6 +28,7 @@ use Core\Profile\RpcRequest;
  * 仅支持查询2020年7月1日之后的数据，查询的时间跨度最大为30天；
  * 默认查询时间为最近7天，即7天前的同一时间至当前时间点（注意：巨量引擎广告投放平台-报表-广告产品-直播分析模块中的最近7天为7天前的0点至当前时间点，数据范围略有差异）；
  * 数据为非实时更新数据，一般在次日凌晨产出前一天的数据（与直播是否结束无关）；
+ * Class ReportLiveRoomAudiencePortraitGet.
  */
 class ReportLiveRoomAudiencePortraitGet extends RpcRequest
 {

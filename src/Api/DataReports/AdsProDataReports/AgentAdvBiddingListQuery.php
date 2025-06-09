@@ -15,9 +15,10 @@ namespace Api\DataReports\AdsProDataReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 代理商竞价投放数据.
+ * Name 代理商竞价投放数据.
  *
  * 代理商竞价投放数据，对应方舟平台「投放-数据概览-汇总数据-竞价数据」
+ * Class AgentAdvBiddingListQuery.
  */
 class AgentAdvBiddingListQuery extends RpcRequest
 {

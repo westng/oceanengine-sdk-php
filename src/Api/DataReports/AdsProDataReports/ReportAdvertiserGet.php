@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 广告主数据.
+ * Name 广告主数据.
  *
  * 此接口用于获取广告账户维度的投放数据，包括消耗、点击、展示等指标，具体可以参考应答参数指标说明。
+ * Class ReportAdvertiserGet.
  */
 class ReportAdvertiserGet extends RpcRequest
 {

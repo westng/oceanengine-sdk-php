@@ -17,12 +17,13 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 自定义报表.
+ * Name 自定义报表.
  *
  * 自定义报表是基于巨量引擎升级版对于数据报表提供新的接口能力，您可以自由选择和组合指标和维度，以此定义数据报表的字段。
  *
  * 相关指标和维度可通过获取自定义报表可用维度和指标接口获取不同数据主题下的可用维度和指标。
  * 例如，想要获取由起量带来的增量数据，需要在筛选项中上传 field=is_boost &&values=1
+ * Class ReportCustomGet.
  */
 class ReportCustomGet extends RpcRequest
 {

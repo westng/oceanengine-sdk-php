@@ -15,9 +15,10 @@ namespace Api\DataReports\AdsProDataReports;
 use Core\Profile\RpcRequest;
 
 /**
- * 代理商消耗报表数据.
+ * Name 代理商消耗报表数据.
  *
  * 代理商消耗报表查询，对应方舟平台侧「商务-流水查询-消耗报表」数据
+ * Class AgentAdvCostReportListQuery.
  */
 class AgentAdvCostReportListQuery extends RpcRequest
 {

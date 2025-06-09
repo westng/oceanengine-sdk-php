@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 直播间属性报表.
+ * Name 直播间属性报表.
  *
  * 此接口用于通过广告主id获取广告主账号绑定的抖音号的开播信息，包含主播信息和直播间信息；
  * 主播信息：主播id、主播头像url、主播昵称；
@@ -30,6 +30,7 @@ use Core\Profile\RpcRequest;
  * 数据更新频率：
  * 数据5～10分钟更新一次，正常情况8点～9点之间的数据，10点可以稳定。在晚高峰的时候，可能需要3个小时能稳定；
  * 一般历史数据都不会变，除了数据有问题有校对的情况会更新历史数据；
+ * Class ReportLiveRoomAttributeGet.
  */
 class ReportLiveRoomAttributeGet extends RpcRequest
 {
