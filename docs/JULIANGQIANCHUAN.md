@@ -126,69 +126,6 @@
 | 查询订阅 Adv  | SubTaskAccountMgmt->SubscribeAccountsList()   |
 | 取消 Adv 订阅 | SubTaskAccountMgmt->SubscribeAccountsRemove() |
 
-## DataReport 数据报表
-
-### GlobalData 全域数据
-
-| 方法名称                        | 调用方法                                         |
-| ------------------------------- | ------------------------------------------------ |
-| 获取全域素材数据                | GlobalData->CustomReportGet()                    |
-| 获取全域素材数据-可用指标和维度 | GlobalData->CustomReportConfigGet()              |
-| 获取全域推广抖音号维度数据      | GlobalData->UniPromotionDimensionDataAuthorGet() |
-| 获取全域推广直播间维度数据      | GlobalData->UniPromotionDimensionDataRoomGet()   |
-| 获取全域数据                    | GlobalData->UniPromotionDataGet()                |
-| 获取全域推广账户维度数据        | GlobalData->UniPromotionGet()                    |
-| 获取全域数据-可用维度和指标     | GlobalData->UniPromotionConfigGet()              |
-
-### AdsDataReport 广告数据报表
-
-| 方法名称                     | 调用方法                                                  |
-| ---------------------------- | --------------------------------------------------------- |
-| 获取广告计划数据             | AdsDataReport->ReportAdGet()                              |
-| 获取计划下素材数据           | AdsDataReport->ReportAdMaterialGet()                      |
-| 获取广告账户数据             | AdsDataReport->ReportAdvertiserGet()                      |
-| 获取自定义报表可用指标和维度 | AdsDataReport->ReportCustomConfigGet()                    |
-| 获取搜索词/关键词数据        | AdsDataReport->ReportSearchWordGet()                      |
-| 获取全域推广抖音号维度数据   | AdsDataReport->ReportUniPromotionDimensionDataAuthorGet() |
-| 获取全域推广直播间维度数据   | AdsDataReport->ReportUniPromotionDimensionDataRoomGet()   |
-| 视频互动流失数据             | AdsDataReport->ReportVideoUserLoseGet()                   |
-| 获取广告素材数据             | AdsDataReport->ReportMaterialGet()                        |
-| 自定义报表                   | AdsDataReport->ReportCustomGet()                          |
-
-### ProdCompAnalysis 商品竞争分析
-
-| 方法名称         | 调用方法                                           |
-| ---------------- | -------------------------------------------------- |
-| 商品创意对比分析 | ProdCompAnalysis->ProductAnalyseCompareCreative()  |
-| 商品数据对比分析 | ProdCompAnalysis->ProductAnalyseCompareStatsData() |
-| 商品分析列表     | ProdCompAnalysis->ProductAnalyseList()             |
-
-### AgentReport 代理商报表
-
-| 方法名称       | 调用方法                                   |
-| -------------- | ------------------------------------------ |
-| 代理商消耗报表 | AgentReport->AgentAdvCostReportListQuery() |
-
-### SceneValue 场景价值
-
-| 方法名称                         | 调用方法                                       |
-| -------------------------------- | ---------------------------------------------- |
-| 获取长周期订单数据               | SceneValue->ReportLongTransferOrderDataGet()   |
-| 获取长周期订单明细可用指标和维度 | SceneValue->ReportLongTransferOrderConfigGet() |
-
-### LiveReport 直播报表
-
-| 方法名称                   | 调用方法                                      |
-| -------------------------- | --------------------------------------------- |
-| 获取直播大屏数据           | LiveReport->ReportTodayLiveRoomDataGet()      |
-| 获取今日直播数据           | LiveReport->ReportLiveGet()                   |
-| 获取直播大屏可用指标和维度 | LiveReport->ReportTodayLiveRoomConfigGet()    |
-| 获取直播间详情             | LiveReport->TodayLiveRoomDetailGet()          |
-| 获取直播间流量表现         | LiveReport->TodayLiveRoomFlowPerformanceGet() |
-| 获取今日直播间列表         | LiveReport->TodayLiveRoomGet()                |
-| 获取直播间商品列表         | LiveReport->TodayLiveRoomProductListGet()     |
-| 获取直播间用户洞察         | LiveReport->TodayLiveRoomUserGet()            |
-
 ## FreestylePushPlcmnt 随心推投放
 
 | 方法名称                     | 调用方法                                                           |
