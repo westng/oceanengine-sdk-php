@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取抖音主页视频.
+ * Name 获取抖音主页视频.
  *
  * 根据一个抖音号id，获取其抖音主页下的视频的id。
  *
@@ -25,6 +25,7 @@ use Core\Profile\RpcRequest;
  * 1. 仅能获取抖音主页公开视频
  * 2. 通过page分页方式拉取视频时，最多只能获取前150个视频
  * 3. 超过150个视频时，请通过filtering入参抖音视频链接获取视频id，或游标方式查询
+ * Class FileVideoAwemeGet.
  */
 class FileVideoAwemeGet extends RpcRequest
 {

@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 上传广告图片.
+ * Name 上传图片素材.
  *
  * 通过此接口，用户可以上传和广告相关的素材图片，例如创意素材。
+ * Class FileImageAd.
  */
 class FileImageAd extends RpcRequest
 {

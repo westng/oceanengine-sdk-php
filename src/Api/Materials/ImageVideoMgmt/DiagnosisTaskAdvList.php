@@ -17,9 +17,8 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 广告主获取前测任务列表.
- *
- * 广告主获取前测任务列表
+ * Name Adv获取任务列表.
+ * Class DiagnosisTaskAdvList.
  */
 class DiagnosisTaskAdvList extends RpcRequest
 {

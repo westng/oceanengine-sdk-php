@@ -17,13 +17,14 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取音频素材（用于图文新建）.
+ * Name 获取音频素材（用于图文新建）.
  *
  * 本接口支持查询广告账户下自2024年4月26日起上传的音频素材，不支持查询版权音频相关信息
  *
  * 注意事项：
  * 1. 音频试听url仅限开发者账户与广告主账户同主体时可获取，若非同主体会返回"素材所属主体与开发者主体不一致无法获取URL"
  * 2. 第三方获取敏感物料信息可在授权时申请广告主授权敏感物料权限，可参考常见问题【敏感物料授权】
+ * Class FileAudioGet.
  */
 class FileAudioGet extends RpcRequest
 {

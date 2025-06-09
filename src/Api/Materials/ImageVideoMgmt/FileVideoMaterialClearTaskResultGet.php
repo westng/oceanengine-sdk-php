@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 下载清理任务结果.
+ * Name 下载清理任务结果.
  *
  * 根据adv_id和clear_id返回低效/同质视频素材的清理结果，与「创建素材清理任务」、「获取清理任务列表」接口配合使用
+ * CLass FileVideoMaterialClearTaskResultGet.
  */
 class FileVideoMaterialClearTaskResultGet extends RpcRequest
 {

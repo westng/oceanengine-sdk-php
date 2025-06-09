@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询素材标签信息.
+ * Name 查询素材标签信息.
  *
  * 根据提供的素材 id 查询素材属性信息，目前仅支持视频素材。
  *
@@ -34,6 +34,7 @@ use Core\Profile\RpcRequest;
  * 1. 同质化素材风险-未投放预计排队素材：不需要创编广告，素材不在投，该素材没有可投/绑定创意，不能清理
  * 2. 同质化素材风险-排队投放素材：需要创编广告，素材不在投
  * 3. 同质化挤压严重素材：需要创编广告，素材在投
+ * Class FileMaterialDetail.
  */
 class FileMaterialDetail extends RpcRequest
 {

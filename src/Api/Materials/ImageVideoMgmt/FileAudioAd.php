@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 上传图文内的音频素材.
+ * Name 上传图文内的音频素材.
  *
  * 通过此接口，用户可以上传和广告相关的音频图片，例如图文中的音频
+ * Class FileAudioAd.
  */
 class FileAudioAd extends RpcRequest
 {

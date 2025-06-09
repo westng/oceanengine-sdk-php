@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取素材标签列表.
+ * Name 获取素材标签列表.
  *
  * 根据 adv 检索素材列表的接口，返回结果包含素材属性，支持素材属性标签筛选，目前仅支持视频素材。
  *
@@ -33,6 +33,7 @@ use Core\Profile\RpcRequest;
  * 排队投放素材、挤压严重素材的区别：
  * 1. 同质化排队素材：需要创编广告，素材不在投
  * 2. 同质化挤压严重素材：需要创编广告，素材在投
+ * Class FileMaterialList.
  */
 class FileMaterialList extends RpcRequest
 {

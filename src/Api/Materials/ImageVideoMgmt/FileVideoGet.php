@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取视频素材.
+ * Name 获取视频素材.
  *
  * 通过此接口，用户可以获取经过一定条件过滤后的广告主下创意素材库对应的视频及视频信息。
  *
@@ -30,6 +30,7 @@ use Core\Profile\RpcRequest;
  * 过滤规则：
  * 1. 对素材视频进行过滤的时候，video_ids（视频ID）、material_ids（素材ID）、signatures（视频的md5值）只能选择一个进行过滤
  * 2. 获取视频素材数据量在100w以内时支持全量获取
+ * Class FileVideoGet.
  */
 class FileVideoGet extends RpcRequest
 {

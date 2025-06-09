@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 广告素材预审结果查询（连山云视频点播版）.
+ * Name 广告素材预审结果查询（连山云视频点播版）.
  *
  * 连山云视频点播版广告素材预审接口对应的审核结果内容查询接口
+ * Class OpenMaterialAuditProGet.
  */
 class OpenMaterialAuditProGet extends RpcRequest
 {

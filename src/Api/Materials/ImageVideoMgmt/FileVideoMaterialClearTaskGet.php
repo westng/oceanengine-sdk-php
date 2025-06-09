@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取清理任务列表.
+ * Name 获取清理任务列表.
  *
  * 返回已创建的低效/同质视频素材清理任务列表
+ * Class FileVideoMaterialClearTaskGet.
  */
 class FileVideoMaterialClearTaskGet extends RpcRequest
 {

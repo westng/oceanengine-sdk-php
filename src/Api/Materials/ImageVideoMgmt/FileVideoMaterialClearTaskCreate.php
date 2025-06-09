@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建素材清理任务.
+ * Name 创建素材清理任务.
  *
  * 创建低效/同质素材清理任务的异步接口，最多同时创建10个运行中的清理任务，配合「获取清理任务列表」、「下载清理任务结果」接口使用
  *
@@ -29,6 +29,7 @@ use Core\Profile\RpcRequest;
  * 素材类型说明：
  * 1. 低效素材：低效素材说明文档
  * 2. 同质化素材：「同质化素材」说明文档（对外）持续更新
+ * CLass FileVideoMaterialClearTaskCreate.
  */
 class FileVideoMaterialClearTaskCreate extends RpcRequest
 {

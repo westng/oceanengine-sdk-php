@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新图文信息.
+ * Name 更新图文信息.
  *
  * 更新图文信息，目前仅支持图文标题 file_name 和图片主题修改
+ * CLass CarouselUpdate.
  */
 class CarouselUpdate extends RpcRequest
 {

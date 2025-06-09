@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取视频智能封面.
+ * Name 获取视频智能封面.
  *
  * 通过此接口，用户可以获取针对素材视频推荐的智能封面。智能封面是通过提取视频关键帧筛选出推荐封面，帮助发现视频内优质封面素材。
  *
@@ -25,6 +25,7 @@ use Core\Profile\RpcRequest;
  * 1. 智能封面不是实时获取，而需要先根据status判断封面获取的状态，然后再进行获取视频封面
  * 2. 新上传素材存在同步延迟情况，建议等待2-3分钟再尝试操作获取视频智能封面
  * 3. 获取封面素材仅用于当前广告主投放使用，不支持推送
+ * Class ToolsVideoCoverSuggest.
  */
 class ToolsVideoCoverSuggest extends RpcRequest
 {

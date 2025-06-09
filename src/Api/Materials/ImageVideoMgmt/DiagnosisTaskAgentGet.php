@@ -15,9 +15,10 @@ namespace Api\Materials\ImageVideoMgmt;
 use Core\Profile\RpcRequest;
 
 /**
- * 代理商轮询任务结果.
+ * Name 代理商轮询任务结果.
  *
  * 代理商根据task_id获取前测结果
+ * Class DiagnosisTaskAgentGet.
  */
 class DiagnosisTaskAgentGet extends RpcRequest
 {

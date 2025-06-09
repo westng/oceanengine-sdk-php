@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取图片素材.
+ * Name 获取图片素材.
  *
  * 通过此接口，用户可以获取经过一定条件过滤后的广告主下创意素材库的图片及图片信息。
+ * Class FileImageGet.
  */
 class FileImageGet extends RpcRequest
 {

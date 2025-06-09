@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 素材推送.
+ * Name 素材推送.
  *
  * 本接口支持推送广告账户下已有的视频素材。
  *
@@ -25,6 +25,7 @@ use Core\Profile\RpcRequest;
  * 1. 不支持推送组织共享的视频素材
  * 2. 当素材在被推送账户下已存在，素材文件名、来源不会变化，仅更新素材的上传时间
  * 3. 一次请求推送限制需满足：推送视频数＜=50、推送账户数*推送视频数＜=1000
+ * Class FileMaterialBind.
  */
 class FileMaterialBind extends RpcRequest
 {

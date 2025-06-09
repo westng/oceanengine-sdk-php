@@ -17,13 +17,14 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 批量删除视频素材.
+ * Name 批量删除视频素材.
  *
  * 通过此接口，用户可以对素材视频进行批量删除。
  *
  * 特别注意：
  * 1. 当素材删除失败时，会展示在video_id列表
  * 2. 不在此列表内的素材表示删除成功
+ * Class FileVideoDelete.
  */
 class FileVideoDelete extends RpcRequest
 {

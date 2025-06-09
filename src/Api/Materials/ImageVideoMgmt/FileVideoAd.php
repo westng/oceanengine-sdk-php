@@ -17,12 +17,13 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 上传视频.
+ * Name 上传视频素材.
  *
  * 通过此接口，用户可以上传和广告相关的素材视频。
  *
  * 建议：
  * 对于连山url链接上传视频，请及时切换至异步上传接口。
+ * Class FileVideoAd.
  */
 class FileVideoAd extends RpcRequest
 {

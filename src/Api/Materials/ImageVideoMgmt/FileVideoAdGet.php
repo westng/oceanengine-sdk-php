@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取同主体下广告主视频素材.
+ * Name 获取同主体下广告主视频素材.
  *
  * 通过此接口，用户可以查询同主体下的广告主视频信息。
  *
@@ -27,6 +27,7 @@ use Core\Profile\RpcRequest;
  * 1. 为保证接口使用的安全性避免调取他人的视频信息，该接口只可用于查询自己公司下的视频信息
  * 2. 需查询的视频ID所属广告主账号的主体需与APPID对应开发者的主体保持一致，才可获取到图片的信息
  * 3. 如果开发者账号还未完成企业认证也将无法调用，请先完成企业认证
+ * Class FileVideoAdGet.
  */
 class FileVideoAdGet extends RpcRequest
 {

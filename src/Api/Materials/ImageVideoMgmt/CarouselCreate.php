@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 上传图文.
+ * Name 上传图文素材.
  *
  * 利用图片和音频塑造图文。图文是一种创意内容体裁，在包含多张图片和一段背景音乐，支持自动轮播图片。
  *
@@ -26,6 +26,7 @@ use Core\Profile\RpcRequest;
  * 2. 通过上传图文内音频素材接口上传音频（audio_file或audio_url），获取音频id（audio_id）
  * 3. 利用上述两步的图片、音频id塑造图文，获取出参图文mid
  * 4. 不同图片顺序对应不同的图文mid（即接口应答参数中的carousel_id）
+ * Class CarouselCreate.
  */
 class CarouselCreate extends RpcRequest
 {

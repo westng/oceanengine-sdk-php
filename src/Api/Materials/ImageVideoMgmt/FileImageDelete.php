@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 批量删除图片素材.
+ * Name 批量删除图片素材.
  *
  * 通过此接口，用户可以批量删除广告主下创意素材库的图片。
+ * Class FileImageDelete.
  */
 class FileImageDelete extends RpcRequest
 {

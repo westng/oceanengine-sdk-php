@@ -15,7 +15,7 @@ namespace Api\Materials\ImageVideoMgmt;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取视频素材评估标签（新版）.
+ * Name 获取视频素材评估标签（新版）.
  *
  * 本接口是「获取素材标签列表」、「获取素材标签信息」接口的升级版，支持查询账户下视频库的素材评估标签。
  *
@@ -35,6 +35,7 @@ use Core\Profile\RpcRequest;
  * 1. 同质化素材风险-挤压严重素材：该类素材没有可投/绑定创意，不能清理，素材不在广告下，素材不在投
  * 2. 同质化素材风险-排队投放素材：可清理同质化排队素材，素材在广告下，素材不在投
  * 3. 同质化素材风险-未投放预计排队素材：可清理同质化挤压严重素材，素材在广告下，素材在投
+ * CLass FileMaterialAttributesList.
  */
 class FileMaterialAttributesList extends RpcRequest
 {

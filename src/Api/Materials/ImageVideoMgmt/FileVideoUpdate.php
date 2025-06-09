@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新视频.
+ * Name 更新视频.
  *
  * 通过此接口，用户可以批量更新素材视频的名称。
+ * Class FileVideoUpdate.
  */
 class FileVideoUpdate extends RpcRequest
 {

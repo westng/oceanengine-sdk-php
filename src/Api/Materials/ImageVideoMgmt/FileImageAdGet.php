@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取同主体下广告主图片素材.
+ * Name 获取同主体下广告主图片素材.
  *
  * 通过此接口，用户可以查询获取同主体下的广告主图片素材信息。
  *
@@ -28,6 +28,7 @@ use Core\Profile\RpcRequest;
  * 1. 请求参数中传入的广告主账户advertiser_id和image_id存在绑定关系，即广告账户的素材库中存在这些image_id，否则报错：「无权限操作内容」
  * 2. 仅当开发者账户主体与所传入的广告主账户主体一致时，可通过本接口查询图片的预览地址url
  * 3. 如果您的开发者账号未完成企业认证，或完成企业认证但客户在授权广告账户时未勾选「敏感物料授权」，您将无法获取图片的预览地址url
+ * Class FileImageAdGet.
  */
 class FileImageAdGet extends RpcRequest
 {

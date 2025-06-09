@@ -17,12 +17,13 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 广告主创建前测任务.
+ * Name Adv创建前测任务.
  *
  * 通过此接口，用户可以通过传入视频id和投放设置(setting)创建对应的前测任务
  *
  * 使用限制：
  * 同一广告主 1000素材/24H
+ * Class DiagnosisTaskAdvCreate.
  */
 class DiagnosisTaskAdvCreate extends RpcRequest
 {
