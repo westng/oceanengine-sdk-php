@@ -17,9 +17,9 @@ use Core\Profile\RpcRequest;
 /**
  * Name 获取广告主信息.
  * 获取广告主账户详细信息
- * Class AdvertiserInfoGet.
+ * Class AdvertiserInfo.
  */
-class AdvertiserInfoGet extends RpcRequest
+class AdvertiserInfo extends RpcRequest
 {
     protected string $url = '/2/advertiser/info/';
 
