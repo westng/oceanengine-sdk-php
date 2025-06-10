@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
-use AdOauth\GetAccessToken;
-use AdOauth\RefreshToken;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
+use Oauth\GetAccessToken;
+use Oauth\RefreshToken;
 
 class OceanEngineAuth
 {

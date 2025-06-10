@@ -23,7 +23,7 @@
   "autoload": {
     "psr-4": {
       "OceanEngineSDK\\": "src/Core/Profile/",
-      "AdOauth\\": "src/AdOauth/",
+      "Oauth\\": "src/Oauth/",
       "Account\\": "src/Api/Account/",
       "DataReports\\": "src/Api/DataReports/",
       "Tools\\": "src/Api/Tools",

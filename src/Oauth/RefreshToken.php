@@ -10,17 +10,15 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace AdOauth;
+namespace Oauth;
 
 use Core\Profile\RpcRequest;
 
-class GetAccessToken extends RpcRequest
+class RefreshToken extends RpcRequest
 {
     protected string $method = 'POST';
 
-    protected string $url = '/oauth2/access_token/';
-
-    protected string $cotent_type = 'application/json';
+    protected string $url = '/oauth2/refresh_token/';
 
     protected string $app_id;
 
@@ -28,5 +26,5 @@ class GetAccessToken extends RpcRequest
 
     protected string $grant_type;
 
-    protected string $auth_code;
+    protected string $refresh_token;
 }
