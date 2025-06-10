@@ -14,8 +14,15 @@
 
 ## 使用条件
 
-1. 使用 SDK 需要首先注册成为巨量引擎开发者，请参考[开发者快速入门文档](https://open.oceanengine.com/labels/7/docs/1696710498372623)
-2. 使用 SDK 需要先拥有 API 的访问权限，所有 SDK 的使用与应用拥有的权限组相关联
+### 开发者条件
+- 使用 SDK 需要首先注册成为巨量引擎开发者，请参考[开发者快速入门文档](https://open.oceanengine.com/labels/7/docs/1696710498372623)
+- 使用 SDK 需要先拥有 API 的访问权限，所有 SDK 的使用与应用拥有的权限组相关联
+
+### 环境要求
+
+- PHP >= 8.0
+- curl 扩展支持
+- 推荐使用 Composer 安装依赖
 
 ## 安装
 
@@ -23,13 +30,11 @@
 composer require westng/oceanengine-sdk-php
 ```
 
-## 快速入门
+## 🚀 快速入门
 
-### 申请广告主授权
+### 用户授权（获取 Access Token）
 
-#### 参数说明
-
-getAuthCodeUrl 参数说明
+#### 1. 获取授权 URL
 
 | 参数     | 说明                             | 默认值             | 示例值              | 版本  |
 | -------- | -------------------------------- | ------------------ | ------------------- | ----- |
@@ -37,6 +42,159 @@ getAuthCodeUrl 参数说明
 | `scope`  | 即授权范围（全部权限 null 即可） | -                  | -                   | 1.0.0 |
 | `state`  | 自定义参数                       | your_custom_params | -                   | 1.0.0 |
 | `type`   | 授权类型                         | QC                 | `QC`｜`AD`          | 1.0.0 |
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+use Core\Exception\OceanEngineException;
+use OceanEngineSDK\OceanEngineAuth;
+
+require_once __DIR__ . '/../index.php';
+require_once __DIR__ . '/config/config.php';
+
+/**
+ * Name 获取授权链接
+ * Class GetAuthCodeUrl.
+ */
+class GetAuthCodeUrl
+{
+    public static function run(): void
+    {
+        try {
+            $auth = new OceanEngineAuth(APPID, SECRET);
+            $url = $auth->getAuthCodeUrl(CALLBACK_URL, '', 'auth_code', 'AD');
+            echo "[授权链接]\n{$url}\n";
+        } catch (OceanEngineException $e) {
+            echo '错误类型: ' . $e->getErrorType() . PHP_EOL;
+            echo '错误码: ' . $e->getErrorCode() . PHP_EOL;
+            echo '错误信息: ' . $e->getErrorMessage() . PHP_EOL;
+            exit(1);
+        }
+    }
+}
+
+GetAuthCodeUrl::run();
+```
+
+#### 2. 获取 Access Token
+
+```php
+<?php
+
+
+declare(strict_types=1);
+
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+
+use Core\Exception\OceanEngineException;
+use OceanEngineSDK\OceanEngineAuth;
+
+require_once __DIR__ . '/../../index.php';
+require_once __DIR__ . '/../config/config.php';
+
+/**
+ * Name 刷新Token
+ * Class RefreshToken.
+ */
+class RefreshToken
+{
+    public static function run(): void
+    {
+        try {
+            $auth = new OceanEngineAuth(APPID, SECRET);
+            $rsp_data = $auth->RefreshToken(REFRESH_TOKEN);
+            print_r($rsp_data);
+        } catch (OceanEngineException $e) {
+            echo '错误类型: ' . $e->getErrorType() . PHP_EOL;
+            echo '错误码: ' . $e->getErrorCode() . PHP_EOL;
+            echo '错误信息: ' . $e->getErrorMessage() . PHP_EOL;
+            exit(1);
+        }
+    }
+}
+
+RefreshToken::run();
+
+```
+
+### 使用 API（基于已获取的 Token）
+
+#### 1. 获取广告主信息
+更多方法请查询tests文件，或者docs文档
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+use Core\Exception\OceanEngineException;
+use OceanEngineSDK\OceanEngineClient;
+
+require_once __DIR__ . '/../../../index.php';
+require_once __DIR__ . '/../../config/config.php';
+
+/**
+ * Name 获取广告主信息
+ * Class AdvertiserInfo.
+ */
+class AdvertiserInfo
+{
+    public static function run(): void
+    {
+        try {
+            $client = new OceanEngineClient(TOKEN);
+
+            $args = [
+                'account_ids' => ADVERTISER_IDS,
+            ];
+
+            $response = $client->module('Account')
+                ->AccountInfo
+                ->AdvertiserInfo()
+                ->setArgs($args)
+                ->send();
+
+            echo "[请求成功]\n";
+
+            $body = $response->getBody();
+            $array = json_decode((string) $body, true);
+
+            print_r($array);  // 清晰数组输出
+        } catch (OceanEngineException $e) {
+            echo '错误类型: ' . $e->getErrorType() . PHP_EOL;
+            echo '错误码: ' . $e->getErrorCode() . PHP_EOL;
+            echo '错误信息: ' . $e->getErrorMessage() . PHP_EOL;
+            exit(1);
+        }
+    }
+}
+
+AdvertiserInfo::run();
+
+```
 
 ### SDK 包结构
 
@@ -49,7 +207,7 @@ docs/                                           // 接口文档
 ├── TOOLS.md                                    // 工具文档
 └── JULIANGSTARMAP.md                           // 巨量星图文档
 src/
-├── AdOauth/
+├── Oauth/
 │   ├── GetAccessToken.php                      // 获取 AccessToken
 │   └── RefreshToken.php                        // 刷新 AccessToken
 ├── Core/                                       // 核心包
