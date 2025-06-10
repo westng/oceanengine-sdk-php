@@ -36,7 +36,7 @@ class Oauth2AdvertiserGet
             $response = $client->module('Account')
                 ->AccountRel
                 ->Oauth2AdvertiserGet()
-                ->setArgs($args)
+                ->setParams($args)
                 ->send();
 
             echo "[请求成功]\n";

@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace JuLiangAds\AdsPro;
 
 use Core\Exception\OceanEngineException;
-use OceanEngineSDK\OceanEngineAuth;
+use OceanEngineSDK\OceanEngineClient;
 
 require_once __DIR__ . '/../../../../index.php';
 require_once __DIR__ . '/../../../config/config.php';
@@ -27,8 +27,7 @@ class ProjectList
     public static function run(): void
     {
         try {
-            $auth = new OceanEngineAuth(APPID, SECRET);
-            $client = $auth->makeClient(TOKEN);
+            $client = new OceanEngineClient(TOKEN);
 
             $args = [
                 'advertiser_id' => ADVERTISER_ID,
@@ -37,7 +36,7 @@ class ProjectList
             $response = $client->module('JuLiangAds')
                 ->ProjectManagement
                 ->ProjectList()
-                ->setArgs($args)
+                ->setParams($args)
                 ->send();
 
             echo "[请求成功]\n";
