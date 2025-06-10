@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace JuLiangStarMap\MassiveStarMap;
 
 use Core\Exception\OceanEngineException;
-use OceanEngineSDK\OceanEngineAuth;
+use OceanEngineSDK\OceanEngineClient;
 
 require_once __DIR__ . '/../../../../index.php';
 require_once __DIR__ . '/../../../config/config.php';
@@ -27,8 +27,7 @@ class StarClueGet
     public static function run(): void
     {
         try {
-            $auth = new OceanEngineAuth(APPID, SECRET);
-            $client = $auth->makeClient(TOKEN);
+            $client = new OceanEngineClient(TOKEN);
 
             $args = [
                 'star_id' => ADVERTISER_ID,

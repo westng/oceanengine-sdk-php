@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 use Core\Exception\OceanEngineException;
-use OceanEngineSDK\OceanEngineAuth;
+use OceanEngineSDK\OceanEngineClient;
 
 require_once __DIR__ . '/../../../../../index.php';
 require_once __DIR__ . '/../../../../config/config.php';
@@ -24,17 +24,16 @@ class AccountBudgetGet
     public static function run(): void
     {
         try {
-            $auth = new OceanEngineAuth(APPID, SECRET);
-            $client = $auth->makeClient(TOKEN);
+            $client = new OceanEngineClient(TOKEN);
 
             $args = [
-                'advertiser_id' => ADVERTISER_ID,
+                // 'advertiser_id' => ADVERTISER_ID,
             ];
 
             $response = $client->module('JuLiangQianChuan')
                 ->AccountBudget
                 ->AccountBudgetGet()
-                ->setArgs($args)
+                ->setParams($args)
                 ->send();
 
             echo "[请求成功]\n";
