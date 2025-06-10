@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\Account\Finance;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -32,23 +30,4 @@ class AdvertiserFundTransactionGet extends RpcRequest
      * 广告主ID.
      */
     protected int $advertiser_id;
-
-    /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
-    }
 }

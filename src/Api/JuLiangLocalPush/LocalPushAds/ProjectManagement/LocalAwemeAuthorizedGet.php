@@ -25,15 +25,4 @@ class LocalAwemeAuthorizedGet extends RpcRequest
     protected string $method = 'GET';
 
     protected string $content_type = 'application/json';
-
-    /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
 }

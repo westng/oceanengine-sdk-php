@@ -40,17 +40,6 @@ class ToolsThirdSiteDelete extends RpcRequest
     protected int $site_id;
 
     /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
-
-    /**
      * @throws InvalidParamException
      */
     public function check(): void

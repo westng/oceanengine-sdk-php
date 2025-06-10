@@ -3,7 +3,6 @@
 .project
 *.patch
 .idea/
-.git/
 runtime/
 vendor/
 .phpintel/
@@ -12,8 +11,8 @@ vendor/
 .phpunit*
 *.cache
 .vscode/
-public
 *.lock
 *.phar
-.gitignore
-tests/config.php
+
+# 本地测试配置文件
+tests/config/config.php
