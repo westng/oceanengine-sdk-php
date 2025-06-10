@@ -1,8 +1,6 @@
 <?php
 
-
 declare(strict_types=1);
-
 /**
  * This file is part of Marketing PHP SDK.
  *
@@ -11,7 +9,6 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
-
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 

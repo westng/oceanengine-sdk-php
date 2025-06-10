@@ -28,15 +28,4 @@ class Oauth2AdvertiserGet extends RpcRequest
     protected string $url = '/oauth2/advertiser/get/';
 
     protected string $content_type = 'application/json';
-
-    /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
 }

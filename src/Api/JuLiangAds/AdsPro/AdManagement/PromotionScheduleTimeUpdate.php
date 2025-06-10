@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangAds\AdsPro\AdManagement;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -32,23 +30,4 @@ class PromotionScheduleTimeUpdate extends RpcRequest
      * 广告主账户id.
      */
     protected int $advertiser_id;
-
-    /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
-    }
 }

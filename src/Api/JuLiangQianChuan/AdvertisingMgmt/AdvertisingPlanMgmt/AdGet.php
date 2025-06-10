@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Api\JuLiangQianChuan\AdvertisingMgmt\AdvertisingPlanMgmt;
 
-use Core\Exception\InvalidParamException;
-use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
@@ -32,23 +30,4 @@ class AdGet extends RpcRequest
      * 操作的广告主id.
      */
     protected int $advertiser_id;
-
-    /**
-     * @return $this
-     */
-    public function setArgs(mixed $args): static
-    {
-        foreach ($args as $key => $value) {
-            $this->params[$key] = $this->{$key} = $value;
-        }
-        return $this;
-    }
-
-    /**
-     * @throws InvalidParamException
-     */
-    public function check(): void
-    {
-        RequestCheckUtil::checkNotNull($this->advertiser_id, 'advertiser_id');
-    }
 }
