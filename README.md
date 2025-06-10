@@ -80,17 +80,19 @@ src/
 
 ## 当前开发进度
 
-| **模块**   | **实例调用模块**                       | **静态调用模块**               | **状态**  | **文档链接**                         |
-| ---------- | -------------------------------------- | ------------------------------ | --------- |----------------------------------|
-| 巨量广告   | `$client->module('JuLiangAds')`        | `$client::JuLiangAds()`        | ✅ 已完成 | [点击查看](docs/JULIANGADS.md)       |
-| 巨量千川   | `$client->module('JuLiangQianChuan')`  | `$client::JuLiangQianChuan()`  | ✅ 已完成 | [点击查看](docs/JULIANGQIANCHUAN.md) |
-| 巨量星图   | `$client->module('JuLiangStarMap')`    | `$client::JuLiangStarMap()`    | ✅ 已完成 | [点击查看](docs/JULIANGSTARMAP.md)   |
-| 企业号     | `$client->module('EnterpriseAccount')` | `$client::EnterpriseAccount()` | ⏳ 未开始 | -                                |
-| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | `$client::JuLiangLocalPush()`  | ✅ 已完成  | [点击查看](docs/JULIANGLOCALPUSH.md) |
-| 账户管理   | `$client->module('Account')`           | `$client::Account()`           | ✅ 已完成 | [点击查看](docs/ACCOUNT.md)          |
-| 工具       | `$client->module('Tools')`             | `$client::Tools()`             | ✅ 已完成 | [点击查看](docs/TOOLS.md)            |
-| 素材管理   | `$client->module('Materials')`         | `$client::Materials()`         |  ✅ 已完成 | [点击查看](docs/MATERIALS.md)        |
-| 数据报表   | `$client->module('DataReports')`       | `$client::DataReports()`       | ✅ 已完成 | [点击查看](docs/DATAREPORTS.md)      |
+> 🚧 注意：账户管理\素材管理\数据报表\工具 模块部分接口在巨量各平台（广告、千川、本地推、星图）通用。
+
+| **模块**   | **实例调用模块**                       | **状态**  | **文档链接**                         |
+| ---------- | -------------------------------------- | --------- | ------------------------------------ |
+| 账户管理   | `$client->module('Account')`           | ✅ 已完成 | [点击查看](docs/ACCOUNT.md)          |
+| 素材管理   | `$client->module('Materials')`         | ✅ 已完成 | [点击查看](docs/MATERIALS.md)        |
+| 数据报表   | `$client->module('DataReports')`       | ✅ 已完成 | [点击查看](docs/DATAREPORTS.md)      |
+| 工具       | `$client->module('Tools')`             | ✅ 已完成 | [点击查看](docs/TOOLS.md)            |
+| 巨量广告   | `$client->module('JuLiangAds')`        | ✅ 已完成 | [点击查看](docs/JULIANGADS.md)       |
+| 巨量千川   | `$client->module('JuLiangQianChuan')`  | ✅ 已完成 | [点击查看](docs/JULIANGQIANCHUAN.md) |
+| 巨量星图   | `$client->module('JuLiangStarMap')`    | ✅ 已完成 | [点击查看](docs/JULIANGSTARMAP.md)   |
+| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | ✅ 已完成 | [点击查看](docs/JULIANGLOCALPUSH.md) |
+| 企业号     | `$client->module('EnterpriseAccount')` | ⏳ 未开始 | -                                    |
 
 > ⚠️ 上述进度仅供参考，实际以源码为准。  
 > 🧠 欢迎查看源码深入探索，接口比文档更诚实！
