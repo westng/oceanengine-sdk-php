@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取作品版本信息.
  *
  * 获取互动广告作品对应的版本信息
+ * Class ToolsRubeexVersionGet.
  */
 class ToolsRubeexVersionGet extends RpcRequest
 {

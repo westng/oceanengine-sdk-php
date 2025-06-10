@@ -26,6 +26,7 @@ use Core\Profile\RpcRequest;
  *
  * 每个起量方案生效时间为6小时，冲突会报错。
  * 全量更新。传空则更新为空，此时已预约的方案将被删除，生效中的方案不受影响。
+ * Class ToolsPromotionRaiseSet.
  */
 class ToolsPromotionRaiseSet extends RpcRequest
 {

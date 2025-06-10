@@ -15,10 +15,11 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 取消应用共享关系.
+ * Name 取消应用共享关系.
  *
  * 取消应用共享关系。
  * 当前共享类型支持PART（指定账户共享）、ALL（组织内某类账户所有共享）和COMPANY（公司主体内某类型所有账户共享）。
+ * Class ToolsAppManagementBpShareCancel.
  */
 class ToolsAppManagementBpShareCancel extends RpcRequest
 {

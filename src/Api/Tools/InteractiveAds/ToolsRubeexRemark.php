@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取作品场景.
  *
  * 获取作品场景信息
+ * Class ToolsRubeexRemark.
  */
 class ToolsRubeexRemark extends RpcRequest
 {

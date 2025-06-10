@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新应用共享关系.
+ * Name 更新应用共享关系.
  *
  * 增加和删除应用资产的共享关系。
+ * Class ToolsAppManagementUpdateAuthorization.
  */
 class ToolsAppManagementUpdateAuthorization extends RpcRequest
 {

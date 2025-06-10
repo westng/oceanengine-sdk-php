@@ -15,9 +15,10 @@ namespace Api\Tools\ByteMiniAppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询字节小游戏归因激活时间窗.
+ * Name 查询字节小游戏归因激活时间窗.
  *
  * 使用场景：可通过该接口查询当前字节小游戏最新的归因激活时间窗配置内容，如希望修改归因激活时间窗，需要前往编辑接口。
+ * Class ToolsMicroGameConvertWindowGet.
  */
 class ToolsMicroGameConvertWindowGet extends RpcRequest
 {

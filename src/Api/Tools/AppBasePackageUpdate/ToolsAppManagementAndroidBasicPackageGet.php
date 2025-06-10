@@ -15,9 +15,10 @@ namespace Api\Tools\AppBasePackageUpdate;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询安卓应用母包.
+ * Name 查询安卓应用母包.
  *
  * 查询安卓应用母包信息。
+ * Class ToolsAppManagementAndroidBasicPackageGet.
  */
 class ToolsAppManagementAndroidBasicPackageGet extends RpcRequest
 {

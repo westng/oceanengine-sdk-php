@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 删除定向包.
  *
  * 删除广告主下的定向包。
+ * Class AudiencePackageDelete.
  */
 class AudiencePackageDelete extends RpcRequest
 {

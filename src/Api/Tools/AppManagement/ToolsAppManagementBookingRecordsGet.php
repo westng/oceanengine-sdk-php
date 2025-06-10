@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询游戏预约记录详情.
+ * Name 查询游戏预约记录详情.
  *
  * 查询游戏预约记录详情数据接口。
  * 其中应答参数是按creative_time正序返回的。如果您有数据处理的需求，可以参考此排序逻辑。
+ * Class ToolsAppManagementBookingRecordsGet.
  */
 class ToolsAppManagementBookingRecordsGet extends RpcRequest
 {

@@ -15,9 +15,10 @@ namespace Api\Tools\AppBasePackageUpdate;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取应用细分分类及题材标签.
+ * Name 获取应用细分分类及题材标签.
  *
  * 获取应用细分分类及题材标签「支持所有账户体系」，查询所有应用细分分类及题材标签情况。
+ * Class ToolsAppManagementIndustryInfoList.
  */
 class ToolsAppManagementIndustryInfoList extends RpcRequest
 {

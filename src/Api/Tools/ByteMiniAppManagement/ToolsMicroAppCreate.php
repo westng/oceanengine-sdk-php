@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建字节小程序.
+ * Name 创建字节小程序.
  *
  * 创建字节小程序资产时，小程序调起链接存在两种录入方式：
  * 1. 通过参数 app_page.link 录入完整的链接信息。
@@ -29,6 +29,7 @@ use Core\Profile\RpcRequest;
  * 若同时传入参数 app_page.start_page 和 app_page.start_param ，后二者参数无效，以 app_page.link 中解析出的内容为准。
  *
  * 方式2.（推荐）录入链接信息：确保参数 app_page.link 为空值，同时参数 app_page.start_page 和 app_page.start_param 填写应符合提示规范。
+ * Class ToolsMicroAppCreate.
  */
 class ToolsMicroAppCreate extends RpcRequest
 {

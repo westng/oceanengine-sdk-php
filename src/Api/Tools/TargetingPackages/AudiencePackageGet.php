@@ -24,6 +24,7 @@ use Core\Profile\RpcRequest;
  * 应用推广（Android）：可用于推广目的为应用推广且下载方式为Android下载链接的计划。
  * 应用推广（iOS）：可用于推广目的为应用推广且下载方式为iOS下载链接的计划。
  * 其余类型：可应用于推广目的为该类型名称的计划。
+ * Class AudiencePackageGet.
  */
 class AudiencePackageGet extends RpcRequest
 {

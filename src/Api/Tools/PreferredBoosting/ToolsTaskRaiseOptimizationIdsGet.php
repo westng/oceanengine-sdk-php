@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询优选起量状态.
+ * Name 查询优选起量状态.
  *
  * 查询优选起量状态。
+ * Class ToolsTaskRaiseOptimizationIdsGet.
  */
 class ToolsTaskRaiseOptimizationIdsGet extends RpcRequest
 {

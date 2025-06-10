@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取字节小游戏.
+ * Name 获取字节小游戏.
  *
  * 获取字节小游戏列表，对应在巨量工作台上的字节小游戏资产。
+ * Class ToolsMicroGameList.
  */
 class ToolsMicroGameList extends RpcRequest
 {

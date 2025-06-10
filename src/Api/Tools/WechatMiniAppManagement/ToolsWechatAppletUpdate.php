@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新微信小程序.
+ * Name 更新微信小程序.
  *
  * 全量更新接口，请上传您需要更新的全部信息。
+ * Class ToolsWechatAppletUpdate.
  */
 class ToolsWechatAppletUpdate extends RpcRequest
 {

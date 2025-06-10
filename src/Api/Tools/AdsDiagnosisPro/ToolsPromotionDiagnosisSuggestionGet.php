@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取广告诊断建议.
+ * Name 获取广告诊断建议.
  *
  * 该接口查询的广告诊断建议为最新结果，与巨量广告平台同步
  * 应答参数中的诊断有效期仅做参考，实际诊断结果实时变化，建议直接调用接口查询最新诊断建议
+ * Class ToolsPromotionDiagnosisSuggestionGet.
  */
 class ToolsPromotionDiagnosisSuggestionGet extends RpcRequest
 {

@@ -17,11 +17,12 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询包解析状态.
+ * Name 查询包解析状态.
  *
  * 查询包解析状态，用于创建包含游戏礼包码的广告计划时，【提交解析应用包任务】后，查询应用包的解析状态。
  * 当返回参数package_status包解析状态为"SUCCESS"时表示包解析已经完成。此时，您可以提交创建广告计划。
  * 如果在没有解析完成时提交广告计划可能导致游戏礼包码的原生转化卡信息展示不全。
+ * Class ToolsAppManagementPackageGet.
  */
 class ToolsAppManagementPackageGet extends RpcRequest
 {

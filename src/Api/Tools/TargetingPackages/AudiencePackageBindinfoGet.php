@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 定向包查询关联项目信息.
  *
  * 可通过【获取定向包】接口获取定向包ID，根据定向包ID查询该定向包关联了哪些项目。
+ * Class AudiencePackageBindinfoGet.
  */
 class AudiencePackageBindinfoGet extends RpcRequest
 {

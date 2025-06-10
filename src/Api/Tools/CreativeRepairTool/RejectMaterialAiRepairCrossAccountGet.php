@@ -17,12 +17,13 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 根据mid查询同主体账户下修复建议列表.
+ * Name 根据mid查询同主体账户下修复建议列表.
  *
  * 注意：本接口仅支持根据advertiser_id、拒审material_id，查询该拒审素材已被应用到哪些同主体账户下&已产生修复建议，注意：
  * 如传入的advertiser_id下不存在material_id、material_id未产生修复建议，接口不会查询到数据
  * 该接口仅返回与传入advertiser_id同主体的账户
  * 通过应答参数获取到的related_advertiser_id、related_ai_repair_ids，可直接应用到采纳接口
+ * Class RejectMaterialAiRepairCrossAccountGet.
  */
 class RejectMaterialAiRepairCrossAccountGet extends RpcRequest
 {

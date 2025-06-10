@@ -17,11 +17,12 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取原生锚点列表.
+ * Name 获取原生锚点列表.
  *
  * 获取账户下的原生锚点列表，不同锚点的详情信息请前往「获取原生锚点详情」查询。
  * 近期更新：
  * 2023/12/27，应答参数新增返回anchor_share_type，支持您区分锚点的共享类型（自有或被共享）。
+ * Class NativeAnchorGet.
  */
 class NativeAnchorGet extends RpcRequest
 {

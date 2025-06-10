@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询游戏预约信息.
+ * Name 查询游戏预约信息.
  *
  * 查询游戏预约列表接口。
+ * Class ToolsAppManagementBookingGet.
  */
 class ToolsAppManagementBookingGet extends RpcRequest
 {

@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取广告建议起量预算.
  *
  * 通过adv_id和promotion_ids获取建议的广告起量预算。
+ * Class ToolsSuggestBudgetGet.
  */
 class ToolsSuggestBudgetGet extends RpcRequest
 {

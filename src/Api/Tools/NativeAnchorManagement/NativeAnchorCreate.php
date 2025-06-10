@@ -17,11 +17,12 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建原生锚点.
+ * Name 创建原生锚点.
  *
  * 该接口暂不支持创建「高级在线预约」、「外跳」、「字节小程序」锚点。
  * 近期更新：
  * 2023/12/27，请求参数中product_price类型调整为double，允许2位小数，原按整数型传入不受影响。
+ * Class NativeAnchorCreate.
  */
 class NativeAnchorCreate extends RpcRequest
 {

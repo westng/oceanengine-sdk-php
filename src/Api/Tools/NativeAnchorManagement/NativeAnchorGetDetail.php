@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取原生锚点详情.
+ * Name 获取原生锚点详情.
  *
  * 根据锚点唯一id，获取到锚点详情，支持查询账户下锚点的详情（包括被共享和自有锚点）。
  * 暂不支持获取「高级在线预约」锚点详情。
+ * Class NativeAnchorGetDetail.
  */
 class NativeAnchorGetDetail extends RpcRequest
 {

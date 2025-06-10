@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建采纳「拒审素材修复建议」任务.
+ * Name 创建采纳「拒审素材修复建议」任务.
  *
  * 注意：本接口为异步接口，需与「获取素材修复建议采纳结果」接口搭配使用
  * 一次传入50个修复id，从创建采纳任务→采纳完成，时效预估在1分钟以内
+ * Class RejectMaterialAiRepairAcceptTaskCreate.
  */
 class RejectMaterialAiRepairAcceptTaskCreate extends RpcRequest
 {

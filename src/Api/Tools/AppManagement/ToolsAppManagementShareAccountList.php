@@ -15,9 +15,10 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 查看应用共享范围.
+ * Name 查看应用共享范围.
  *
  * 查询应用共享范围，查询巨量纵横组织下某个应用的共享范围。
+ * Class ToolsAppManagementShareAccountList.
  */
 class ToolsAppManagementShareAccountList extends RpcRequest
 {

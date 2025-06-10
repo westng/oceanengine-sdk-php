@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取互动作品信息.
  *
  * 查询广告主名下的互动广告作品列表与作品信息
+ * Class ToolsRubeexGet.
  */
 class ToolsRubeexGet extends RpcRequest
 {

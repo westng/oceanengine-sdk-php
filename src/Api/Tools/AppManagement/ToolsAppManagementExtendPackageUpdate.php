@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新安卓应用分包版本.
+ * Name 更新安卓应用分包版本.
  *
  * 通过广告主id和应用包id，更新全部或部分应用子包版本。
+ * Class ToolsAppManagementExtendPackageUpdate.
  */
 class ToolsAppManagementExtendPackageUpdate extends RpcRequest
 {

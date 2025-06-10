@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取一键起量方案列表.
  *
  * 获取已预约的广告方案信息。
+ * Class ToolsPromotionRaiseStatusGet.
  */
 class ToolsPromotionRaiseStatusGet extends RpcRequest
 {

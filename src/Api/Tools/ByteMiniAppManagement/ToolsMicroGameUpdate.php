@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新字节小游戏.
+ * Name 更新字节小游戏.
  *
  * 审核成功的小游戏资产可批量 新增、更新、删除 链接信息。
  * 小游戏资产信息仅支持更新备注信息，且更新后不会再次送审。
@@ -34,6 +34,7 @@ use Core\Profile\RpcRequest;
  * 若同时传入参数 game_link.start_param ，后者参数无效，以 game_link.link 中解析的内容为准。
  *
  * 方式b.（推荐）录入链接信息：确保参数 game_link.link 为空值，同时参数 game_link.start_param 填写应符合提示规范。
+ * Class ToolsMicroGameUpdate.
  */
 class ToolsMicroGameUpdate extends RpcRequest
 {

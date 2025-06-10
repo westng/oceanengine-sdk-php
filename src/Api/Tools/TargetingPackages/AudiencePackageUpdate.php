@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 更新定向包.
  *
  * 更新广告主下的定向包信息。
+ * Class AudiencePackageUpdate.
  */
 class AudiencePackageUpdate extends RpcRequest
 {

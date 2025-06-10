@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 删除原生锚点.
+ * Name 删除原生锚点.
  *
  * 删除原生锚点。
+ * Class NativeAnchorDelete.
  */
 class NativeAnchorDelete extends RpcRequest
 {

@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 批量启停账户下RTA策略.
+ * Name 批量启停账户下RTA策略.
  *
  * 修改RTA策略状态。
+ * Class ToolsRtaStatusUpdate.
  */
 class ToolsRtaStatusUpdate extends RpcRequest
 {

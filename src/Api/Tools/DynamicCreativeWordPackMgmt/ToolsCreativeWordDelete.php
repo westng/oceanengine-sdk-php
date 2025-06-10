@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 删除动态创意词包.
  *
  * 使用此接口可以删除已创建的动态创意词包。
+ * Class ToolsCreativeWordDelete.
  */
 class ToolsCreativeWordDelete extends RpcRequest
 {

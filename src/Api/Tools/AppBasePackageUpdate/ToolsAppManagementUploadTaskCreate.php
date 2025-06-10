@@ -15,10 +15,11 @@ namespace Api\Tools\AppBasePackageUpdate;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建异步文件上传任务.
+ * Name 创建异步文件上传任务.
  *
  * 执行异步上传操作「支持所有账户体系」。
  * 注意：调用频控限制单个APP_ID每30分钟最多调用20次。
+ * Class ToolsAppManagementUploadTaskCreate。
  */
 class ToolsAppManagementUploadTaskCreate extends RpcRequest
 {

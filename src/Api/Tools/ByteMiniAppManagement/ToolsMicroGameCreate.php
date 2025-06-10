@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建字节小游戏.
+ * Name 创建字节小游戏.
  *
  * 创建字节小游戏资产时，小游戏调起链接存在两种信息录入方式：
  * 1. 通过参数 game_link.link 录入完整的链接信息。
@@ -29,6 +29,7 @@ use Core\Profile\RpcRequest;
  * 若同时传入参数 game_link.start_param ，后者参数无效，以 game_link.link 中解析的内容为准。
  *
  * 方式2.（推荐）录入链接信息：确保参数 game_link.link 为空值，同时参数 game_link.start_param 填写应符合提示规范。
+ * Class ToolsMicroGameCreate.
  */
 class ToolsMicroGameCreate extends RpcRequest
 {

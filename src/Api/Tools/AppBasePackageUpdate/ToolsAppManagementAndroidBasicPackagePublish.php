@@ -15,10 +15,11 @@ namespace Api\Tools\AppBasePackageUpdate;
 use Core\Profile\RpcRequest;
 
 /**
- * 发布安卓应用母包.
+ * Name 发布安卓应用母包.
  *
  * 发布安卓应用母包「支持所有账户体系」，发布审核通过的安卓应用母包。
  * 注意：单APP_ID接口调用限制为 3QPS。
+ * Class ToolsAppManagementAndroidBasicPackagePublish.
  */
 class ToolsAppManagementAndroidBasicPackagePublish extends RpcRequest
 {

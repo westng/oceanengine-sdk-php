@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询安卓应用信息.
+ * Name 查询安卓应用信息.
  *
  * 查询安卓应用信息 可通过请求参数advertiser_id广告主id 查询广告主下应用列表及应用详细信息，具体返回信息见返回参数。
  * 与【查询安卓应用信息（支持所有账户体系）】接口的区别仅仅是支持的账户体系不同。
+ * Class ToolsAppManagementAppGet.
  */
 class ToolsAppManagementAppGet extends RpcRequest
 {

@@ -31,6 +31,7 @@ use Core\Profile\RpcRequest;
  * - 其余类型：可应用于推广目的为该类型名称的计划
  *
  * 注意：每一个广告主下最多只能创建200个定向包。
+ * Class AudiencePackageCreate.
  */
 class AudiencePackageCreate extends RpcRequest
 {

@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新字节小程序.
+ * Name 更新字节小程序.
  *
  * 审核成功的小程序资产可批量 新增、更新、删除 链接信息。小程序资产信息仅支持更新备注信息，且更新后不会再次送审。
  * 新增调起链接时不需要填写链接id，更新链接或删除链接需要先获取链接id后再进行操作。
@@ -32,6 +32,7 @@ use Core\Profile\RpcRequest;
  * 若同时传入参数 app_page.start_page 和 app_page.start_param ，后二者参数无效，以 app_page.link 中解析出的内容为准。
  *
  * 方式b.（推荐）录入链接信息：确保参数 app_page.link 为空值，同时参数 app_page.start_page 和 app_page.start_param 填写应符合提示规范。
+ * Class ToolsMicroAppUpdate.
  */
 class ToolsMicroAppUpdate extends RpcRequest
 {

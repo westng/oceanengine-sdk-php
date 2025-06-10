@@ -15,9 +15,10 @@ namespace Api\Tools\MiniAppSharing;
 use Core\Profile\RpcRequest;
 
 /**
- * 设置小游戏&小程序共享.
+ * Name 设置小游戏&小程序共享.
  *
  * 通用的共享接口，目前支持微信、字节小游戏/小程序资产。
+ * Class ToolsBpAssetManagementShare.
  */
 class ToolsBpAssetManagementShare extends RpcRequest
 {

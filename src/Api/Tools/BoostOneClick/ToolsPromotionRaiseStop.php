@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 关停正在起量的广告.
  *
  * 关停正在起量的方案。
+ * Class ToolsPromotionRaiseStop.
  */
 class ToolsPromotionRaiseStop extends RpcRequest
 {

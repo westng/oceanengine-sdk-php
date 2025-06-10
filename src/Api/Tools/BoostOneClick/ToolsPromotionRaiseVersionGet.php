@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取起量版本信息.
  *
  * 获取已完成一键起量或一键起量中的广告在多次起量过程中产生的起量版本号及对应的起止时间。
+ * Class ToolsPromotionRaiseVersionGet.
  */
 class ToolsPromotionRaiseVersionGet extends RpcRequest
 {

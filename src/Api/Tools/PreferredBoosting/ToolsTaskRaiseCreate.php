@@ -17,7 +17,7 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 新建优选起量任务.
+ * Name 新建优选起量任务.
  *
  * 新建优选起量任务。
  * 账户下生效的优选起量任务数量有且只有1个。
@@ -27,6 +27,7 @@ use Core\Profile\RpcRequest;
  * i.账户下有非最大转化投放、ubmax广告（即自动投放广告）
  * ii.账户有投放中oCPM广告；
  * iii.账户当前未建立起量任务；
+ * Class ToolsTaskRaiseCreate.
  */
 class ToolsTaskRaiseCreate extends RpcRequest
 {

@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 关闭优选起量任务.
+ * Name 关闭优选起量任务.
  *
  * 关闭优选起量任务。
+ * Class ToolsTaskRaiseStatusStop.
  */
 class ToolsTaskRaiseStatusStop extends RpcRequest
 {

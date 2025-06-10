@@ -15,9 +15,10 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询安卓应用信息（支持所有账户体系）.
+ * Name 查询安卓应用信息（支持所有账户体系）.
  *
  * 查询账户下安卓应用信息（支持所有账户体系）及应用详细信息。
+ * Class ToolsAppManagementAndroidAppList.
  */
 class ToolsAppManagementAndroidAppList extends RpcRequest
 {

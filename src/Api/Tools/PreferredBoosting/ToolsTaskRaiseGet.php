@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询优选起量任务.
+ * Name 查询优选起量任务.
  *
  * 查询优选起量任务。
+ * Class ToolsTaskRaiseGet.
  */
 class ToolsTaskRaiseGet extends RpcRequest
 {

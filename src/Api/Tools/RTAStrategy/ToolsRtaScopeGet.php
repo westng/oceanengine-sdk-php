@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取RTA策略绑定信息列表.
+ * Name 获取RTA策略绑定信息列表.
  *
  * 获取RTA策略下的项目(广告组)列表，一个rta策略要么绑定campaign要么绑定project，不可能同时绑定。
+ * Class ToolsRtaScopeGet.
  */
 class ToolsRtaScopeGet extends RpcRequest
 {

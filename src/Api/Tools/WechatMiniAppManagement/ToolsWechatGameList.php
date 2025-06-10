@@ -15,9 +15,10 @@ namespace Api\Tools\WechatMiniAppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取微信小游戏列表.
+ * Name 获取微信小游戏列表.
  *
  * 支持获取纵横账户下及广告主账户下的微信小游戏资产。
+ * Class ToolsWechatGameList.
  */
 class ToolsWechatGameList extends RpcRequest
 {

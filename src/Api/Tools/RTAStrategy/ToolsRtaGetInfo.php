@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取RTA策略数据.
+ * Name 获取RTA策略数据.
  *
  * 获取RTA策略数据接口。
+ * Class ToolsRtaGetInfo.
  */
 class ToolsRtaGetInfo extends RpcRequest
 {

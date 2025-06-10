@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取字节小程序.
+ * Name 获取字节小程序.
  *
  * 获取巨量工作台上字节小程序资产列表。
+ * Class ToolsMicroAppList.
  */
 class ToolsMicroAppList extends RpcRequest
 {

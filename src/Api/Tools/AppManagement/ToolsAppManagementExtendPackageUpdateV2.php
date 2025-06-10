@@ -15,9 +15,10 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新安卓应用分包版本（支持所有账户体系）.
+ * Name 更新安卓应用分包版本（支持所有账户体系）.
  *
  * 通过账户id、账户类型和应用包id，更新全部或部分应用子包版本。
+ * Class ToolsAppManagementExtendPackageUpdateV2.
  */
 class ToolsAppManagementExtendPackageUpdateV2 extends RpcRequest
 {

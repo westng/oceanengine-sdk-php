@@ -17,10 +17,11 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取采纳素材修复建议任务结果.
+ * Name 获取采纳素材修复建议任务结果.
  *
  * 注意：本接口为异步接口，需与创建采纳「拒审素材修复建议」任务API搭配使用
  * 您可通过本接口查询采纳的最新状态
+ * Class RejectMaterialAiRepairAcceptTaskList.
  */
 class RejectMaterialAiRepairAcceptTaskList extends RpcRequest
 {

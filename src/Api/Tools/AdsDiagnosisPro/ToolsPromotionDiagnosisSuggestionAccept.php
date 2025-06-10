@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 采纳广告诊断建议.
+ * Name 采纳广告诊断建议.
  *
  * 2.0采纳广告诊断建议
+ * Class ToolsPromotionDiagnosisSuggestionAccept.
  */
 class ToolsPromotionDiagnosisSuggestionAccept extends RpcRequest
 {

@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取穿山甲渠道RTA联合实验数据.
+ * Name 获取穿山甲渠道RTA联合实验数据.
  *
  * 该接口用于查询穿山甲渠道的RTA联合实验数据。
+ * Class ReportRtaExpGet.
  */
 class ReportRtaExpGet extends RpcRequest
 {

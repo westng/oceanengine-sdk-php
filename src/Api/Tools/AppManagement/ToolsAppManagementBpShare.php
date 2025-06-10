@@ -15,10 +15,11 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 设置应用共享.
+ * Name 设置应用共享.
  *
  * 设置应用共享，可通过该接口将应用共享给相关组织或指定账户。
  * 该接口为增量共享。
+ * CLass ToolsAppManagementBpShare.
  */
 class ToolsAppManagementBpShare extends RpcRequest
 {

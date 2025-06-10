@@ -15,11 +15,12 @@ namespace Api\Tools\AppManagement;
 use Core\Profile\RpcRequest;
 
 /**
- * 创建安卓应用分包（支持所有账户体系）.
+ * Name 创建安卓应用分包（支持所有账户体系）.
  *
  * 创建应用分包，支持所有账户体系下创建应用分包。
  * 母包package创建成功后，可以通过当前接口创建分包。
  * 目前API开放平台不支持母包package的创建，创建母包需要前往 投放平台-资产-移动应用。
+ * Class ToolsAppManagementExtendPackageCreateV2.
  */
 class ToolsAppManagementExtendPackageCreateV2 extends RpcRequest
 {

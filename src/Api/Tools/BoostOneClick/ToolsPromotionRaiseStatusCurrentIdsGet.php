@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 获取广告起量状态.
  *
  * 批量获取广告当前的一键起量状态。
+ * Class ToolsPromotionRaiseStatusCurrentIdsGet.
  */
 class ToolsPromotionRaiseStatusCurrentIdsGet extends RpcRequest
 {

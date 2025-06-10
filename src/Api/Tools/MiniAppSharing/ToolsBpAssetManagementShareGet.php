@@ -15,9 +15,10 @@ namespace Api\Tools\MiniAppSharing;
 use Core\Profile\RpcRequest;
 
 /**
- * 查看小游戏/小程序共享范围.
+ * Name 查看小游戏/小程序共享范围.
  *
  * 获取字节、微信小游戏/小程序资产共享范围。
+ * Class ToolsBpAssetManagementShareGet.
  */
 class ToolsBpAssetManagementShareGet extends RpcRequest
 {

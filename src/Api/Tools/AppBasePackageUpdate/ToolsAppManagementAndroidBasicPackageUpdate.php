@@ -15,10 +15,11 @@ namespace Api\Tools\AppBasePackageUpdate;
 use Core\Profile\RpcRequest;
 
 /**
- * 更新安卓应用母包.
+ * Name 更新安卓应用母包.
  *
  * 更新安卓应用母包对应的信息。
  * 注意：单APP_ID接口调用限制为 3QPS。
+ * Class ToolsAppManagementAndroidBasicPackageUpdate.
  */
 class ToolsAppManagementAndroidBasicPackageUpdate extends RpcRequest
 {

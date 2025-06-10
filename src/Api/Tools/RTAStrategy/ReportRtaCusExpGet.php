@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取穿山甲广告主分流联合实验数据.
+ * Name 获取穿山甲广告主分流联合实验数据.
  *
  * 获取穿山甲的广告主分流的联合实验数据。
+ * Class ReportRtaCusExpGet.
  */
 class ReportRtaCusExpGet extends RpcRequest
 {

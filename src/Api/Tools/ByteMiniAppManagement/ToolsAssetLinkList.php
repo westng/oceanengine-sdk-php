@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取字节小程序/小游戏详情内容.
+ * Name 获取字节小程序/小游戏详情内容.
  *
  * 获取字节小程序/小游戏详情内容。
+ * CLass ToolsAssetLinkList.
  */
 class ToolsAssetLinkList extends RpcRequest
 {

@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取站内媒体RTA联合实验数据（分时t+5）.
+ * Name 获取站内媒体RTA联合实验数据（分时t+5）.
  *
  * 该接口用于查询站内媒体渠道的RTA联合实验数据，支持分时t+5级别数据。
+ * Class ReportRtaExpLocalHourlyGet.
  */
 class ReportRtaExpLocalHourlyGet extends RpcRequest
 {

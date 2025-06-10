@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 获取微信小程序列表.
+ * Name 获取微信小程序列表.
  *
  * 获取微信小程序列表。
+ * Class ToolsWechatAppletList.
  */
 class ToolsWechatAppletList extends RpcRequest
 {

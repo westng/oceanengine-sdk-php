@@ -17,9 +17,10 @@ use Core\Helper\RequestCheckUtil;
 use Core\Profile\RpcRequest;
 
 /**
- * 查询快应用信息.
+ * Name 查询快应用信息.
  *
  * 查询当前广告主的快应用。
+ * Class ToolQuickAppManagementQuickAppGet.
  */
 class ToolQuickAppManagementQuickAppGet extends RpcRequest
 {

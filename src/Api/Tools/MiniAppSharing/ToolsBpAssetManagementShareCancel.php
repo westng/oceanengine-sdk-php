@@ -15,9 +15,10 @@ namespace Api\Tools\MiniAppSharing;
 use Core\Profile\RpcRequest;
 
 /**
- * 取消小游戏/小程序共享关系.
+ * Name 取消小游戏/小程序共享关系.
  *
  * 取消资产共享，支持取消字节、微信小程序/小游戏共享关系。
+ * Class ToolsBpAssetManagementShareCancel.
  */
 class ToolsBpAssetManagementShareCancel extends RpcRequest
 {

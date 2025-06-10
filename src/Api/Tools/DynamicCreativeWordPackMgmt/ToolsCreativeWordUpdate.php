@@ -20,6 +20,7 @@ use Core\Profile\RpcRequest;
  * Name 更新动态创意词包.
  *
  * 针对已创建的动态创意词包进行修改，可修改词包名称、默认词、替换词三部分。
+ * Class ToolsCreativeWordUpdate.
  */
 class ToolsCreativeWordUpdate extends RpcRequest
 {
