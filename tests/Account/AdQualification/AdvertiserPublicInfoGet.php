@@ -33,7 +33,7 @@ class AdvertiserPublicInfoGet
             $response = $client->module('Account')
                 ->AdQualification
                 ->AdvertiserPublicInfoGet()
-                ->setArgs($args)
+                ->setParams($args)
                 ->send();
 
             echo "[请求成功]\n";

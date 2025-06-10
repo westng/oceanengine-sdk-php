@@ -36,7 +36,7 @@ class StarClueGet
             $response = $client->module('JuLiangStarMap')
                 ->MassiveStarMap
                 ->StarClueGet()
-                ->setArgs($args)
+                ->setParams($args)
                 ->send();
 
             echo "[请求成功]\n";
