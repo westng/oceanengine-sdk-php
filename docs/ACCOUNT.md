@@ -8,7 +8,7 @@
 
 | 方法名称                 | 调用方法                                  | 支持平台                       |
 | ------------------------ | ----------------------------------------- | ------------------------------ |
-| 获取千川广告账户全量信息 | AccountInfo->AdvertiserInfo()             | 巨量千川                       |
+| 获取千川广告账户全量信息 | AccountInfo->AdvertiserInfo()             | 巨量广告、巨量千川、巨量本地推 |
 | 获取千川广告账户基础信息 | AccountInfo->AdvertiserPublicInfo()       | 巨量千川                       |
 | 广告主账户信息查询       | AccountInfo->AgentAdvertiserInfoQuery()   | 巨量千川、巨量广告、巨量本地推 |
 | 获取千川账户类型         | AccountInfo->QianchuanAdvertiserTypeGet() | 巨量千川                       |
@@ -40,7 +40,6 @@
 | 批量删除投放资质          | AdQualification->AdvertiserDeliveryQualificationDelete() | 巨量广告             |
 | 获取投放资质（新版）      | AdQualification->AdvertiserDeliveryQualificationList()   | 巨量广告             |
 | 上传/更新投放资质（新版） | AdQualification->AdvertiserDeliveryQualificationSubmit() | 巨量广告             |
-| 获取广告主信息            | AdQualification->AdvertiserInfoGet()                     | 巨量广告、巨量本地推 |
 | 获取广告主公开信息        | AdQualification->AdvertiserPublicInfoGet()               | 巨量广告、巨量本地推 |
 | 上传投放资质（旧版）      | AdQualification->AdvertiserQualificationCreateV2()       | 巨量广告             |
 | 获取主体资质（新版）      | AdQualification->AdvertiserQualificationGet()            | 巨量广告             |
