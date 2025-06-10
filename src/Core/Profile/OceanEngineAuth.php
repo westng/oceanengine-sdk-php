@@ -110,16 +110,6 @@ class OceanEngineAuth
     }
 
     /**
-     * 获取客户端实例.
-     *
-     * @param string $access_token Access Token
-     */
-    public function makeClient(string $access_token): OceanEngineClient
-    {
-        return OceanEngineClient::getInstance($access_token, $this->is_sandbox, $this->server_url, $this->box_url);
-    }
-
-    /**
      * 执行 HTTP 请求.
      *
      * @param RequestInteface $request 请求对象

@@ -14,7 +14,7 @@ namespace Core\Exception;
 
 class OceanEngineException extends \Exception
 {
-    private string $errorCode;
+    private int $errorCode;
 
     private string $errorMessage;
 
@@ -25,7 +25,7 @@ class OceanEngineException extends \Exception
      * @param mixed $errorMessage
      * @param mixed $errorCode
      */
-    public function __construct(string $errorMessage, $errorCode = '500') // 默认值为字符串 '500'
+    public function __construct(string $errorMessage, int $errorCode = 500) // 默认值为整数 500
     {
         parent::__construct($errorMessage);
         $this->errorMessage = $errorMessage;
@@ -33,12 +33,12 @@ class OceanEngineException extends \Exception
         $this->setErrorType('OceanEngine');
     }
 
-    public function getErrorCode(): string
+    public function getErrorCode(): int
     {
         return $this->errorCode;
     }
 
-    public function setErrorCode($errorCode): void
+    public function setErrorCode(int $errorCode): void
     {
         $this->errorCode = $errorCode;
     }

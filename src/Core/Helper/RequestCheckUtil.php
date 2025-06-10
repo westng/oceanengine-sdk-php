@@ -24,7 +24,7 @@ class RequestCheckUtil
     public static function checkNotNull(mixed $value, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
-            throw new InvalidParamException('client-check-error:Missing Required Arguments: ' . $fieldName, 40);
+            throw new InvalidParamException('client-check-error:Missing Required Arguments: ' . $fieldName, 400);
         }
     }
 
@@ -51,7 +51,7 @@ class RequestCheckUtil
             return;
         }
 
-        $list = is_array($value) ? $value : preg_split('/,/', $value);
+        $list = is_array($value) ? $value : explode(',', $value);
         if (count($list) > $maxSize) {
             throw new InvalidParamException('client-check-error:Invalid Arguments: the listsize of ' . $fieldName . ' must be less than ' . $maxSize . '.', 41);
         }
@@ -132,9 +132,6 @@ class RequestCheckUtil
     public static function checkEmpty(mixed $value): bool
     {
         if (! isset($value)) {
-            return true;
-        }
-        if ($value === null) {
             return true;
         }
         if (is_array($value) && count($value) === 0) {

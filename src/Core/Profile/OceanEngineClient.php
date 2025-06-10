@@ -26,89 +26,65 @@ use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
 
-/**
- * @method static \Api\Tools\Module ToolsModule()
- * @method static \Api\JuLiangAds\Module JuLiangAds()
- * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
- * @method static \Api\JuLiangQianChuan\Module JuLiangQianChuan()
- * @method static \Api\Account\Module Account()
- * @method static \Api\Materials\Module Materials()
- * @method static \Api\DataReports\Module DataReports()
- * @method static \Api\JuLiangLocalPush\Module JuLiangLocalPush()
- */
 class OceanEngineClient
 {
-    public static string $access_token;
+    private string $accessToken;
 
-    public static string $server_url = 'https://api.oceanengine.com/open_api';
+    private string $serverUrl;
 
-    public static string $box_url = 'https://api.oceanengine.com/open_api';
+    private string $boxUrl;
 
-    public static bool $is_sanbox = false;
-
-    private static array $instance = [];
+    private bool $isSandbox;
 
     /**
      * 模块映射，统一调用.
      */
     private static array $moduleMap = [
-        'Account' => AccountModule::class,                      // 账户管理
-        'Materials' => MaterialsModule::class,                  // 素材管理
-        'DataReports' => DataReportsModule::class,              // 数据报表
-        'Tools' => ToolsModule::class,                          // 工具
-        'JuLiangAds' => JuLiangAdsModule::class,                // 巨量广告
-        'JuLiangQianChuan' => JuLiangQianChuanModule::class,    // 巨量千川
-        'JuLiangStarMap' => JuLiangStarMapModule::class,        // 巨量星图
-        'JuLiangLocalPush' => JuLiangLocalPushModule::class,    // 巨量本地推
+        'Account' => AccountModule::class,
+        'Materials' => MaterialsModule::class,
+        'DataReports' => DataReportsModule::class,
+        'Tools' => ToolsModule::class,
+        'JuLiangAds' => JuLiangAdsModule::class,
+        'JuLiangQianChuan' => JuLiangQianChuanModule::class,
+        'JuLiangStarMap' => JuLiangStarMapModule::class,
+        'JuLiangLocalPush' => JuLiangLocalPushModule::class,
     ];
 
-    // 禁止被实例化
-    private function __construct($access_token, $is_sanbox, $server_url, $box_url) {}
-
-    // 禁止clone
-    private function __clone() {}
-
     /**
-     * 静态魔术方法，动态调用模块.
-     *
-     * @throws \RuntimeException
-     * @throws \BadMethodCallException
+     * 构造函数，支持直接实例化.
      */
-    public static function __callStatic(string $name, array $arguments)
-    {
-        if (! isset(static::$access_token)) {
-            throw new \RuntimeException('请先调用 OceanEngineClient::getInstance() 初始化客户端，设置 access_token');
-        }
-        if (! isset(self::$instance[static::$access_token])) {
-            throw new \RuntimeException('当前 access_token 未初始化，请先调用 getInstance() 方法');
-        }
-
-        if (isset(self::$moduleMap[$name])) {
-            $className = self::$moduleMap[$name];
-            return new $className(self::$instance[static::$access_token]);
-        }
-        throw new \BadMethodCallException("未定义的静态方法 '{$name}'。");
+    public function __construct(
+        string $accessToken,
+        bool $isSandbox = false,
+        ?string $serverUrl = null,
+        ?string $boxUrl = null
+    ) {
+        $this->accessToken = $accessToken;
+        $this->isSandbox = $isSandbox;
+        $this->serverUrl = $serverUrl ?? 'https://api.oceanengine.com/open_api';
+        $this->boxUrl = $boxUrl ?? 'https://api.oceanengine.com/open_api';
     }
 
     /**
-     * 获取单例实例.
+     * 魔术方法，动态调用模块，返回模块实例.
+     *
+     * @throws \BadMethodCallException
      */
-    public static function getInstance(string $access_token, bool $is_sanbox = false, ?string $server_url = null, ?string $box_url = null): self
+    public function __call(string $name, array $arguments)
     {
-        static::$access_token = $access_token;
-        static::$is_sanbox = $is_sanbox;
+        if (! isset(self::$moduleMap[$name])) {
+            throw new \BadMethodCallException("未定义的方法 '{$name}'。");
+        }
+        $className = self::$moduleMap[$name];
+        return new $className($this);
+    }
 
-        if ($server_url !== null) {
-            static::$server_url = $server_url;
-        }
-        if ($box_url !== null) {
-            static::$box_url = $box_url;
-        }
-
-        if (empty(self::$instance[$access_token])) {
-            self::$instance[$access_token] = new self($access_token, $is_sanbox, $server_url, $box_url);
-        }
-        return self::$instance[$access_token];
+    /**
+     * 静态魔术方法，禁止调用（建议使用实例化调用模块）.
+     */
+    public static function __callStatic(string $name, array $arguments)
+    {
+        throw new \BadMethodCallException("请先实例化客户端再调用模块，例如：\$client = new OceanEngineClient(TOKEN); \$client->{$name}();");
     }
 
     /**
@@ -121,17 +97,17 @@ class OceanEngineClient
         $request->check();
         $params = $request->getParams();
         $headers = [
-            'Access-Token' => static::$access_token,
+            'Access-Token' => $this->accessToken,
             'Content-Type' => $request->getContentType(),
         ];
 
         if ($url === null) {
             $url = $request->getUrl();
             if ($url === '') {
-                throw new InvalidParamException('HTTP URL is required, and now the URL is empty');
+                throw new InvalidParamException('HTTP URL 不能为空');
             }
             if (! str_starts_with($url, 'http')) {
-                $url = (static::$is_sanbox ? static::$box_url : static::$server_url) . $url;
+                $url = ($this->isSandbox ? $this->boxUrl : $this->serverUrl) . $url;
             }
         }
 
@@ -145,6 +121,7 @@ class OceanEngineClient
         }
 
         HttpRequest::$readTimeout = $request->getTimeout();
+
         return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
     }
 

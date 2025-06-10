@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Core\Profile;
 
+use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use core\Http\HttpResponse;
 use OceanEngineSDK\OceanEngineClient;
@@ -90,8 +91,16 @@ class RpcRequest implements RequestInteface
         return $this;
     }
 
+    /**
+     * @param mixed $array
+     * @throws InvalidParamException
+     */
     public function setParams($array): static
     {
+        if (! is_array($array)) {
+            throw new InvalidParamException('参数必须是数组类型', 40);
+        }
+
         foreach ($array as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
@@ -106,9 +115,21 @@ class RpcRequest implements RequestInteface
         return $this->content_type;
     }
 
-    public function check()
+    public function check(): void
     {
-        // TODO: Implement check() method.
+        $reflection = new \ReflectionObject($this);
+        foreach ($reflection->getProperties() as $property) {
+            $type = $property->getType();
+            if ($type !== null && ! $type->allowsNull()) {
+                // PHP 8.1+ 检查 typed property 是否已初始化
+                if (method_exists($property, 'isInitialized') && ! $property->isInitialized($this)) {
+                    throw new InvalidParamException(sprintf(
+                        '参数 %s 不能为空',
+                        $property->getName()
+                    ), 400);
+                }
+            }
+        }
     }
 
     /**
@@ -117,8 +138,11 @@ class RpcRequest implements RequestInteface
     public function send(): HttpResponse
     {
         if (! $this->client instanceof OceanEngineClient) {
-            throw new OceanEngineException('Request can not be send by null, TouTiaoClent`s instance should be set before send', 500);
+            throw new OceanEngineException('Request can not be send by null, OceanEngineClient instance should be set before send', 500);
         }
+
+        $this->check();
+
         return $this->client->excute($this);
     }
 }

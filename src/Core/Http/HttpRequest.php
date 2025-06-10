@@ -64,7 +64,7 @@ class HttpRequest
         if (curl_errno($ch)) {
             throw new OceanEngineException(
                 'Curl Error: ' . curl_errno($ch) . ' - ' . curl_error($ch),
-                'SDK.CurlError'
+                400
             );
         }
 
