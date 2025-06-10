@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Api\Account\Rel;
 
 use Core\Exception\OceanEngineException;
-use OceanEngineSDK\OceanEngineAuth;
+use OceanEngineSDK\OceanEngineClient;
 
 require_once __DIR__ . '/../../../index.php';
 require_once __DIR__ . '/../../config/config.php';
@@ -27,8 +27,7 @@ class Oauth2AdvertiserGet
     public static function run(): void
     {
         try {
-            $auth = new OceanEngineAuth(APPID, SECRET);
-            $client = $auth->makeClient(TOKEN);
+            $client = new OceanEngineClient(TOKEN);
 
             $args = [
                 'access_token' => TOKEN,
