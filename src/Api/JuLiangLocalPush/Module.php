@@ -31,7 +31,6 @@ class Module extends BaseModule
     {
         parent::__construct($client);
         $this->providers = $this->discoverProviders();
-
     }
 
     /**

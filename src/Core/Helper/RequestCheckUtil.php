@@ -19,11 +19,9 @@ class RequestCheckUtil
     /**
      * 判断参数是否为空.
      *
-     * @param mixed $value
-     * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkNotNull(mixed $value, mixed $fieldName): void
+    public static function checkNotNull(mixed $value, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
             throw new InvalidParamException('client-check-error:Missing Required Arguments: ' . $fieldName, 40);
@@ -33,70 +31,59 @@ class RequestCheckUtil
     /**
      * 限制字符串参数的长度.
      *
-     * @param mixed $value
-     * @param mixed $maxLength
-     * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkMaxLength($value, $maxLength, $fieldName): void
+    public static function checkMaxLength(string $value, int $maxLength, string $fieldName): void
     {
         if (! self::checkEmpty($value) && mb_strlen($value, 'UTF-8') > $maxLength) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments:the length of ' . $fieldName . ' can not be larger than ' . $maxLength . '.', 41);
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the length of ' . $fieldName . ' can not be larger than ' . $maxLength . '.', 41);
         }
     }
 
     /**
-     * 限制数组的最大长度.
+     * 限制数组或逗号分隔字符串的最大长度.
      *
-     * @param mixed $value
-     * @param mixed $maxSize
-     * @param mixed $fieldName
      * @throws InvalidParamException
      */
-    public static function checkMaxListSize($value, $maxSize, $fieldName): void
+    public static function checkMaxListSize(array|string $value, int $maxSize, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
         }
 
-        $list = preg_split('/,/', $value);
+        $list = is_array($value) ? $value : preg_split('/,/', $value);
         if (count($list) > $maxSize) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments:the listsize(the string split by ",") of ' . $fieldName . ' must be less than ' . $maxSize . ' .', 41);
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the listsize of ' . $fieldName . ' must be less than ' . $maxSize . '.', 41);
         }
     }
 
     /**
-     * 限制允许字段.
-     * @param mixed $value
-     * @param mixed $array
-     * @param mixed $fieldName
+     * 检查值是否在允许字段内.
+     *
      * @throws InvalidParamException
      */
-    public static function checkAllowField($value, $array, $fieldName): void
+    public static function checkAllowField(array|string $value, array $allowed, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
         }
 
         if (is_array($value)) {
-            $di_array = array_diff($value, $array);
-            if (! empty($di_array)) {
-                throw new InvalidParamException('client-check-error:AllowField of ' . $fieldName . '   .', 41);
+            $diff = array_diff($value, $allowed);
+            if (! empty($diff)) {
+                throw new InvalidParamException('client-check-error: AllowField of ' . $fieldName . ' contains invalid value(s).', 41);
             }
-            return;
-        }
-        if (! in_array($value, $array)) {
-            throw new InvalidParamException('client-check-error:AllowField of ' . $fieldName . '   .', 41);
+        } elseif (! in_array($value, $allowed, true)) {
+            throw new InvalidParamException('client-check-error: AllowField of ' . $fieldName . ' is not allowed.', 41);
         }
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $maxValue
-     * @param mixed $fieldName
+     * 检查最大值.
+     *
      * @throws InvalidParamException
      */
-    public static function checkMaxValue(mixed $value, mixed $maxValue, mixed $fieldName): void
+    public static function checkMaxValue(float|int $value, float|int $maxValue, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
@@ -105,17 +92,16 @@ class RequestCheckUtil
         self::checkNumeric($value, $fieldName);
 
         if ($value > $maxValue) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments:the value of ' . $fieldName . ' can not be larger than ' . $maxValue . ' .', 41);
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the value of ' . $fieldName . ' can not be larger than ' . $maxValue . '.', 41);
         }
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $minValue
-     * @param mixed $fieldName
+     * 检查最小值.
+     *
      * @throws InvalidParamException
      */
-    public static function checkMinValue(mixed $value, mixed $minValue, mixed $fieldName): void
+    public static function checkMinValue(float|int $value, float|int $minValue, string $fieldName): void
     {
         if (self::checkEmpty($value)) {
             return;
@@ -124,23 +110,26 @@ class RequestCheckUtil
         self::checkNumeric($value, $fieldName);
 
         if ($value < $minValue) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments:the value of ' . $fieldName . ' can not be less than ' . $minValue . ' .', 41);
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the value of ' . $fieldName . ' can not be less than ' . $minValue . '.', 41);
         }
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $fieldName
+     * 检查文件是否存在.
+     *
      * @throws InvalidParamException
      */
-    public static function checkFileExist($value, $fieldName): void
+    public static function checkFileExist(string $filePath, string $fieldName): void
     {
-        if (! file_exists($value)) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments: the file of "' . $fieldName . '" is not exist: ' . realpath($value));
+        if (! file_exists($filePath)) {
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the file of "' . $fieldName . '" does not exist: ' . realpath($filePath));
         }
     }
 
-    public static function checkEmpty($value): bool
+    /**
+     * 判断是否为空.
+     */
+    public static function checkEmpty(mixed $value): bool
     {
         if (! isset($value)) {
             return true;
@@ -148,7 +137,7 @@ class RequestCheckUtil
         if ($value === null) {
             return true;
         }
-        if (is_array($value) && count($value) == 0) {
+        if (is_array($value) && count($value) === 0) {
             return true;
         }
         if (is_string($value) && trim($value) === '') {
@@ -159,14 +148,14 @@ class RequestCheckUtil
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $fieldName
+     * 判断是否为数字.
+     *
      * @throws InvalidParamException
      */
-    public static function checkNumeric(mixed $value, mixed $fieldName): void
+    public static function checkNumeric(mixed $value, string $fieldName): void
     {
         if (! is_numeric($value)) {
-            throw new InvalidParamException('client-check-error:Invalid Arguments:the value of ' . $fieldName . ' is not number : ' . $value . ' .', 41);
+            throw new InvalidParamException('client-check-error:Invalid Arguments: the value of ' . $fieldName . ' is not a number: ' . $value . '.', 41);
         }
     }
 }

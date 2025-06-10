@@ -9,7 +9,6 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
-
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
