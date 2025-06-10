@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\JuLiangQianChuan\AdvertisingMgmt\AdvertisingAccountBudget;
+namespace Api\JuLiangQianChuan\AdvertisingMgmt\AccountBudget;
 
 use Core\Exception\InvalidParamException;
 use Core\Helper\RequestCheckUtil;

@@ -10,19 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace JuLiangStarMap;
+namespace JuLiangAds\AdsPro;
 
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
-require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../../../index.php';
+require_once __DIR__ . '/../../../config/config.php';
 
 /**
- * Name 获取星图订单投后线索
- * Class StarClueGet.
+ * Name 获取项目列表
+ * Class ProjectList.
  */
-class StarClueGet
+class ProjectList
 {
     public static function run(): void
     {
@@ -31,12 +31,12 @@ class StarClueGet
             $client = $auth->makeClient(TOKEN);
 
             $args = [
-                'star_id' => ADVERTISER_ID,
+                'advertiser_id' => ADVERTISER_ID,
             ];
 
-            $response = $client::JuLiangStarMap()
-                ->MassiveStarMap
-                ->StarClueGet()
+            $response = $client->module('JuLiangAds')
+                ->ProjectManagement
+                ->ProjectList()
                 ->setArgs($args)
                 ->send();
 
@@ -55,4 +55,4 @@ class StarClueGet
     }
 }
 
-StarClueGet::run();
+ProjectList::run();

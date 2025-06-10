@@ -10,19 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace JuLiangAds;
+namespace JuLiangStarMap\MassiveStarMap;
 
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
-require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../../../index.php';
+require_once __DIR__ . '/../../../config/config.php';
 
 /**
- * Name 获取广告主账户头像
- * Class AdvertiserAvatarGet.
+ * Name 获取星图订单投后线索
+ * Class StarClueGet.
  */
-class AdvertiserAvatarGet
+class StarClueGet
 {
     public static function run(): void
     {
@@ -31,12 +31,12 @@ class AdvertiserAvatarGet
             $client = $auth->makeClient(TOKEN);
 
             $args = [
-                'advertiser_id' => ADVERTISER_ID,
+                'star_id' => ADVERTISER_ID,
             ];
 
-            $response = $client::JuLiangAds()
-                ->Advertiser
-                ->AdvertiserAvatarGet()
+            $response = $client->module('JuLiangStarMap')
+                ->MassiveStarMap
+                ->StarClueGet()
                 ->setArgs($args)
                 ->send();
 
@@ -55,4 +55,4 @@ class AdvertiserAvatarGet
     }
 }
 
-AdvertiserAvatarGet::run();
+StarClueGet::run();

@@ -2,12 +2,12 @@
 
 ## AdvertiserMgmt 投放管理
 
-### AdvertiserAccountBudget 广告账户预算
+### AccountBudget 广告账户预算
 
-| 方法名称         | 调用方法                                                 |
-| ---------------- | -------------------------------------------------------- |
-| 获取广告账户预算 | AdvertiserAccountBudget->AdvertiserAccountBudgetGet()    |
-| 设置广告账户预算 | AdvertiserAccountBudget->AdvertiserAccountBudgetUpdate() |
+| 方法名称         | 调用方法                             |
+| ---------------- | ------------------------------------ |
+| 获取广告账户预算 | AccountBudget->AccountBudgetGet()    |
+| 设置广告账户预算 | AccountBudget->AccountBudgetUpdate() |
 
 ### AdvertiserGroupMgmt 广告组管理
 

@@ -12,14 +12,14 @@ declare(strict_types=1);
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
-require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../../../../index.php';
+require_once __DIR__ . '/../../../../config/config.php';
 
 /**
- * Name 获取账户钱包信息
- * Class CustomerCenterAdvertiserList.
+ * Name 获取账户日预算
+ * Class AccountBudgetGet.
  */
-class CustomerCenterAdvertiserList
+class AccountBudgetGet
 {
     public static function run(): void
     {
@@ -28,13 +28,12 @@ class CustomerCenterAdvertiserList
             $client = $auth->makeClient(TOKEN);
 
             $args = [
-                'cc_account_id' => null, // 纵横工作台id，通过【获取已授权账户】接口获取
-                'account_source' => 'QIANCHUAN',
+                'advertiser_id' => ADVERTISER_ID,
             ];
 
             $response = $client->module('JuLiangQianChuan')
-                ->Workbench
-                ->CustomerCenterAdvertiserList()
+                ->AccountBudget
+                ->AccountBudgetGet()
                 ->setArgs($args)
                 ->send();
 
@@ -53,4 +52,4 @@ class CustomerCenterAdvertiserList
     }
 }
 
-CustomerCenterAdvertiserList::run();
+AccountBudgetGet::run();

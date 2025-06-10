@@ -15,9 +15,11 @@ namespace OceanEngineSDK;
 use Api\Account\Module as AccountModule;
 use Api\DataReports\Module as DataReportsModule;
 use Api\JuLiangAds\Module as JuLiangAdsModule;
+use Api\JuLiangLocalPush\Module as JuLiangLocalPushModule;
+use Api\JuLiangQianChuan\Module as JuLiangQianChuanModule;
 use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
 use Api\Materials\Module as MaterialsModule;
-use Api\Tools\Module as JuLiangQianChuanModule;
+use Api\Tools\Module as ToolsModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
@@ -25,12 +27,14 @@ use Core\Http\HttpResponse;
 use Core\Profile\RequestInteface;
 
 /**
- * @method static \Api\Tools\Module JuLiangQianChuan()
+ * @method static \Api\Tools\Module ToolsModule()
  * @method static \Api\JuLiangAds\Module JuLiangAds()
  * @method static \Api\JuLiangStarMap\Module JuLiangStarMap()
+ * @method static \Api\JuLiangQianChuan\Module JuLiangQianChuan()
  * @method static \Api\Account\Module Account()
  * @method static \Api\Materials\Module Materials()
  * @method static \Api\DataReports\Module DataReports()
+ * @method static \Api\JuLiangLocalPush\Module JuLiangLocalPush()
  */
 class OceanEngineClient
 {
@@ -48,12 +52,14 @@ class OceanEngineClient
      * 模块映射，统一调用.
      */
     private static array $moduleMap = [
-        'JuLiangAds' => JuLiangAdsModule::class,
-        'JuLiangQianChuan' => JuLiangQianChuanModule::class,
-        'JuLiangStarMap' => JuLiangStarMapModule::class,
-        'Account' => AccountModule::class,
-        'Materials' => MaterialsModule::class,
-        'DataReports' => DataReportsModule::class,
+        'Account' => AccountModule::class,                      // 账户管理
+        'Materials' => MaterialsModule::class,                  // 素材管理
+        'DataReports' => DataReportsModule::class,              // 数据报表
+        'Tools' => ToolsModule::class,                          // 工具
+        'JuLiangAds' => JuLiangAdsModule::class,                // 巨量广告
+        'JuLiangQianChuan' => JuLiangQianChuanModule::class,    // 巨量千川
+        'JuLiangStarMap' => JuLiangStarMapModule::class,        // 巨量星图
+        'JuLiangLocalPush' => JuLiangLocalPushModule::class,    // 巨量本地推
     ];
 
     // 禁止被实例化
