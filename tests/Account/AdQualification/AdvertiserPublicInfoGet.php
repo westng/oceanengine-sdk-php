@@ -9,9 +9,6 @@ declare(strict_types=1);
  * @contact  westng
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
-
-namespace Api\Account\Rel;
-
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
@@ -19,10 +16,10 @@ require_once __DIR__ . '/../../../index.php';
 require_once __DIR__ . '/../../config/config.php';
 
 /**
- * Name 获取店铺账户关联的广告账户列表
- * Class ShopAdvertiserList.
+ * Name 获取广告主信息
+ * Class AdvertiserPublicInfoGet.
  */
-class ShopAdvertiserList
+class AdvertiserPublicInfoGet
 {
     public static function run(): void
     {
@@ -31,12 +28,12 @@ class ShopAdvertiserList
             $client = $auth->makeClient(TOKEN);
 
             $args = [
-                'shop_id' => 1234,
+                'advertiser_ids' => ADVERTISER_IDS,
             ];
 
             $response = $client->module('Account')
-                ->AccountRel
-                ->ShopAdvertiserList()
+                ->AdQualification
+                ->AdvertiserPublicInfoGet()
                 ->setArgs($args)
                 ->send();
 
@@ -55,4 +52,4 @@ class ShopAdvertiserList
     }
 }
 
-ShopAdvertiserList::run();
+AdvertiserPublicInfoGet::run();

@@ -32,7 +32,7 @@ class AdvertiserInfo
             ];
 
             $response = $client->module('Account')
-                ->Advertiser
+                ->AccountInfo
                 ->AdvertiserInfo()
                 ->setArgs($args)
                 ->send();

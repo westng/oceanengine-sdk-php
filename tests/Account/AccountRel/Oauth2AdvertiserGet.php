@@ -20,9 +20,9 @@ require_once __DIR__ . '/../../config/config.php';
 
 /**
  * Name 获取已授权的账户（店铺/代理商/组织）
- * Class AdvertiserGet.
+ * Class Oauth2AdvertiserGet.
  */
-class AdvertiserGet
+class Oauth2AdvertiserGet
 {
     public static function run(): void
     {
@@ -36,7 +36,7 @@ class AdvertiserGet
 
             $response = $client->module('Account')
                 ->AccountRel
-                ->AdvertiserGet()
+                ->Oauth2AdvertiserGet()
                 ->setArgs($args)
                 ->send();
 
@@ -55,4 +55,4 @@ class AdvertiserGet
     }
 }
 
-AdvertiserGet::run();
+Oauth2AdvertiserGet::run();
