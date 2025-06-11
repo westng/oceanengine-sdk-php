@@ -52,10 +52,10 @@ class Module extends BaseModule
                 $this->instances[$name] = new $className($this->client);
                 return $this->instances[$name];
             }
-            throw new OceanEngineException("Class {$className} not found", '500');
+            throw new OceanEngineException("Class {$className} not found", 500);
         }
 
-        throw new OceanEngineException("Undefined property {$name}", '500');
+        throw new OceanEngineException("Undefined property {$name}", 500);
     }
 
     /**
