@@ -126,6 +126,18 @@
 | 查询订阅 Adv  | SubTaskAccountMgmt->SubscribeAccountsList()   |
 | 取消 Adv 订阅 | SubTaskAccountMgmt->SubscribeAccountsRemove() |
 
+## FreestylePushGlobal 随心推全域
+| 方法名称                     | 调用方法                                                           |
+| ---------------------------- | ------------------------------------------------------------------ |
+| 获取随心推全域投放效果预估       | FreestylePushGlobal->QianchuanAwemeUniPromotionEstimateEffect()                |
+| 创建随心推全域订单       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderCreate()                |
+| 获取随心推全域订单详情       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderDetail()                |
+| 获取随心推全域订单列表       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderGet()                |
+| 获取随心推全域账户数据       | FreestylePushGlobal->QianchuanAwemeUniPromotionReport()                |
+| 获取随心推全域投放建议       | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggest()                |
+| 获取随心推全域手动出价计划建议ROI       | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggestRoi()                |
+
+
 ## FreestylePushPlcmnt 随心推投放
 
 | 方法名称                     | 调用方法                                                           |
