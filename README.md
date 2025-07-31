@@ -92,10 +92,6 @@ oceanengine-sdk-php/
 │   ├── JULIANGSTARMAP.md                       # 巨量星图文档
 │   ├── MATERIALS.md                            # 素材管理文档
 │   └── TOOLS.md                                # 工具文档
-├── 📄 HTTP_MIGRATION.md                        # HTTP迁移文档
-├── 📄 CONFIG_GUIDE.md                          # 配置管理指南
-├── 📄 ERROR_CODES_GUIDE.md                     # 错误码说明
-└── 📄 TEST_MIGRATION.md                        # 测试文件迁移指南
 ├── 🔧 src/                                     # 源代码
 │   ├── Oauth/                                  # OAuth 认证
 │   │   ├── GetAccessToken.php                  # 获取 AccessToken
@@ -124,7 +120,11 @@ oceanengine-sdk-php/
 ├── 📄 .env.example                             # 环境变量示例
 ├── 📄 composer.json                            # Composer 配置
 ├── 📄 LICENSE                                  # 开源协议
-└── 📄 README.md                                # 项目说明
+├── 📄 README.md                                # 项目说明
+├── 📄 HTTP_MIGRATION.md                        # HTTP迁移文档
+├── 📄 CONFIG_GUIDE.md                          # 配置管理指南
+├── 📄 ERROR_CODES_GUIDE.md                     # 错误码说明
+└── 📄 TEST_MIGRATION.md                        # 测试文件迁移指南
 ```
 
 ## 📚 详细使用指南
