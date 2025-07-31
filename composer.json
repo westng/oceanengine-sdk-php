@@ -12,7 +12,7 @@
   "license": "MIT",
   "require": {
     "php": ">=8.0",
-    "ext-curl": "*"
+    "guzzlehttp/guzzle": "^7.0"
   },
   "authors": [
     {

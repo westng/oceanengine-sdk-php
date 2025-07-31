@@ -12,8 +12,7 @@ declare(strict_types=1);
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineClient;
 
-require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 /**
  * Name 获取广告主信息

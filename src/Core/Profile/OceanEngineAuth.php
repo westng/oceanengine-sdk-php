@@ -15,7 +15,7 @@ namespace OceanEngineSDK;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
-use Core\Profile\RequestInteface;
+use Core\Profile\RequestInterface;
 use Oauth\GetAccessToken;
 use Oauth\RefreshToken;
 
@@ -112,12 +112,12 @@ class OceanEngineAuth
     /**
      * 执行 HTTP 请求.
      *
-     * @param RequestInteface $request 请求对象
+     * @param RequestInterface $request 请求对象
      * @param null $url 可选请求地址
      * @return HttpResponse 响应对象
      * @throws OceanEngineException
      */
-    private function execute(RequestInteface $request, $url = null): HttpResponse
+    private function execute(RequestInterface $request, $url = null): HttpResponse
     {
         $params = $request->getParams();
         $headers = ['Content-Type' => $request->getContentType()];

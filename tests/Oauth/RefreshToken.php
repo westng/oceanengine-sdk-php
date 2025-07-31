@@ -12,8 +12,8 @@ declare(strict_types=1);
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineAuth;
 
+// 加载自动加载器
 require_once __DIR__ . '/../../index.php';
-require_once __DIR__ . '/../config/config.php';
 
 /**
  * Name 刷新Token

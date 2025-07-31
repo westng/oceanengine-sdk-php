@@ -15,8 +15,8 @@ namespace JuLiangAds\AdsPro;
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineClient;
 
+// 加载自动加载器
 require_once __DIR__ . '/../../../../index.php';
-require_once __DIR__ . '/../../../config/config.php';
 
 /**
  * Name 获取项目列表

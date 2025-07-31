@@ -32,6 +32,16 @@ class Autoloader
      */
     public static function autoload(string $className): void
     {
+        // 只处理项目自己的类，第三方类交给Composer处理
+        if (! str_starts_with($className, 'Core\\')
+            && ! str_starts_with($className, 'Api\\')
+            && ! str_starts_with($className, 'AdOauth\\')
+            && ! str_starts_with($className, 'Account\\')
+            && ! str_starts_with($className, 'OceanEngineSDK\\')
+            && ! str_starts_with($className, 'Tests\\')) {
+            return; // 不是项目类，让其他自动加载器处理
+        }
+
         // 获取当前目录
         $directories = dirname(__DIR__, 2);
 
@@ -63,7 +73,18 @@ class Autoloader
             return; // 找到并加载文件后退出
         }
 
-        // 如果没有找到文件，抛出错误
+        // 特殊处理Tests命名空间
+        if (str_starts_with($className, 'Tests\\')) {
+            // Tests\Config\ConfigManager -> tests/config/ConfigManager.php
+            $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, substr($className, 6));
+            $testFile = dirname($directories) . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . $relativePath . '.php';
+            if (is_file($testFile)) {
+                include_once $testFile;
+                return; // 找到并加载文件后退出
+            }
+        }
+
+        // 如果没有找到文件，记录错误但不抛出异常
         echo "File not found for class: {$className}\n";
     }
 
@@ -91,5 +112,5 @@ class Autoloader
     }
 }
 
-// 注册自动加载器
-spl_autoload_register(['Core\Autoloader\Autoloader', 'autoload'], true, true);
+// 注册自动加载器（不抛出异常，让其他自动加载器有机会处理）
+spl_autoload_register(['Core\Autoloader\Autoloader', 'autoload'], true, false);

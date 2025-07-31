@@ -14,10 +14,10 @@ namespace Core\Profile;
 
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
-use core\Http\HttpResponse;
+use Core\Http\HttpResponse;
 use OceanEngineSDK\OceanEngineClient;
 
-class RpcRequest implements RequestInteface
+class RpcRequest implements RequestInterface
 {
     /**
      * @var OceanEngineClient
@@ -143,6 +143,6 @@ class RpcRequest implements RequestInteface
 
         $this->check();
 
-        return $this->client->excute($this);
+        return $this->client->execute($this);
     }
 }

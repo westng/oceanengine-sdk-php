@@ -15,9 +15,8 @@ namespace Api\Account\Rel;
 use Core\Exception\OceanEngineException;
 use OceanEngineSDK\OceanEngineClient;
 
+// 加载自动加载器
 require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../../config/config.php';
-
 /**
  * Name 获取已授权的账户（店铺/代理商/组织）
  * Class Oauth2AdvertiserGet.

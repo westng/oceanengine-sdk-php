@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Core\Profile;
 
-interface RequestInteface
+interface RequestInterface
 {
     public function getUrl();
 

@@ -24,7 +24,7 @@ use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
-use Core\Profile\RequestInteface;
+use Core\Profile\RequestInterface;
 
 class OceanEngineClient
 {
@@ -92,7 +92,7 @@ class OceanEngineClient
      *
      * @throws OceanEngineException
      */
-    public function excute(RequestInteface $request, ?string $url = null): HttpResponse
+    public function execute(RequestInterface $request, ?string $url = null): HttpResponse
     {
         $request->check();
         $params = $request->getParams();
@@ -135,5 +135,34 @@ class OceanEngineClient
         }
         $className = self::$moduleMap[$name];
         return new $className($this);
+    }
+
+    /**
+     * 配置重试机制.
+     */
+    public function setRetryConfig(
+        int $maxRetries = 3,
+        int $retryDelay = 1000,
+        array $retryableStatusCodes = [408, 429, 500, 502, 503, 504],
+        bool $enableRetry = true,
+        array $retryableBusinessCodes = [40100, 40110, 50000]
+    ): self {
+        HttpRequest::setRetryConfig(
+            $maxRetries,
+            $retryDelay,
+            $retryableStatusCodes,
+            $enableRetry,
+            $retryableBusinessCodes
+        );
+        return $this;
+    }
+
+    /**
+     * 设置重试开关.
+     */
+    public function setRetryEnabled(bool $enabled): self
+    {
+        HttpRequest::setRetryEnabled($enabled);
+        return $this;
     }
 }
