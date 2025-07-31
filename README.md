@@ -25,20 +25,13 @@
 - 📚 **文档完善**：详细的使用文档和示例代码
 - 🔄 **现代化**：支持 PHP 8.0+，使用现代 PHP 特性
 
-## 📋 使用条件
-
-### 开发者条件
-
-- 使用 SDK 需要首先注册成为巨量引擎开发者，请参考[开发者快速入门文档](https://open.oceanengine.com/labels/7/docs/1696710498372623)
-- 使用 SDK 需要先拥有 API 的访问权限，所有 SDK 的使用与应用拥有的权限组相关联
+## 🚀 快速开始
 
 ### 环境要求
 
 - **PHP >= 8.0**
 - **GuzzleHttp 7.0+** (自动安装)
 - **推荐使用 Composer** 安装依赖
-
-## 🚀 快速开始
 
 ### 安装
 
@@ -77,6 +70,60 @@ try {
 } catch (OceanEngineException $e) {
     echo "错误: {$e->getErrorMessage()}";
 }
+```
+
+## 📋 使用条件
+
+### 开发者条件
+
+- 使用 SDK 需要首先注册成为巨量引擎开发者，请参考[开发者快速入门文档](https://open.oceanengine.com/labels/7/docs/1696710498372623)
+- 使用 SDK 需要先拥有 API 的访问权限，所有 SDK 的使用与应用拥有的权限组相关联
+
+## 📁 项目结构
+
+```
+oceanengine-sdk-php/
+├── 📚 docs/                                    # 接口文档
+│   ├── ACCOUNT.md                              # 账号服务文档
+│   ├── DATAREPORTS.md                          # 数据报表文档
+│   ├── JULIANGADS.md                           # 巨量广告文档
+│   ├── JULIANGQIANCHUAN.md                     # 巨量千川文档
+│   ├── JULIANGLOCALPUSH.md                     # 巨量本地推文档
+│   ├── JULIANGSTARMAP.md                       # 巨量星图文档
+│   ├── TOOLS.md                                # 工具文档
+│   ├── HTTP_MIGRATION.md                       # HTTP迁移文档
+│   ├── CONFIG_GUIDE.md                         # 配置管理指南
+│   ├── ERROR_CODES_GUIDE.md                    # 错误码说明
+│   └── TEST_MIGRATION.md                       # 测试文件迁移指南
+├── 🔧 src/                                     # 源代码
+│   ├── Oauth/                                  # OAuth 认证
+│   │   ├── GetAccessToken.php                  # 获取 AccessToken
+│   │   └── RefreshToken.php                    # 刷新 AccessToken
+│   ├── Core/                                   # 核心包
+│   │   ├── Autoloader/                         # 自动加载器
+│   │   ├── Exception/                          # 异常处理
+│   │   ├── Helper/                             # 助手函数
+│   │   ├── Http/                               # HTTP请求 (GuzzleHttp)
+│   │   └── Profile/                            # 核心配置
+│   └── Api/                                    # API 模块
+│       ├── Account/                            # 账号管理
+│       ├── JuLiangAds/                         # 巨量广告
+│       ├── JuLiangQianChuan/                   # 巨量千川
+│       ├── JuLiangStarMap/                     # 巨量星图
+│       ├── JuLiangLocalPush/                   # 巨量本地推
+│       ├── EnterpriseAccount/                  # 企业号
+│       ├── Materials/                          # 素材管理
+│       ├── DataReports/                        # 数据报表
+│       └── Tools/                              # 工具
+├── 🧪 tests/                                   # 测试文件
+│   ├── config/                                 # 测试配置
+│   │   ├── ConfigManager.php                   # 配置管理器
+│   │   └── load_config.php                     # 配置加载器
+│   └── ...                                     # 各模块测试文件
+├── 📄 .env.example                             # 环境变量示例
+├── 📄 composer.json                            # Composer 配置
+├── 📄 LICENSE                                  # 开源协议
+└── 📄 README.md                                # 项目说明
 ```
 
 ## 📚 详细使用指南
@@ -180,98 +227,6 @@ try {
 }
 ```
 
-## 📁 项目结构
-
-```
-oceanengine-sdk-php/
-├── 📚 docs/                                    # 接口文档
-│   ├── ACCOUNT.md                              # 账号服务文档
-│   ├── DATAREPORTS.md                          # 数据报表文档
-│   ├── JULIANGADS.md                           # 巨量广告文档
-│   ├── JULIANGQIANCHUAN.md                     # 巨量千川文档
-│   ├── JULIANGLOCALPUSH.md                     # 巨量本地推文档
-│   ├── JULIANGSTARMAP.md                       # 巨量星图文档
-│   ├── TOOLS.md                                # 工具文档
-│   ├── HTTP_MIGRATION.md                       # HTTP迁移文档
-│   ├── CONFIG_GUIDE.md                         # 配置管理指南
-│   ├── ERROR_CODES_GUIDE.md                    # 错误码说明
-│   └── TEST_MIGRATION.md                       # 测试文件迁移指南
-├── 🔧 src/                                     # 源代码
-│   ├── Oauth/                                  # OAuth 认证
-│   │   ├── GetAccessToken.php                  # 获取 AccessToken
-│   │   └── RefreshToken.php                    # 刷新 AccessToken
-│   ├── Core/                                   # 核心包
-│   │   ├── Autoloader/                         # 自动加载器
-│   │   ├── Exception/                          # 异常处理
-│   │   ├── Helper/                             # 助手函数
-│   │   ├── Http/                               # HTTP请求 (GuzzleHttp)
-│   │   └── Profile/                            # 核心配置
-│   └── Api/                                    # API 模块
-│       ├── Account/                            # 账号管理
-│       ├── JuLiangAds/                         # 巨量广告
-│       ├── JuLiangQianChuan/                   # 巨量千川
-│       ├── JuLiangStarMap/                     # 巨量星图
-│       ├── JuLiangLocalPush/                   # 巨量本地推
-│       ├── EnterpriseAccount/                  # 企业号
-│       ├── Materials/                          # 素材管理
-│       ├── DataReports/                        # 数据报表
-│       └── Tools/                              # 工具
-├── 🧪 tests/                                   # 测试文件
-│   ├── config/                                 # 测试配置
-│   │   ├── ConfigManager.php                   # 配置管理器
-│   │   └── load_config.php                     # 配置加载器
-│   └── ...                                     # 各模块测试文件
-├── 📄 .env.example                             # 环境变量示例
-├── 📄 composer.json                            # Composer 配置
-├── 📄 LICENSE                                  # 开源协议
-└── 📄 README.md                                # 项目说明
-```
-
-## 🆕 新增特性
-
-### HTTP 客户端升级
-
-- ✅ **GuzzleHttp 支持**：从 cURL 迁移到 GuzzleHttp，提供更强大的 HTTP 客户端功能
-- ✅ **智能重试机制**：支持 HTTP 状态码和业务错误码的自动重试
-- ✅ **中间件支持**：内置超时、重试、日志中间件
-- ✅ **频控处理**：自动处理 40100、40110 等频控错误码
-
-### 配置管理优化
-
-- ✅ **环境变量支持**：支持.env 文件和系统环境变量
-- ✅ **配置优先级**：系统环境变量 > .env 文件 > 默认配置
-- ✅ **自动加载**：配置自动加载到常量，无需手动引入
-
-### 测试文件现代化
-
-- ✅ **命名空间支持**：使用 use 语句替代 require_once
-- ✅ **自动加载优化**：支持 Tests 命名空间的自动加载
-- ✅ **配置统一**：所有测试文件使用统一的配置管理方式
-
-## 📊 开发进度
-
-| **模块**   | **调用方式**                           | **状态**  | **文档**                             |
-| ---------- | -------------------------------------- | --------- | ------------------------------------ |
-| 账户管理   | `$client->module('Account')`           | ✅ 已完成 | [查看文档](docs/ACCOUNT.md)          |
-| 素材管理   | `$client->module('Materials')`         | ✅ 已完成 | [查看文档](docs/MATERIALS.md)        |
-| 数据报表   | `$client->module('DataReports')`       | ✅ 已完成 | [查看文档](docs/DATAREPORTS.md)      |
-| 工具       | `$client->module('Tools')`             | ✅ 已完成 | [查看文档](docs/TOOLS.md)            |
-| 巨量广告   | `$client->module('JuLiangAds')`        | ✅ 已完成 | [查看文档](docs/JULIANGADS.md)       |
-| 巨量千川   | `$client->module('JuLiangQianChuan')`  | ✅ 已完成 | [查看文档](docs/JULIANGQIANCHUAN.md) |
-| 巨量星图   | `$client->module('JuLiangStarMap')`    | ✅ 已完成 | [查看文档](docs/JULIANGSTARMAP.md)   |
-| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | ✅ 已完成 | [查看文档](docs/JULIANGLOCALPUSH.md) |
-| 企业号     | `$client->module('EnterpriseAccount')` | ⏳ 未开始 | -                                    |
-
-> ⚠️ 上述进度仅供参考，实际以源码为准。  
-> 🧠 欢迎查看源码深入探索，接口比文档更诚实！
-
-## 📚 相关文档
-
-- [🚀 HTTP 迁移指南](docs/HTTP_MIGRATION.md) - 了解从 cURL 到 GuzzleHttp 的迁移
-- [⚙️ 配置管理指南](docs/CONFIG_GUIDE.md) - 学习如何使用.env 文件和配置管理
-- [🚨 错误码说明](docs/ERROR_CODES_GUIDE.md) - 了解 HTTP 状态码和业务错误码的处理
-- [🧪 测试文件迁移指南](docs/TEST_MIGRATION.md) - 了解测试文件的现代化改进
-
 ## 🔧 配置说明
 
 ### 环境变量配置
@@ -322,6 +277,30 @@ try {
     echo "系统错误: {$e->getMessage()}\n";
 }
 ```
+
+## 📊 开发进度
+
+| **模块**   | **调用方式**                           | **状态**  | **文档**                             |
+| ---------- | -------------------------------------- | --------- | ------------------------------------ |
+| 账户管理   | `$client->module('Account')`           | ✅ 已完成 | [查看文档](docs/ACCOUNT.md)          |
+| 素材管理   | `$client->module('Materials')`         | ✅ 已完成 | [查看文档](docs/MATERIALS.md)        |
+| 数据报表   | `$client->module('DataReports')`       | ✅ 已完成 | [查看文档](docs/DATAREPORTS.md)      |
+| 工具       | `$client->module('Tools')`             | ✅ 已完成 | [查看文档](docs/TOOLS.md)            |
+| 巨量广告   | `$client->module('JuLiangAds')`        | ✅ 已完成 | [查看文档](docs/JULIANGADS.md)       |
+| 巨量千川   | `$client->module('JuLiangQianChuan')`  | ✅ 已完成 | [查看文档](docs/JULIANGQIANCHUAN.md) |
+| 巨量星图   | `$client->module('JuLiangStarMap')`    | ✅ 已完成 | [查看文档](docs/JULIANGSTARMAP.md)   |
+| 巨量本地推 | `$client->module('JuLiangLocalPush')`  | ✅ 已完成 | [查看文档](docs/JULIANGLOCALPUSH.md) |
+| 企业号     | `$client->module('EnterpriseAccount')` | ⏳ 未开始 | -                                    |
+
+> ⚠️ 上述进度仅供参考，实际以源码为准。  
+> 🧠 欢迎查看源码深入探索，接口比文档更诚实！
+
+## 📚 相关文档
+
+- [🚀 HTTP 迁移指南](docs/HTTP_MIGRATION.md) - 了解从 cURL 到 GuzzleHttp 的迁移
+- [⚙️ 配置管理指南](docs/CONFIG_GUIDE.md) - 学习如何使用.env 文件和配置管理
+- [🚨 错误码说明](docs/ERROR_CODES_GUIDE.md) - 了解 HTTP 状态码和业务错误码的处理
+- [🧪 测试文件迁移指南](docs/TEST_MIGRATION.md) - 了解测试文件的现代化改进
 
 ## 🤝 贡献指南
 
