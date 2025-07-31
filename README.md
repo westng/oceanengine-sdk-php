@@ -90,11 +90,12 @@ oceanengine-sdk-php/
 │   ├── JULIANGQIANCHUAN.md                     # 巨量千川文档
 │   ├── JULIANGLOCALPUSH.md                     # 巨量本地推文档
 │   ├── JULIANGSTARMAP.md                       # 巨量星图文档
-│   ├── TOOLS.md                                # 工具文档
-│   ├── HTTP_MIGRATION.md                       # HTTP迁移文档
-│   ├── CONFIG_GUIDE.md                         # 配置管理指南
-│   ├── ERROR_CODES_GUIDE.md                    # 错误码说明
-│   └── TEST_MIGRATION.md                       # 测试文件迁移指南
+│   ├── MATERIALS.md                            # 素材管理文档
+│   └── TOOLS.md                                # 工具文档
+├── 📄 HTTP_MIGRATION.md                        # HTTP迁移文档
+├── 📄 CONFIG_GUIDE.md                          # 配置管理指南
+├── 📄 ERROR_CODES_GUIDE.md                     # 错误码说明
+└── 📄 TEST_MIGRATION.md                        # 测试文件迁移指南
 ├── 🔧 src/                                     # 源代码
 │   ├── Oauth/                                  # OAuth 认证
 │   │   ├── GetAccessToken.php                  # 获取 AccessToken
@@ -297,10 +298,10 @@ try {
 
 ## 📚 相关文档
 
-- [🚀 HTTP 迁移指南](docs/HTTP_MIGRATION.md) - 了解从 cURL 到 GuzzleHttp 的迁移
-- [⚙️ 配置管理指南](docs/CONFIG_GUIDE.md) - 学习如何使用.env 文件和配置管理
-- [🚨 错误码说明](docs/ERROR_CODES_GUIDE.md) - 了解 HTTP 状态码和业务错误码的处理
-- [🧪 测试文件迁移指南](docs/TEST_MIGRATION.md) - 了解测试文件的现代化改进
+- [🚀 HTTP 迁移指南](HTTP_MIGRATION.md) - 了解从 cURL 到 GuzzleHttp 的迁移
+- [⚙️ 配置管理指南](CONFIG_GUIDE.md) - 学习如何使用.env 文件和配置管理
+- [🚨 错误码说明](ERROR_CODES_GUIDE.md) - 了解 HTTP 状态码和业务错误码的处理
+- [🧪 测试文件迁移指南](TEST_MIGRATION.md) - 了解测试文件的现代化改进
 
 ## 🤝 贡献指南
 
