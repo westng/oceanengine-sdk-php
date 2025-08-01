@@ -24,7 +24,7 @@
 
 - 移除了所有 curl 相关的代码
 - 使用 GuzzleHttp\Client 替代 curl_init()
-- 保持了相同的公共接口：`HttpRequest::curl()`
+- 保持了相同的公共接口：`HttpRequest::request()`（原 `curl()` 方法已重命名）
 - 支持文件上传（multipart/form-data）
 - 支持 JSON 和表单数据
 - 保持了 SSL 验证禁用设置
@@ -60,20 +60,18 @@ HttpRequest::setRetryConfig(
     maxRetries: 3,           // 最大重试次数
     retryDelay: 1000,        // 基础重试延迟（毫秒）
     retryableStatusCodes: [408, 429, 500, 502, 503, 504], // 可重试HTTP状态码
-enableRetry: true,       // 是否启用重试机制
-retryableBusinessCodes: [40100, 40110, 50000]        // 可重试业务错误码
+    enableRetry: true,       // 是否启用重试机制
+    retryableBusinessCodes: [40100, 40110, 50000]        // 可重试业务错误码
 );
 
 // 或者单独控制重试开关
 HttpRequest::setRetryEnabled(true);  // 启用重试
 HttpRequest::setRetryEnabled(false); // 禁用重试
-```
 
 // 设置超时配置
 HttpRequest::$connectTimeout = 20;  // 连接超时（秒）
-HttpRequest::$readTimeout = 30; // 请求超时（秒）
-
-````
+HttpRequest::$readTimeout = 30;     // 请求超时（秒）
+```
 
 ### 5. 主要改进
 
@@ -97,59 +95,48 @@ HttpRequest::$readTimeout = 30; // 请求超时（秒）
 
 ### 6. 测试文件更新
 
-所有测试文件已更新以包含 vendor/autoload.php：
+所有测试文件已更新以使用新的自动加载方式：
 
 ```php
-require_once __DIR__ . '/../../../vendor/autoload.php';
-require_once __DIR__ . '/../../../index.php';
-require_once __DIR__ . '/../config/config.php';
+// 新的加载方式
+require_once __DIR__ . '/../index.php';
+
+// 不再需要手动加载 vendor/autoload.php 和 config.php
 ```
 
-## 使用方式
+### 7. 客户端重试配置
 
-SDK 的使用方式完全不变：
+现在也可以通过 OceanEngineClient 对象配置重试：
 
 ```php
-// 1. 获取授权
-$auth = new OceanEngineAuth(APPID, SECRET);
-$url = $auth->getAuthCodeUrl(CALLBACK_URL);
-
-// 2. 使用API
 $client = new OceanEngineClient(TOKEN);
-$response = $client->module('Account')
-    ->AccountInfo
-    ->AdvertiserInfo()
-    ->setParams(['account_ids' => $ids])
-    ->send();
+
+// 配置重试机制
+$client->setRetryConfig(
+    maxRetries: 3,
+    retryDelay: 1000,
+    retryableStatusCodes: [408, 429, 500, 502, 503, 504],
+    enableRetry: true,
+    retryableBusinessCodes: [40100, 40110, 50000]
+);
+
+// 动态控制重试开关
+$client->setRetryEnabled(true);   // 启用重试
+$client->setRetryEnabled(false);  // 禁用重试
 ```
 
-## 验证
+## 迁移检查清单
 
-已通过以下测试验证迁移成功：
-
-- ✅ HTTP GET 请求测试
-- ✅ HTTP POST 请求测试
-- ✅ 文件上传功能测试
-- ✅ 巨量引擎 API 调用测试
-- ✅ OAuth 授权流程测试
-- ✅ 中间件功能测试
-- ✅ 重试机制测试
-- ✅ 错误处理测试
+- [ ] 更新 composer.json 依赖
+- [ ] 运行 `composer update` 安装 GuzzleHttp
+- [ ] 检查所有 API 调用是否正常工作
+- [ ] 测试重试机制是否生效
+- [ ] 验证文件上传功能
+- [ ] 确认错误处理正常
 
 ## 注意事项
 
-1. **自动加载警告**：在测试过程中可能会看到一些 GuzzleHttp 类的自动加载警告，这不影响功能
-2. **依赖管理**：确保运行`composer install`安装新的依赖
-3. **PHP 版本**：需要 PHP 8.0+
-4. **重试配置**：默认重试 3 次，可根据需要调整
-5. **超时配置**：可根据网络环境调整超时时间
-
-## 回滚方案
-
-如果需要回滚到 curl 实现，可以：
-
-1. 恢复 composer.json 中的 ext-curl 依赖
-2. 恢复 HttpRequest.php 的原始实现
-3. 运行`composer update`重新安装依赖
-```
-````
+1. **方法名变更**：`HttpRequest::curl()` 已重命名为 `HttpRequest::request()`
+2. **自动加载**：测试文件现在只需要加载 `index.php`
+3. **配置方式**：支持通过客户端对象配置重试参数
+4. **向后兼容**：所有现有的 API 调用方式保持不变

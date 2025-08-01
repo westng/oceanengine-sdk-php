@@ -33,9 +33,9 @@ HTTP 状态码是 HTTP 协议层面的错误码，表示 HTTP 请求的处理状
 | 50000  | 超时              | ✅       | `{"code": 50000, "message": "请求超时"}`             |
 | 50001  | 系统繁忙          | ✅       | `{"code": 50001, "message": "系统繁忙，请稍后重试"}` |
 | 50002  | 服务暂时不可用    | ✅       | `{"code": 50002, "message": "服务暂时不可用"}`       |
-| 50003  | 参数错误          | ✅       | `{"code": 50003, "message": "参数错误"}`             |
-| 50004  | 权限不足          | ✅       | `{"code": 50004, "message": "权限不足"}`             |
-| 50005  | 资源不存在        | ✅       | `{"code": 50005, "message": "资源不存在"}`           |
+| 50003  | 参数错误          | ❌       | `{"code": 50003, "message": "参数错误"}`             |
+| 50004  | 权限不足          | ❌       | `{"code": 50004, "message": "权限不足"}`             |
+| 50005  | 资源不存在        | ❌       | `{"code": 50005, "message": "资源不存在"}`           |
 
 ## 重试机制
 
@@ -55,19 +55,25 @@ SDK 会在以下情况下进行重试：
 
 ## 配置方法
 
-### 1. 通过代码配置
+### 1. 通过客户端对象配置
 
 ```php
-use Core\Http\HttpRequest;
+use OceanEngineSDK\OceanEngineClient;
+
+$client = new OceanEngineClient(TOKEN);
 
 // 配置重试参数
-HttpRequest::setRetryConfig(
+$client->setRetryConfig(
     maxRetries: 3,                                    // 最大重试次数
     retryDelay: 1000,                                 // 基础重试延迟（毫秒）
     retryableStatusCodes: [408, 429, 500, 502, 503, 504], // 可重试HTTP状态码
     enableRetry: true,                                // 是否启用重试
-    retryableBusinessCodes: [40100, 40110, 50000] // 可重试业务错误码
+    retryableBusinessCodes: [40100, 40110, 50000]    // 可重试业务错误码
 );
+
+// 动态控制重试开关
+$client->setRetryEnabled(true);   // 启用重试
+$client->setRetryEnabled(false);  // 禁用重试
 ```
 
 ### 2. 通过环境变量配置
@@ -96,115 +102,121 @@ export HTTP_RETRYABLE_BUSINESS_CODES="40100,40110,50000"
 ```php
 // 当API返回40100/40110错误码时，表示请求频率超限
 // 可以配置重试，建议较长延迟
-HttpRequest::setRetryConfig(
+$client->setRetryConfig(
     maxRetries: 3,
-    retryDelay: 2000,
+    retryDelay: 2000,  // 2秒延迟
+    enableRetry: true,
     retryableBusinessCodes: [40100, 40110]
 );
 ```
 
-### 场景 2：超时重试
+### 场景 2：系统错误重试
 
 ```php
-// 当API返回50000错误码时，表示请求超时
-// 可以配置重试
-HttpRequest::setRetryConfig(
-    maxRetries: 2,
-    retryDelay: 1000,
-    retryableBusinessCodes: [50000]
+// 当API返回5开头的错误码时，表示系统临时问题
+// 可以配置重试，建议较短延迟
+$client->setRetryConfig(
+    maxRetries: 5,
+    retryDelay: 1000,  // 1秒延迟
+    enableRetry: true,
+    retryableBusinessCodes: [50000, 50001, 50002]
 );
 ```
 
-### 场景 3：系统错误重试
+### 场景 3：禁用重试
 
 ```php
-// 当API返回5开头的错误码时，表示服务器问题
-// 可以配置重试
-HttpRequest::setRetryConfig(
-    maxRetries: 2,
-    retryDelay: 1000,
-    retryableBusinessCodes: [50001, 50002]
-);
+// 某些场景下可能需要禁用重试
+$client->setRetryEnabled(false);
 ```
 
-### 场景 3：系统错误重试
+## 错误处理最佳实践
+
+### 1. 区分错误类型
 
 ```php
-// 当API返回5开头的错误码时，表示服务器问题
-// 可以配置重试
-HttpRequest::setRetryConfig(
-    maxRetries: 2,
-    retryDelay: 1000,
-    retryableBusinessCodes: [50001, 50002]
-);
+try {
+    $response = $client->module('Account')->AccountInfo->AdvertiserInfo()
+        ->setParams($args)
+        ->send();
+} catch (OceanEngineException $e) {
+    $errorCode = $e->getErrorCode();
+
+    switch ($errorCode) {
+        case 40105:
+            // access_token 无效，需要重新授权
+            echo "需要重新授权";
+            break;
+        case 40100:
+        case 40110:
+            // 频控错误，可以重试
+            echo "请求频率超限，请稍后重试";
+            break;
+        case 50000:
+            // 超时错误，可以重试
+            echo "请求超时，请重试";
+            break;
+        default:
+            // 其他错误
+            echo "错误: " . $e->getErrorMessage();
+    }
+}
 ```
 
-## 最佳实践
-
-### 1. 错误码分类
-
-- **可重试错误码**：网络问题、服务器临时错误、限流等
-- **不可重试错误码**：参数错误、权限不足、资源不存在等
-
-### 2. 重试策略
-
-- **短延迟重试**：网络抖动、临时错误
-- **长延迟重试**：限流、服务器繁忙
-- **不重试**：业务逻辑错误
-
-### 3. 监控和日志
+### 2. 配置合适的重试策略
 
 ```php
-// 可以添加日志来监控重试情况
-HttpRequest::setRetryConfig(
+// 生产环境推荐配置
+$client->setRetryConfig(
     maxRetries: 3,
     retryDelay: 1000,
-    retryableBusinessCodes: [429, 50000]
+    enableRetry: true,
+    retryableBusinessCodes: [40100, 40110, 50000, 50001, 50002]
+);
+```
+
+### 3. 监控重试情况
+
+```php
+// 可以通过日志监控重试情况
+$client->setRetryConfig(
+    maxRetries: 3,
+    retryDelay: 1000,
+    enableRetry: true,
+    retryableBusinessCodes: [40100, 40110, 50000]
 );
 
-// 在业务代码中处理错误
-try {
-    $response = $client->module('Account')->AccountInfo->AdvertiserInfo()->send();
-} catch (Exception $e) {
-    // 记录错误日志
-    error_log("API调用失败: " . $e->getMessage());
-}
+// 重试会在日志中记录
 ```
 
 ## 注意事项
 
-1. **不要重试业务逻辑错误**：如参数错误、权限不足等
-2. **合理设置重试次数**：避免对服务器造成压力
-3. **监控重试频率**：及时发现系统问题
-4. **考虑幂等性**：确保重试不会产生副作用
+1. **不要重试所有错误**：某些错误（如参数错误、权限不足）重试无意义
+2. **合理设置重试次数**：避免过度重试影响系统性能
+3. **监控重试频率**：频繁重试可能表示系统有问题
+4. **考虑业务逻辑**：某些业务场景可能不适合重试
+5. **测试重试机制**：确保重试配置在测试环境中验证
 
-## 调试技巧
+## 常见问题
 
-### 1. 查看错误码
+### Q: 为什么有些 5 开头的错误码不重试？
 
-```php
-$response = HttpRequest::curl($url, $method, $data, $headers);
-$body = $response->getBody();
-$data = json_decode($body, true);
+A: 不是所有 5 开头的错误码都适合重试。例如：
 
-echo "HTTP Status: " . $response->getStatus() . "\n";
-echo "Business Code: " . ($data['code'] ?? 'N/A') . "\n";
-echo "Message: " . ($data['message'] ?? 'N/A') . "\n";
-```
+- `50003`（参数错误）：重试无意义
+- `50004`（权限不足）：重试无意义
+- `50005`（资源不存在）：重试无意义
 
-### 2. 禁用重试进行调试
+只有系统临时错误（如超时、系统繁忙）才适合重试。
 
-```php
-HttpRequest::setRetryEnabled(false);
-```
+### Q: 如何知道重试是否生效？
 
-### 3. 自定义重试错误码
+A: 可以通过以下方式确认：
 
-```php
-// 只重试特定的错误码
-HttpRequest::setRetryConfig(
-    maxRetries: 1,
-    retryDelay: 1000,
-    retryableBusinessCodes: [50000] // 只重试超时
-);
-```
+1. 查看日志中的重试记录
+2. 监控请求的响应时间
+3. 观察错误码的变化
+
+### Q: 重试会影响 API 调用次数吗？
+
+A: 是的，每次重试都会消耗 API 调用次数。建议合理配置重试策略。

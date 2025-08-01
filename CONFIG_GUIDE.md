@@ -128,19 +128,26 @@ if ($config->isTestEnvironment()) {
 
 // 重新加载配置
 $config->reload();
+```
 
-// HTTP重试配置示例
-HttpRequest::setRetryEnabled(true);  // 启用重试
-HttpRequest::setRetryEnabled(false); // 禁用重试
+### HTTP 重试配置示例
 
-// 或者通过setRetryConfig方法设置
-HttpRequest::setRetryConfig(
+```php
+// 通过客户端对象配置重试
+$client = new OceanEngineClient(TOKEN);
+
+// 配置重试机制
+$client->setRetryConfig(
     maxRetries: 5,
     retryDelay: 2000,
     retryableStatusCodes: [408, 429, 500, 502, 503, 504],
     enableRetry: true,
     retryableBusinessCodes: [40100, 40110, 50000] // 业务错误码
 );
+
+// 动态控制重试开关
+$client->setRetryEnabled(true);   // 启用重试
+$client->setRetryEnabled(false);  // 禁用重试
 ```
 
 ## 配置优先级
