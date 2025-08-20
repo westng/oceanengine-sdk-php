@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Account\Finance;
+namespace Api\Account\Finance;
 
 use Core\Profile\RpcRequest;
 
