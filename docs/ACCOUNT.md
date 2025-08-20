@@ -61,42 +61,45 @@
 
 ## Finance 资金和流水管理
 
-| 方法名称                              | 调用方法                                              | 支持平台           |
-| ------------------------------------- | ----------------------------------------------------- | ------------------ |
-| 共享钱包-查询账户对应公司下的钱包关系 | Finance->SharedWalletAccountRelationGet()             | 巨量广告           |
-| 资金共享-查询共享钱包日流水           | Finance->SharedWalletDailyStatGet()                   | 巨量广告           |
-| 资金共享-共享钱包信息查询             | Finance->SharedWalletMainWalletGet()                  | 巨量广告           |
-| 资金共享-查询共享钱包流水明细         | Finance->SharedWalletTransactionDetailGet()           | 巨量广告           |
-| 资金共享-批量查询钱包余额             | Finance->SharedWalletWalletBalanceGet()               | 巨量广告           |
-| 资金共享-查询共享钱包信息             | Finance->SharedWalletWalletInfoGet()                  | 巨量广告           |
-| 资金共享-查询共享钱包关系             | Finance->SharedWalletWalletRelationGet()              | 巨量广告           |
+| 方法名称                              | 调用方法                                                  | 支持平台      |
+| ------------------------------------- |-------------------------------------------------------|-----------|
+|         获取账户余额            | Finance->QianChuanAccountBalanceGet()                           | 巨量千川      |
+|         获取财务流水信息            | Finance->QianChuanFinanceDetailGet()                           | 巨量千川      |
+|         获取账户钱包信息            | Finance->QianChuanFinanceWalletGet()                           | 巨量千川      |
+| 共享钱包-查询账户对应公司下的钱包关系 | Finance->SharedWalletAccountRelationGet()             | 巨量广告      |
+| 资金共享-查询共享钱包日流水           | Finance->SharedWalletDailyStatGet()                   | 巨量广告      |
+| 资金共享-共享钱包信息查询             | Finance->SharedWalletMainWalletGet()                  | 巨量广告      |
+| 资金共享-查询共享钱包流水明细         | Finance->SharedWalletTransactionDetailGet()           | 巨量广告      |
+| 资金共享-批量查询钱包余额             | Finance->SharedWalletWalletBalanceGet()               | 巨量广告      |
+| 资金共享-查询共享钱包信息             | Finance->SharedWalletWalletInfoGet()                  | 巨量广告      |
+| 资金共享-查询共享钱包关系             | Finance->SharedWalletWalletRelationGet()              | 巨量广告      |
 | 批量查询账户余额                      | Finance->AccountFundGet()                             | 巨量广告、巨量星图 |
 | 查询账户日流水                        | Finance->AdvertiserFundDailyStat()                    | 巨量广告、巨量星图 |
-| 查询账号余额                          | Finance->AdvertiserFundGet()                          | 巨量广告           |
+| 查询账号余额                          | Finance->AdvertiserFundGet()                          | 巨量广告      |
 | 查询账号流水明细                      | Finance->AdvertiserFundTransactionGet()               | 巨量广告、巨量星图 |
 | 查询代理商转账记录                    | Finance->AgentTransferTransactionRecord()             | 巨量广告、巨量星图 |
-| 工作台转账-获取最大可转余额           | Finance->CgTransferCanTransferBalanceGet()            | 巨量广告           |
-| 工作台转账-获取可转列表               | Finance->CgTransferCanTransferTargetList()            | 巨量广告           |
-| 转账-发起转账（代理）                 | Finance->CgTransferCreateTransfer()                   | 巨量广告           |
-| 转账-获取最大可转余额（代理）         | Finance->CgTransferQueryCanTransferBalance()          | 巨量广告           |
-| 转账-查询账户转账余额（代理）         | Finance->CgTransferQueryTransferBalance()             | 巨量广告           |
-| 转账-查询转账单信息（代理）           | Finance->CgTransferQueryTransferDetail()              | 巨量广告           |
-| 工作台转账-查询账户转账余额           | Finance->CgTransferTransferBalanceGet()               | 巨量广告           |
-| 工作台转账-发起转账                   | Finance->CgTransferTransferCreate()                   | 巨量广告           |
-| 工作台转账-查询转账单信息             | Finance->CgTransferTransferDetailGet()                | 巨量广告           |
-| 资金共享-最大可转余额查询             | Finance->CgTransferWalletTransferCanTransferBalance() | 巨量广告           |
-| 资金共享-发起转账                     | Finance->CgTransferWalletTransferCreate()             | 巨量广告           |
-| 资金共享-查询转账单信息               | Finance->CgTransferWalletTransferDetail()             | 巨量广告           |
-| 资金共享-查询转账列表                 | Finance->CgTransferWalletTransferList()               | 巨量广告           |
-| 开票-新建开票申请单（代理商版）       | Finance->CreateStatementInvoice()                     | 巨量广告           |
-| 获取返货共享钱包余额                  | Finance->FundSharedWalletBalanceGet()                 | 巨量广告           |
-| 排期—查询业务实体 ID                  | Finance->QueryBookingBusinessEntityIdGet()            | 巨量广告           |
-| 开票-查询开票单数据（代理商版）       | Finance->QueryInvoice()                               | 巨量广告           |
-| 开票-获取电子发票文件接口（代理商版） | Finance->QueryInvoiceElectronicUrl()                  | 巨量广告           |
-| 查询项目信息                          | Finance->QueryProject()                               | 巨量广告           |
-| 返点-查询返点核算流水                 | Finance->QueryRebateAccountingInfo()                  | 巨量广告           |
-| 返点-查询返点流水                     | Finance->QueryRebateBalance()                         | 巨量广告           |
-| 查询项目关联结算单信息                | Finance->QueryStatement()                             | 巨量广告           |
+| 工作台转账-获取最大可转余额           | Finance->CgTransferCanTransferBalanceGet()            | 巨量广告      |
+| 工作台转账-获取可转列表               | Finance->CgTransferCanTransferTargetList()            | 巨量广告      |
+| 转账-发起转账（代理）                 | Finance->CgTransferCreateTransfer()                   | 巨量广告      |
+| 转账-获取最大可转余额（代理）         | Finance->CgTransferQueryCanTransferBalance()          | 巨量广告      |
+| 转账-查询账户转账余额（代理）         | Finance->CgTransferQueryTransferBalance()             | 巨量广告      |
+| 转账-查询转账单信息（代理）           | Finance->CgTransferQueryTransferDetail()              | 巨量广告      |
+| 工作台转账-查询账户转账余额           | Finance->CgTransferTransferBalanceGet()               | 巨量广告      |
+| 工作台转账-发起转账                   | Finance->CgTransferTransferCreate()                   | 巨量广告      |
+| 工作台转账-查询转账单信息             | Finance->CgTransferTransferDetailGet()                | 巨量广告      |
+| 资金共享-最大可转余额查询             | Finance->CgTransferWalletTransferCanTransferBalance() | 巨量广告      |
+| 资金共享-发起转账                     | Finance->CgTransferWalletTransferCreate()             | 巨量广告      |
+| 资金共享-查询转账单信息               | Finance->CgTransferWalletTransferDetail()             | 巨量广告      |
+| 资金共享-查询转账列表                 | Finance->CgTransferWalletTransferList()               | 巨量广告      |
+| 开票-新建开票申请单（代理商版）       | Finance->CreateStatementInvoice()                     | 巨量广告      |
+| 获取返货共享钱包余额                  | Finance->FundSharedWalletBalanceGet()                 | 巨量广告      |
+| 排期—查询业务实体 ID                  | Finance->QueryBookingBusinessEntityIdGet()            | 巨量广告      |
+| 开票-查询开票单数据（代理商版）       | Finance->QueryInvoice()                               | 巨量广告      |
+| 开票-获取电子发票文件接口（代理商版） | Finance->QueryInvoiceElectronicUrl()                  | 巨量广告      |
+| 查询项目信息                          | Finance->QueryProject()                               | 巨量广告      |
+| 返点-查询返点核算流水                 | Finance->QueryRebateAccountingInfo()                  | 巨量广告      |
+| 返点-查询返点流水                     | Finance->QueryRebateBalance()                         | 巨量广告      |
+| 查询项目关联结算单信息                | Finance->QueryStatement()                             | 巨量广告      |
 
 ## Workbench 工作台账户管理
 

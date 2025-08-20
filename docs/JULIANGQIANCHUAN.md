@@ -155,22 +155,3 @@
 | 获取随心推短视频建议出价     | FreestylePushPlcmnt->QianchuanAwemeSuggestBid()                    |
 | 获取随心推 ROI 建议出价      | FreestylePushPlcmnt->QianchuanAwemeSuggestRoiGoal()                |
 | 获取随心推可投视频列表       | FreestylePushPlcmnt->QianchuanAwemeVideoGet()                      |
-
-## FundsMgmt 资金管理
-
-| 方法名称                      | 调用方法                                       |
-| ----------------------------- | ---------------------------------------------- |
-| 【代理商】批量查询账户余额    | FundsMgmt->AccountFundGet()                    |
-| 查询财务流水明细              | FundsMgmt->AdvertiserFundTransactionGet()      |
-| 工作台转账-获取最大可转余额   | FundsMgmt->CgTransferCanTransferBalanceGet()   |
-| 工作台转账-获取可转列表       | FundsMgmt->CgTransferCanTransferTargetList()   |
-| 转账-发起转账（代理）         | FundsMgmt->CgTransferCreateTransfer()          |
-| 转账-获取最大可转余额（代理） | FundsMgmt->CgTransferQueryCanTransferBalance() |
-| 转账-查询账户转账余额（代理） | FundsMgmt->CgTransferQueryTransferBalance()    |
-| 转账-查询转账单信息（代理）   | FundsMgmt->CgTransferQueryTransferDetail()     |
-| 工作台转账-查询账户转账余额   | FundsMgmt->CgTransferTransferBalanceGet()      |
-| 工作台转账-发起转账           | FundsMgmt->CgTransferTransferCreate()          |
-| 获取账户余额                  | FundsMgmt->QianchuanAccountBalanceGet()        |
-| 获取财务流水信息              | FundsMgmt->QianchuanFinanceDetailGet()         |
-| 获取账户钱包信息              | FundsMgmt->QianchuanFinanceWalletGet()         |
-| 工作台转账-查询转账单信息     | FundsMgmt->CgTransferTransferDetailGet()       |
