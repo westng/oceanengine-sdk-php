@@ -1,6 +1,6 @@
 # JuLiangQianChuan 巨量千川 API 结构
 
-## AdvertiserMgmt 投放管理
+## AdvertiserMgmt 千川 PC 标准推广 （原：投放管理）
 
 ### AccountBudget 广告账户预算
 
@@ -127,16 +127,18 @@
 | 取消 Adv 订阅 | SubTaskAccountMgmt->SubscribeAccountsRemove() |
 
 ## FreestylePushGlobal 随心推全域
-| 方法名称                     | 调用方法                                                           |
-| ---------------------------- | ------------------------------------------------------------------ |
-| 获取随心推全域投放效果预估       | FreestylePushGlobal->QianchuanAwemeUniPromotionEstimateEffect()                |
-| 创建随心推全域订单       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderCreate()                |
-| 获取随心推全域订单详情       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderDetail()                |
-| 获取随心推全域订单列表       | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderGet()                |
-| 获取随心推全域账户数据       | FreestylePushGlobal->QianchuanAwemeUniPromotionReport()                |
-| 获取随心推全域投放建议       | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggest()                |
-| 获取随心推全域手动出价计划建议ROI       | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggestRoi()                |
 
+| 方法名称                           | 调用方法                                                                     |
+| ---------------------------------- | ---------------------------------------------------------------------------- |
+| 获取随心推全域投放效果预估         | FreestylePushGlobal->QianchuanAwemeUniPromotionEstimateEffect()              |
+| 创建随心推全域订单                 | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderCreate()                 |
+| 获取随心推全域订单详情             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderDetail()                 |
+| 获取随心推全域订单列表             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderGet()                    |
+| 获取随心推全域账户数据             | FreestylePushGlobal->QianchuanAwemeUniPromotionReport()                      |
+| 获取随心推全域投放建议             | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggest()                     |
+| 获取随心推全域手动出价计划建议 ROI | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggestRoi()                  |
+| 获取随心推全域续费建议延长时长     | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderSuggestDeliveryTimeGet() |
+| 追加随心推全域订单预算             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderBudgetAdd()              |
 
 ## FreestylePushPlcmnt 随心推投放
 
@@ -155,3 +157,28 @@
 | 获取随心推短视频建议出价     | FreestylePushPlcmnt->QianchuanAwemeSuggestBid()                    |
 | 获取随心推 ROI 建议出价      | FreestylePushPlcmnt->QianchuanAwemeSuggestRoiGoal()                |
 | 获取随心推可投视频列表       | FreestylePushPlcmnt->QianchuanAwemeVideoGet()                      |
+
+## PCFullPromotion 千川 PC 全域推广
+
+| 方法名称                            | 调用方法                                                     |
+| ----------------------------------- | ------------------------------------------------------------ |
+| 新建全域推广计划                    | PCFullPromotion->QianchuanUniAwemeAdCreate()                 |
+| 编辑全域推广计划                    | PCFullPromotion->QianchuanUniAwemeAdUpdate()                 |
+| 更改全域推广计划状态                | PCFullPromotion->QianchuanUniPromotionAdStatusUpdate()       |
+| 获取全域推广列表                    | PCFullPromotion->QianchuanUniPromotionList()                 |
+| 获取全域推广计划详情                | PCFullPromotion->QianchuanUniPromotionAdDetail()             |
+| 获取全域推广计划下素材              | PCFullPromotion->QianchuanUniPromotionAdMaterialGet()        |
+| 添加全域推广计划下素材              | PCFullPromotion->QianchuanUniPromotionAdMaterialAdd()        |
+| 删除全域推广计划下素材              | PCFullPromotion->QianchuanUniPromotionAdMaterialDelete()     |
+| 获取全域计划下商品列表              | PCFullPromotion->QianchuanUniPromotionAdProductGet()         |
+| 删除全域计划下商品                  | PCFullPromotion->QianchuanUniPromotionAdProductDelete()      |
+| 获取可投全域推广抖音号列表          | PCFullPromotion->QianchuanUniAwemeAuthorizedGet()            |
+| 全域达人/机构获取可选商品列表       | PCFullPromotion->QianchuanUniPromotionProductAwemeGet()      |
+| 全域商家可选商品列表                | PCFullPromotion->QianchuanUniPromotionProductGet()           |
+| 获取全域可排除抖音视频/图文列表     | PCFullPromotion->QianchuanUniPromotionBlockMaterialGet()     |
+| 获取全域建议预算                    | PCFullPromotion->QianchuanUniAwemeSuggestBudget()            |
+| 获取全域计划审核建议                | PCFullPromotion->QianchuanUniPromotionAdSuggestion()         |
+| 更新商品全域推广计划名称            | PCFullPromotion->QianchuanUniPromotionAdNameUpdate()         |
+| 更新全域推广计划预算                | PCFullPromotion->QianchuanUniPromotionAdBudgetUpdate()       |
+| 更新全域推广控成本计划支付 ROI 目标 | PCFullPromotion->QianchuanUniPromotionAdRoi2GoalUpdate()     |
+| 更新全域推广计划投放时间            | PCFullPromotion->QianchuanUniPromotionAdScheduleDateUpdate() |
