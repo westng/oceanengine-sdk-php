@@ -135,6 +135,8 @@
 | 获取随心推全域订单详情             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderDetail()                 |
 | 获取随心推全域订单列表             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderGet()                    |
 | 获取随心推全域账户数据             | FreestylePushGlobal->QianchuanAwemeUniPromotionReport()                      |
+| 获取随心推全域订单数据             | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderReportGet()              |
+| 获取随心推全域订单下素材列表       | FreestylePushGlobal->QianchuanAwemeUniPromotionAdMaterialGet()               |
 | 获取随心推全域投放建议             | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggest()                     |
 | 获取随心推全域手动出价计划建议 ROI | FreestylePushGlobal->QianchuanAwemeUniPromotionSuggestRoi()                  |
 | 获取随心推全域续费建议延长时长     | FreestylePushGlobal->QianchuanAwemeUniPromotionOrderSuggestDeliveryTimeGet() |
