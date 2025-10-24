@@ -184,3 +184,4 @@
 | 更新全域推广计划预算                | PCFullPromotion->QianchuanUniPromotionAdBudgetUpdate()       |
 | 更新全域推广控成本计划支付 ROI 目标 | PCFullPromotion->QianchuanUniPromotionAdRoi2GoalUpdate()     |
 | 更新全域推广计划投放时间            | PCFullPromotion->QianchuanUniPromotionAdScheduleDateUpdate() |
+| 广告主申请全域推广授权              | PCFullPromotion->QianchuanUniPromotionAuthorizationApply()   |
