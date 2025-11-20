@@ -4,11 +4,16 @@
 
 ## GlobalPlanningTool 全域计划调控工具
 
-| 方法名称         | 调用方法                                                 | 支持平台 |
-| ---------------- | -------------------------------------------------------- | -------- |
-| 创建调控任务     | GlobalPlanningTool->QianChuanAdControlTaskCreate()       | 巨量千川 |
-| 修改任务调控状态 | GlobalPlanningTool->AdControlTaskStatusUpdate()          | 巨量千川 |
-| 获取调控任务列表 | GlobalPlanningTool->QianChuanAdControlTaskStatusUpdate() | 巨量千川 |
+| 方法名称                       | 调用方法                                                            | 支持平台 |
+| ------------------------------ | ------------------------------------------------------------------- | -------- |
+| 创建调控任务                   | GlobalPlanningTool->QianChuanAdControlTaskCreate()                  | 巨量千川 |
+| 获取调控任务列表               | GlobalPlanningTool->QianChuanAdControlTaskList()                    | 巨量千川 |
+| 修改任务调控状态               | GlobalPlanningTool->QianChuanAdControlTaskStatusUpdate()            | 巨量千川 |
+| 修改调控任务设置               | GlobalPlanningTool->QianChuanAdControlTaskUpdate()                  | 巨量千川 |
+| 修改调控任务预算               | GlobalPlanningTool->QianChuanAdControlTaskBudgetUpdate()            | 巨量千川 |
+| 修改调控任务投放时长           | GlobalPlanningTool->QianChuanAdControlTaskDurationUpdate()          | 巨量千川 |
+| 创建直播-一键控量计划          | GlobalPlanningTool->QianChuanAdControlTaskSmartControlCreate()      | 巨量千川 |
+| 修改直播-一键控量计划调控状态 | GlobalPlanningTool->QianChuanAdControlTaskSmartControlStatusUpdate() | 巨量千川 |
 
 ## QueryTool 查询工具
 
