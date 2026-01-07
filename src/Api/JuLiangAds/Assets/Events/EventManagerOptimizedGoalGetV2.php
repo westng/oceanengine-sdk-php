@@ -21,7 +21,7 @@ use Core\Profile\RpcRequest;
  */
 class EventManagerOptimizedGoalGetV2 extends RpcRequest
 {
-    protected string $url = '/3.0/event_manager/optimized_goal/get_v2/';
+    protected string $url = '/v3.0/event_manager/optimized_goal/get_v2/';
 
     protected string $method = 'GET';
 

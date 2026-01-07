@@ -21,7 +21,7 @@ use Core\Profile\RpcRequest;
  */
 class EventManagerShareCancel extends RpcRequest
 {
-    protected string $url = '/3.0/event_manager/share/cancel/';
+    protected string $url = '/v3.0/event_manager/share/cancel/';
 
     protected string $method = 'POST';
 

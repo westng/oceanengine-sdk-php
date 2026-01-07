@@ -21,7 +21,7 @@ use Core\Profile\RpcRequest;
  */
 class EventManagerShareGet extends RpcRequest
 {
-    protected string $url = '/3.0/event_manager/share/get/';
+    protected string $url = '/v3.0/event_manager/share/get/';
 
     protected string $method = 'GET';
 

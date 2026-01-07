@@ -21,7 +21,7 @@ use Core\Profile\RpcRequest;
  */
 class EventManagerDeepBidTypeGet extends RpcRequest
 {
-    protected string $url = '/3.0/event_manager/deep_bid_type/get/';
+    protected string $url = '/v3.0/event_manager/deep_bid_type/get/';
 
     protected string $method = 'GET';
 
