@@ -307,13 +307,51 @@ try {
 
 ## 🤝 贡献指南
 
-欢迎提交 Issue 和 Pull Request！
+欢迎提交 Issue 和 Pull Request，建议遵循以下规范。
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+### 1 分支规范
+
+- 基于最新 `4.x` 分支开发。
+- 分支命名建议：`feat/xxx`、`fix/xxx`、`refactor/xxx`、`docs/xxx`。
+
+### 2 提交信息规范（Conventional Commits）
+
+提交格式：
+
+```text
+type(scope): subject
+```
+
+常用 `type`：
+
+- `feat`：新增功能
+- `fix`：缺陷修复
+- `refactor`：重构（不改行为）
+- `docs`：文档更新
+- `test`：测试补充/调整
+- `perf`：性能优化
+- `chore`：工程维护（依赖、脚本、配置等）
+
+示例：
+
+```text
+feat(account): 新增广告主账户查询接口
+fix(http): 修复并发场景下重试配置互相污染
+docs(readme): 补充链式调用与模块说明
+test(integration): 增加 OAuth 刷新 token 用例
+```
+
+### 3 提交前检查
+
+- 本地执行：`composer test`
+- 格式检查：`vendor/bin/php-cs-fixer fix --dry-run --sequential`
+- 若涉及行为变更，请同步更新 `README.md` 或 `docs/*`
+
+### 4 Pull Request 要求
+
+- 标题清晰说明“做了什么、为什么做”
+- 描述中包含影响范围（模块/接口）与验证方式
+- 若是破坏性变更，请明确标注 `BREAKING CHANGE`
 
 ## 📄 开源协议
 
