@@ -19,10 +19,7 @@ use OceanEngineSDK\OceanEngineClient;
 
 class RpcRequest implements RequestInterface
 {
-    /**
-     * @var OceanEngineClient
-     */
-    protected $client;
+    protected ?OceanEngineClient $client = null;
 
     /**
      * request url.
@@ -51,14 +48,13 @@ class RpcRequest implements RequestInterface
 
     /**
      * RpcRequest constructor.
-     * @param null $client
      */
-    public function __construct($client = null)
+    public function __construct(?OceanEngineClient $client = null)
     {
         $this->client = $client;
     }
 
-    public function setUrl($url): static
+    public function setUrl(string $url): static
     {
         $this->url = $url;
         return $this;
@@ -84,7 +80,7 @@ class RpcRequest implements RequestInterface
         return $this->params;
     }
 
-    public function addParam($key, $value): static
+    public function addParam(string $key, mixed $value): static
     {
         $this->params[$key] = $value;
         $this->{$key} = $value;
@@ -92,15 +88,10 @@ class RpcRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $array
      * @throws InvalidParamException
      */
-    public function setParams($array): static
+    public function setParams(array $array): static
     {
-        if (! is_array($array)) {
-            throw new InvalidParamException('参数必须是数组类型', 40);
-        }
-
         foreach ($array as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
@@ -115,6 +106,9 @@ class RpcRequest implements RequestInterface
         return $this->content_type;
     }
 
+    /**
+     * @throws InvalidParamException
+     */
     public function check(): void
     {
         $reflection = new \ReflectionObject($this);

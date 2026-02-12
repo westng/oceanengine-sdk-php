@@ -14,21 +14,21 @@ namespace Core\Profile;
 
 interface RequestInterface
 {
-    public function getUrl();
+    public function getUrl(): string;
 
-    public function setUrl($url);
+    public function setUrl(string $url): static;
 
-    public function getMethod();
+    public function getMethod(): string;
 
-    public function getTimeout();
+    public function getTimeout(): int;
 
-    public function setParams($array);
+    public function setParams(array $array): static;
 
-    public function getParams();
+    public function getParams(): array;
 
-    public function addParam($key, $value);
+    public function addParam(string $key, mixed $value): static;
 
-    public function getContentType();
+    public function getContentType(): string;
 
-    public function check();
+    public function check(): void;
 }

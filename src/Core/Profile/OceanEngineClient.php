@@ -150,7 +150,7 @@ class OceanEngineClient
     /**
      * 备用调用模块接口方法（非静态）.
      */
-    public function module(string $name)
+    public function module(string $name): ChainProxy
     {
         $moduleMap = self::getModuleMap();
 

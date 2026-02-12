@@ -23,7 +23,7 @@ class HttpResponse
         return $this->body;
     }
 
-    public function setBody($body): void
+    public function setBody(string $body): void
     {
         $this->body = $body;
     }
@@ -33,7 +33,7 @@ class HttpResponse
         return $this->status;
     }
 
-    public function setStatus($status): void
+    public function setStatus(int $status): void
     {
         $this->status = $status;
     }

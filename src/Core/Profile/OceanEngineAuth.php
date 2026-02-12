@@ -113,11 +113,11 @@ class OceanEngineAuth
      * 执行 HTTP 请求.
      *
      * @param RequestInterface $request 请求对象
-     * @param null $url 可选请求地址
+     * @param null|string $url 可选请求地址
      * @return HttpResponse 响应对象
      * @throws OceanEngineException
      */
-    private function execute(RequestInterface $request, $url = null): HttpResponse
+    private function execute(RequestInterface $request, ?string $url = null): HttpResponse
     {
         $params = $request->getParams();
         $headers = ['Content-Type' => $request->getContentType()];

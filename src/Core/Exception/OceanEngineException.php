@@ -48,7 +48,7 @@ class OceanEngineException extends \Exception
         return $this->errorMessage;
     }
 
-    public function setErrorMessage($errorMessage): void
+    public function setErrorMessage(string $errorMessage): void
     {
         $this->errorMessage = $errorMessage;
     }
@@ -58,7 +58,7 @@ class OceanEngineException extends \Exception
         return $this->errorType;
     }
 
-    public function setErrorType($errorType): void
+    public function setErrorType(string $errorType): void
     {
         $this->errorType = $errorType;
     }
