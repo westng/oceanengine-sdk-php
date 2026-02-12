@@ -211,6 +211,21 @@
 | 取消应用共享关系                         | AppManagement->ToolsAppManagementBpShareCancel()         | 巨量广告 |
 | 更新应用共享关系                         | AppManagement->ToolsAppManagementUpdateAuthorization()   | 巨量广告 |
 
+### WorkspaceUpgrade 升级版工作台（EBP）
+
+> 调用入口：`AppManagement->WorkspaceUpgrade`
+
+| 方法名称             | 调用方法                                 | 支持平台 |
+| -------------------- | ---------------------------------------- | -------- |
+| 获取安卓应用列表     | WorkspaceUpgrade->ToolsEbpAppList()       | 巨量广告 |
+| 查询安卓应用母包详情 | WorkspaceUpgrade->ToolsEbpAppDetail()     | 巨量广告 |
+| 查询安卓应用分包列表 | WorkspaceUpgrade->ToolsEbpAppExtendList() | 巨量广告 |
+| 发布安卓应用母包     | WorkspaceUpgrade->ToolsEbpAppPublish()    | 巨量广告 |
+| 更新安卓应用母包     | WorkspaceUpgrade->ToolsEbpAppUpdate()     | 巨量广告 |
+| 获取游戏预约列表     | WorkspaceUpgrade->ToolsEbpAppGameBookList() | 巨量广告 |
+| 创建安卓应用分包     | WorkspaceUpgrade->ToolsEbpAppExtendCreate() | 巨量广告 |
+| 更新安卓应用分包     | WorkspaceUpgrade->ToolsEbpAppExtendUpdate() | 巨量广告 |
+
 ## AppBasePackageUpdate 应用母包更新
 
 | 方法名称                   | 调用方法                                                             | 支持平台 |
@@ -280,6 +295,27 @@
 | 获取字节小程序/小游戏详情内容 | ByteMiniAppManagement->ToolsAssetLinkList()                | 巨量广告 |
 | 查询字节小游戏归因激活时间窗  | ByteMiniAppManagement->ToolsMicroGameConvertWindowGet()    | 巨量广告 |
 | 修改字节小游戏归因激活时间窗  | ByteMiniAppManagement->ToolsMicroGameConvertWindowUpdate() | 巨量广告 |
+
+### WorkspaceUpgrade 升级版工作台（EBP）
+
+> 调用入口：`ByteMiniAppManagement->WorkspaceUpgrade`
+
+| 方法名称             | 调用方法                                          | 支持平台 |
+| -------------------- | ------------------------------------------------- | -------- |
+| 获取字节小程序列表   | WorkspaceUpgrade->ToolsEbpMicroAppletList()       | 巨量广告 |
+| 获取字节小程序详情   | WorkspaceUpgrade->ToolsEbpMicroAppletLinkList()   | 巨量广告 |
+| 新建字节小程序       | WorkspaceUpgrade->ToolsEbpMicroAppletCreate()     | 巨量广告 |
+| 更新字节小程序       | WorkspaceUpgrade->ToolsEbpMicroAppletUpdate()     | 巨量广告 |
+| 获取微信小程序列表   | WorkspaceUpgrade->ToolsEbpWechatAppletList()      | 巨量广告 |
+| 获取微信小游戏列表   | WorkspaceUpgrade->ToolsEbpWechatGameList()        | 巨量广告 |
+| 新建微信小程序       | WorkspaceUpgrade->ToolsEbpWechatAppletCreate()    | 巨量广告 |
+| 更新微信小程序       | WorkspaceUpgrade->ToolsEbpWechatAppletUpdate()    | 巨量广告 |
+| 新建微信小游戏       | WorkspaceUpgrade->ToolsEbpWechatGameCreate()      | 巨量广告 |
+| 更新微信小游戏       | WorkspaceUpgrade->ToolsEbpWechatGameUpdate()      | 巨量广告 |
+| 获取字节小游戏列表   | WorkspaceUpgrade->ToolsEbpMicroGameList()         | 巨量广告 |
+| 获取字节小游戏详情   | WorkspaceUpgrade->ToolsEbpMicroGameLinkList()     | 巨量广告 |
+| 新建字节小游戏       | WorkspaceUpgrade->ToolsEbpMicroGameCreate()       | 巨量广告 |
+| 更新字节小游戏       | WorkspaceUpgrade->ToolsEbpMicroGameUpdate()       | 巨量广告 |
 
 ## MiniAppSharing 小程序/小游戏共享管理（微信&字节）
 

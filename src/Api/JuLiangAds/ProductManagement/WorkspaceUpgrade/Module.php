@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
  */
 
-namespace Api\Tools\ByteMiniAppManagement;
+namespace Api\JuLiangAds\ProductManagement\WorkspaceUpgrade;
 
 use Core\Profile\BaseModule;
 
@@ -20,12 +20,6 @@ class Module extends BaseModule
     {
         // 动态生成类名
         $className = __NAMESPACE__ . '\\' . ucfirst($name);
-        $moduleClassName = __NAMESPACE__ . '\\' . ucfirst($name) . '\\Module';
-
-        // 支持子模块调用，如 ByteMiniAppManagement->WorkspaceUpgrade
-        if (class_exists($moduleClassName)) {
-            $className = $moduleClassName;
-        }
 
         // 检查类是否存在
         if (class_exists($className)) {

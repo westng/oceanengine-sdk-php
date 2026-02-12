@@ -128,3 +128,59 @@
 | 获取广告图片                             | AssetManagement->FileImageAdGet()                      |
 | 获取视频信息                             | AssetManagement->FileVideoGet()                        |
 | 获取图片信息                             | AssetManagement->FileImageGet()                        |
+
+### ProductManagement 商品管理
+
+#### 基础接口
+
+| 方法名称                     | 调用方法                                        |
+| ---------------------------- | ----------------------------------------------- |
+| 上传短剧剧目                 | ProductManagement->DpaAlbumCreate()             |
+| 查询短剧可投状态             | ProductManagement->DpaAlbumStatusGet()          |
+| 获取商品投放条件列表（线索版） | ProductManagement->DpaAssetV2List()             |
+| 获取投放条件详情（通用版）   | ProductManagement->DpaAssetsDetailRead()        |
+| 获取投放条件列表（通用版）   | ProductManagement->DpaAssetsList()              |
+| 获取DPA分类                  | ProductManagement->DpaCategoryGet()             |
+| 删除升级版商品               | ProductManagement->DpaClueProductDelete()       |
+| 获取升级版商品详情           | ProductManagement->DpaClueProductDetail()       |
+| 获取升级版商品列表           | ProductManagement->DpaClueProductList()         |
+| 创建/编辑升级版商品          | ProductManagement->DpaClueProductSave()         |
+| 获取商品列表                 | ProductManagement->DpaDetailGet()               |
+| 获取DPA词包                  | ProductManagement->DpaDictGet()                 |
+| 获取商品库元信息             | ProductManagement->DpaMetaGet()                 |
+| 查询短剧商品原片授权申请状态 | ProductManagement->DpaPlayletAuthGet()          |
+| 获取商品库可用商品           | ProductManagement->DpaProductAvailables()       |
+| 【新版】创建DPA商品（无商品id） | ProductManagement->DpaProductCreateGet()        |
+| 删除通用版商品               | ProductManagement->DpaProductDeleteGet()        |
+| 获取商品详情                 | ProductManagement->DpaProductDetailGet()        |
+| 获取商品库商品状态           | ProductManagement->DpaProductStatus()           |
+| 批量修改DPA商品状态          | ProductManagement->DpaProductStatusBatchUpdate() |
+| 更新商品库商品               | ProductManagement->DpaProductUpdate()           |
+| 获取商品库商品列表           | ProductManagement->DpaProductV2List()           |
+| 获取商品库商品状态（v2）     | ProductManagement->DpaProductV2Status()         |
+| 更新商品库商品（v2）         | ProductManagement->DpaProductV2Update()         |
+| 更新商品库商品状态（v2）     | ProductManagement->DpaProductV2UpdateStatus()   |
+| 获取DPA私有模板              | ProductManagement->DpaTemplateGet()             |
+| 获取DPA商品库视频模板        | ProductManagement->DpaVideoGet()                |
+
+#### WorkspaceUpgrade 升级版巨量引擎工作台相关能力
+
+> 调用入口：`$client->module('JuLiangAds')->WorkspaceUpgrade`
+
+| 方法名称                   | 调用方法                                  |
+| -------------------------- | ----------------------------------------- |
+| 查询短剧商品原片授权申请状态 | WorkspaceUpgrade->DpaPlayletAuthGet()    |
+| 获取商品库DPA词包          | WorkspaceUpgrade->DpaDictGet()           |
+| 获取商品库DPA分类          | WorkspaceUpgrade->DpaCategoryGet()       |
+| 获取升级版商品详情         | WorkspaceUpgrade->DpaClueProductGet()    |
+| 获取通用版商品详情         | WorkspaceUpgrade->DpaProductDetailGet()  |
+| 获取通用版商品列表         | WorkspaceUpgrade->DpaProductList()       |
+| 获取商品库元信息           | WorkspaceUpgrade->DpaMetaGet()           |
+| 获取商品库列表             | WorkspaceUpgrade->DpaLibraryList()       |
+| 获取升级版商品列表         | WorkspaceUpgrade->DpaClueProductList()   |
+| 删除升级版商品             | WorkspaceUpgrade->DpaClueProductDelete() |
+| 批量修改DPA商品状态        | WorkspaceUpgrade->DpaProductStatusBatchUpdate() |
+| 删除通用版商品             | WorkspaceUpgrade->DpaProductDelete()     |
+| 编辑通用版商品库商品       | WorkspaceUpgrade->DpaProductUpdate()     |
+| 创建/编辑升级版商品        | WorkspaceUpgrade->DpaClueProductSave()   |
+| 新建通用版商品             | WorkspaceUpgrade->DpaProductCreate()     |
