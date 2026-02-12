@@ -31,48 +31,52 @@ class HttpRequest
 
     public static int $readTimeout = 30;
 
-    // 重试配置
-    public static bool $enableRetry = true; // 是否启用重试机制
+    // Default retry settings (used when runtime config is not passed).
+    public static bool $enableRetry = true;
 
     public static int $maxRetries = 3;
 
-    public static int $retryDelay = 1000; // 毫秒
+    public static int $retryDelay = 1000;
 
     public static array $retryableStatusCodes = [408, 429, 500, 502, 503, 504];
 
-    public static array $retryableBusinessCodes = [40100, 40110, 50000]; // 可重试的业务错误码（频控错误码和5开头的都可以重试）
-
-    private static ?Client $client = null;
+    public static array $retryableBusinessCodes = [40100, 40110, 50000];
 
     /**
-     * 发送 HTTP 请求
+     * @var array<string, Client>
+     */
+    private static array $clientPool = [];
+
+    /**
+     * 发送 HTTP 请求.
+     *
+     * @param array<string, mixed> $runtimeConfig
      */
     public static function curl(
         string $url,
         string $method = 'GET',
         null|array|string $postFields = null,
-        array $headers = []
+        array $headers = [],
+        array $runtimeConfig = []
     ): HttpResponse {
-        $client = self::getClient();
+        $config = self::normalizeRuntimeConfig($runtimeConfig);
+        $client = self::getClient($config);
         $method = strtoupper($method);
 
-        // 准备请求选项
         $options = [
             'headers' => $headers,
+            'timeout' => $config['read_timeout'],
+            'connect_timeout' => $config['connect_timeout'],
         ];
 
-        // 处理请求体
-        if (in_array($method, ['POST', 'PUT', 'PATCH']) && $postFields !== null) {
+        if (in_array($method, ['POST', 'PUT', 'PATCH'], true) && $postFields !== null) {
             if (is_array($postFields)) {
                 if (self::containsFile($postFields)) {
-                    // 处理文件上传
                     $options['multipart'] = self::buildMultipartData($postFields);
                 } else {
-                    // 普通表单数据
                     $options['form_params'] = $postFields;
                 }
             } else {
-                // 原始字符串数据
                 $options['body'] = $postFields;
             }
         }
@@ -106,7 +110,7 @@ class HttpRequest
     }
 
     /**
-     * 设置重试配置.
+     * 设置默认重试配置（仅作用于未传 runtimeConfig 的请求）.
      */
     public static function setRetryConfig(
         int $maxRetries,
@@ -118,61 +122,60 @@ class HttpRequest
         self::$enableRetry = $enableRetry;
         self::$maxRetries = $maxRetries;
         self::$retryDelay = $retryDelay;
-        if (! empty($retryableStatusCodes)) {
+        if ($retryableStatusCodes !== []) {
             self::$retryableStatusCodes = $retryableStatusCodes;
         }
-        if (! empty($retryableBusinessCodes)) {
+        if ($retryableBusinessCodes !== []) {
             self::$retryableBusinessCodes = $retryableBusinessCodes;
         }
 
-        // 重置客户端以应用新配置
-        self::$client = null;
+        self::$clientPool = [];
     }
 
     /**
-     * 启用或禁用重试机制.
+     * 启用或禁用默认重试机制.
      */
     public static function setRetryEnabled(bool $enabled): void
     {
         self::$enableRetry = $enabled;
-        // 重置客户端以应用新配置
-        self::$client = null;
+        self::$clientPool = [];
     }
 
     /**
-     * 获取Guzzle客户端实例，配置中间件.
+     * @param array<string, mixed> $config
      */
-    private static function getClient(): Client
+    private static function getClient(array $config): Client
     {
-        if (self::$client === null) {
-            // 创建处理器栈
+        $cacheKey = md5((string) json_encode([
+            'enable_retry' => $config['enable_retry'],
+            'max_retries' => $config['max_retries'],
+            'retry_delay' => $config['retry_delay'],
+            'retryable_status_codes' => $config['retryable_status_codes'],
+            'retryable_business_codes' => $config['retryable_business_codes'],
+        ], JSON_UNESCAPED_SLASHES));
+
+        if (! isset(self::$clientPool[$cacheKey])) {
             $stack = HandlerStack::create();
 
-            // 根据开关决定是否添加重试中间件
-            if (self::$enableRetry) {
-                $stack->push(self::createRetryMiddleware());
+            if ($config['enable_retry']) {
+                $stack->push(self::createRetryMiddleware($config));
             }
 
-            // 添加日志中间件
             $stack->push(self::createLogMiddleware());
 
-            // 添加超时中间件
-            $stack->push(self::createTimeoutMiddleware());
-
-            self::$client = new Client([
+            self::$clientPool[$cacheKey] = new Client([
                 'handler' => $stack,
-                'timeout' => self::$readTimeout,
-                'connect_timeout' => self::$connectTimeout,
-                'verify' => false, // 禁用SSL验证，保持与原curl实现一致
+                'verify' => false,
             ]);
         }
-        return self::$client;
+
+        return self::$clientPool[$cacheKey];
     }
 
     /**
-     * 创建重试中间件.
+     * @param array<string, mixed> $config
      */
-    private static function createRetryMiddleware(): callable
+    private static function createRetryMiddleware(array $config): callable
     {
         return Middleware::retry(
             function (
@@ -180,63 +183,52 @@ class HttpRequest
                 RequestInterface $request,
                 ?ResponseInterface $response = null,
                 ?\Exception $exception = null
-            ) {
-                // 如果已经达到最大重试次数，不再重试
-                if ($retries >= self::$maxRetries) {
+            ) use ($config): bool {
+                if ($retries >= $config['max_retries']) {
                     return false;
                 }
 
-                // 检查是否应该重试
                 if ($exception instanceof ConnectException) {
-                    return true; // 连接超时，重试
+                    return true;
                 }
 
                 if ($exception instanceof ServerException) {
-                    return true; // 服务器错误，重试
+                    return true;
                 }
 
-                // 检查HTTP状态码
-                if ($response && in_array($response->getStatusCode(), self::$retryableStatusCodes)) {
-                    return true; // 可重试的HTTP状态码
+                if ($response && in_array($response->getStatusCode(), $config['retryable_status_codes'], true)) {
+                    return true;
                 }
 
-                // 检查业务错误码（巨量引擎API特点：HTTP状态码200，但业务层面有错误码）
                 if ($response && $response->getStatusCode() === 200) {
                     try {
                         $body = (string) $response->getBody();
                         $data = json_decode($body, true);
 
-                        // 检查是否有业务错误码
                         if (is_array($data) && isset($data['code']) && is_numeric($data['code'])) {
                             $businessCode = (int) $data['code'];
 
-                            // 成功码不重试
                             if ($businessCode === 0) {
                                 return false;
                             }
 
-                            // 检查是否是可重试的业务错误码（频控错误码）
-                            if (in_array($businessCode, self::$retryableBusinessCodes)) {
-                                return true; // 可重试的业务错误码
+                            if (in_array($businessCode, $config['retryable_business_codes'], true)) {
+                                return true;
                             }
 
-                            // 5开头的错误码都可以重试
                             if ($businessCode >= 50000 && $businessCode < 60000) {
-                                return true; // 5开头的错误码重试
+                                return true;
                             }
                         }
                     } catch (\Exception $e) {
-                        // JSON解析失败，不重试
                         return false;
                     }
                 }
 
                 return false;
             },
-            function ($retries) {
-                // 指数退避策略
-                $delay = self::$retryDelay * pow(2, $retries - 1);
-                usleep($delay * 1000); // 转换为微秒
+            function ($retries) use ($config): int {
+                return (int) ($config['retry_delay'] * pow(2, max(0, $retries - 1)));
             }
         );
     }
@@ -247,7 +239,7 @@ class HttpRequest
     private static function createLogMiddleware(): callable
     {
         return Middleware::log(
-            new NullLogger(), // 使用空日志记录器，避免依赖
+            new NullLogger(),
             new MessageFormatter(
                 "HTTP Request: {method} {uri}\n"
                 . "HTTP Response: {code} {phrase}\n"
@@ -259,19 +251,72 @@ class HttpRequest
     }
 
     /**
-     * 创建超时中间件.
+     * @param array<string, mixed> $runtimeConfig
+     * @return array<string, mixed>
      */
-    private static function createTimeoutMiddleware(): callable
+    private static function normalizeRuntimeConfig(array $runtimeConfig): array
     {
-        return function (callable $handler) {
-            return function (RequestInterface $request, array $options) use ($handler) {
-                // 设置请求超时
-                $options['timeout'] = $options['timeout'] ?? self::$readTimeout;
-                $options['connect_timeout'] = $options['connect_timeout'] ?? self::$connectTimeout;
+        $readTimeout = self::$readTimeout;
+        if (array_key_exists('read_timeout', $runtimeConfig)) {
+            $readTimeout = max(1, (int) $runtimeConfig['read_timeout']);
+        }
 
-                return $handler($request, $options);
-            };
-        };
+        $connectTimeout = self::$connectTimeout;
+        if (array_key_exists('connect_timeout', $runtimeConfig)) {
+            $connectTimeout = max(1, (int) $runtimeConfig['connect_timeout']);
+        }
+
+        $enableRetry = self::$enableRetry;
+        if (array_key_exists('enable_retry', $runtimeConfig)) {
+            $enableRetry = (bool) $runtimeConfig['enable_retry'];
+        }
+
+        $maxRetries = self::$maxRetries;
+        if (array_key_exists('max_retries', $runtimeConfig)) {
+            $maxRetries = max(0, (int) $runtimeConfig['max_retries']);
+        }
+
+        $retryDelay = self::$retryDelay;
+        if (array_key_exists('retry_delay', $runtimeConfig)) {
+            $retryDelay = max(0, (int) $runtimeConfig['retry_delay']);
+        }
+
+        return [
+            'read_timeout' => $readTimeout,
+            'connect_timeout' => $connectTimeout,
+            'enable_retry' => $enableRetry,
+            'max_retries' => $maxRetries,
+            'retry_delay' => $retryDelay,
+            'retryable_status_codes' => self::normalizeIntArray(
+                $runtimeConfig['retryable_status_codes'] ?? null,
+                self::$retryableStatusCodes
+            ),
+            'retryable_business_codes' => self::normalizeIntArray(
+                $runtimeConfig['retryable_business_codes'] ?? null,
+                self::$retryableBusinessCodes
+            ),
+        ];
+    }
+
+    /**
+     * @param mixed $value
+     * @param array<int, int> $default
+     * @return array<int, int>
+     */
+    private static function normalizeIntArray($value, array $default): array
+    {
+        if (! is_array($value)) {
+            return $default;
+        }
+
+        $normalized = [];
+        foreach ($value as $item) {
+            if (is_int($item) || (is_string($item) && is_numeric($item))) {
+                $normalized[] = (int) $item;
+            }
+        }
+
+        return $normalized === [] ? $default : array_values(array_unique($normalized));
     }
 
     /**

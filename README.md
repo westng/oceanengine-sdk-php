@@ -199,6 +199,8 @@ $client->setRetryEnabled(true);   // 启用重试
 $client->setRetryEnabled(false);  // 禁用重试
 ```
 
+说明：重试与超时配置只作用于当前 `OceanEngineClient` 实例，多实例并发互不影响。
+
 #### 获取广告主信息
 
 ```php

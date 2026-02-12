@@ -32,6 +32,26 @@ class OceanEngineClient
 
     private bool $isSandbox;
 
+    private int $connectTimeout;
+
+    private int $defaultReadTimeout;
+
+    private bool $retryEnabled;
+
+    private int $maxRetries;
+
+    private int $retryDelay;
+
+    /**
+     * @var array<int, int>
+     */
+    private array $retryableStatusCodes;
+
+    /**
+     * @var array<int, int>
+     */
+    private array $retryableBusinessCodes;
+
     /**
      * 顶层模块映射缓存（模块名 => 命名空间）.
      *
@@ -52,6 +72,13 @@ class OceanEngineClient
         $this->isSandbox = $isSandbox;
         $this->serverUrl = $serverUrl ?? 'https://api.oceanengine.com/open_api';
         $this->boxUrl = $boxUrl ?? 'https://api.oceanengine.com/open_api';
+        $this->connectTimeout = HttpRequest::$connectTimeout;
+        $this->defaultReadTimeout = HttpRequest::$readTimeout;
+        $this->retryEnabled = HttpRequest::$enableRetry;
+        $this->maxRetries = HttpRequest::$maxRetries;
+        $this->retryDelay = HttpRequest::$retryDelay;
+        $this->retryableStatusCodes = HttpRequest::$retryableStatusCodes;
+        $this->retryableBusinessCodes = HttpRequest::$retryableBusinessCodes;
     }
 
     /**
@@ -111,9 +138,13 @@ class OceanEngineClient
             $params = json_encode($params);
         }
 
-        HttpRequest::$readTimeout = $request->getTimeout();
-
-        return HttpRequest::curl($url, $request->getMethod(), $params, $headers);
+        return HttpRequest::curl(
+            $url,
+            $request->getMethod(),
+            $params,
+            $headers,
+            $this->buildRuntimeHttpConfig($request->getTimeout())
+        );
     }
 
     /**
@@ -176,7 +207,7 @@ class OceanEngineClient
     }
 
     /**
-     * 配置重试机制.
+     * 配置当前客户端实例的重试机制.
      */
     public function setRetryConfig(
         int $maxRetries = 3,
@@ -185,23 +216,37 @@ class OceanEngineClient
         bool $enableRetry = true,
         array $retryableBusinessCodes = [40100, 40110, 50000]
     ): self {
-        HttpRequest::setRetryConfig(
-            $maxRetries,
-            $retryDelay,
-            $retryableStatusCodes,
-            $enableRetry,
-            $retryableBusinessCodes
-        );
+        $this->maxRetries = $maxRetries;
+        $this->retryDelay = $retryDelay;
+        $this->retryEnabled = $enableRetry;
+        $this->retryableStatusCodes = $retryableStatusCodes;
+        $this->retryableBusinessCodes = $retryableBusinessCodes;
         return $this;
     }
 
     /**
-     * 设置重试开关.
+     * 设置当前客户端实例的重试开关.
      */
     public function setRetryEnabled(bool $enabled): self
     {
-        HttpRequest::setRetryEnabled($enabled);
+        $this->retryEnabled = $enabled;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildRuntimeHttpConfig(int $requestTimeout): array
+    {
+        return [
+            'connect_timeout' => $this->connectTimeout,
+            'read_timeout' => $requestTimeout > 0 ? $requestTimeout : $this->defaultReadTimeout,
+            'enable_retry' => $this->retryEnabled,
+            'max_retries' => $this->maxRetries,
+            'retry_delay' => $this->retryDelay,
+            'retryable_status_codes' => $this->retryableStatusCodes,
+            'retryable_business_codes' => $this->retryableBusinessCodes,
+        ];
     }
 
     /**

@@ -123,6 +123,12 @@ class OceanEngineAuth
         $headers = ['Content-Type' => $request->getContentType()];
 
         $targetUrl = $url ?? ($this->is_sandbox ? $this->box_url : $this->server_url) . $request->getUrl();
-        return HttpRequest::curl($targetUrl, $request->getMethod(), json_encode($params), $headers);
+        return HttpRequest::curl(
+            $targetUrl,
+            $request->getMethod(),
+            json_encode($params),
+            $headers,
+            ['read_timeout' => $request->getTimeout()]
+        );
     }
 }

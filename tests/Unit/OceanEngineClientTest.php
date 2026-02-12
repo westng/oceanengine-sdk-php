@@ -88,4 +88,50 @@ final class OceanEngineClientTest extends TestCase
 
         self::assertInstanceOf(QianChuanUniPromotionAuthInit::class, $legacy);
     }
+
+    public function testRetryConfigIsIsolatedPerClientInstance(): void
+    {
+        $clientA = new OceanEngineClient('token-a');
+        $clientB = new OceanEngineClient('token-b');
+
+        $clientA->setRetryConfig(
+            maxRetries: 1,
+            retryDelay: 123,
+            retryableStatusCodes: [429],
+            enableRetry: false,
+            retryableBusinessCodes: [40100]
+        );
+
+        self::assertSame(1, $this->readPrivateProperty($clientA, 'maxRetries'));
+        self::assertSame(123, $this->readPrivateProperty($clientA, 'retryDelay'));
+        self::assertFalse($this->readPrivateProperty($clientA, 'retryEnabled'));
+        self::assertSame([429], $this->readPrivateProperty($clientA, 'retryableStatusCodes'));
+
+        self::assertSame(3, $this->readPrivateProperty($clientB, 'maxRetries'));
+        self::assertSame(1000, $this->readPrivateProperty($clientB, 'retryDelay'));
+        self::assertTrue($this->readPrivateProperty($clientB, 'retryEnabled'));
+        self::assertSame([408, 429, 500, 502, 503, 504], $this->readPrivateProperty($clientB, 'retryableStatusCodes'));
+    }
+
+    public function testRetryEnabledSwitchOnlyAffectsCurrentClient(): void
+    {
+        $clientA = new OceanEngineClient('token-a');
+        $clientB = new OceanEngineClient('token-b');
+
+        $clientA->setRetryEnabled(false);
+
+        self::assertFalse($this->readPrivateProperty($clientA, 'retryEnabled'));
+        self::assertTrue($this->readPrivateProperty($clientB, 'retryEnabled'));
+    }
+
+    /**
+     * @return mixed
+     */
+    private function readPrivateProperty(object $object, string $propertyName)
+    {
+        $ref = new \ReflectionObject($object);
+        $property = $ref->getProperty($propertyName);
+        $property->setAccessible(true);
+        return $property->getValue($object);
+    }
 }

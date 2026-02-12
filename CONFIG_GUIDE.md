@@ -54,6 +54,11 @@ $client->setRetryConfig(
 $client->setRetryEnabled(true);
 ```
 
+说明：
+
+- 重试与超时配置作用于**当前 `OceanEngineClient` 实例**。
+- 多实例并发（多账号/多租户）场景下配置互不影响。
+
 ## 四、生产配置建议
 
 - 密钥不入库，不写死在代码中
