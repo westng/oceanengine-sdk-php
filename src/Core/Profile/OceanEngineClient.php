@@ -12,20 +12,16 @@ declare(strict_types=1);
 
 namespace OceanEngineSDK;
 
-use Api\Account\Module as AccountModule;
-use Api\DataReports\Module as DataReportsModule;
-use Api\JuLiangAds\Module as JuLiangAdsModule;
-use Api\JuLiangLocalPush\Module as JuLiangLocalPushModule;
-use Api\JuLiangQianChuan\Module as JuLiangQianChuanModule;
-use Api\JuLiangStarMap\Module as JuLiangStarMapModule;
-use Api\Materials\Module as MaterialsModule;
-use Api\Tools\Module as ToolsModule;
 use Core\Exception\InvalidParamException;
 use Core\Exception\OceanEngineException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
+use Core\Profile\ChainProxy;
 use Core\Profile\RequestInterface;
 
+/**
+ * SDK client.
+ */
 class OceanEngineClient
 {
     private string $accessToken;
@@ -37,18 +33,11 @@ class OceanEngineClient
     private bool $isSandbox;
 
     /**
-     * 模块映射，统一调用.
+     * 顶层模块映射缓存（模块名 => 命名空间）.
+     *
+     * @var null|array<string, string>
      */
-    private static array $moduleMap = [
-        'Account' => AccountModule::class,
-        'Materials' => MaterialsModule::class,
-        'DataReports' => DataReportsModule::class,
-        'Tools' => ToolsModule::class,
-        'JuLiangAds' => JuLiangAdsModule::class,
-        'JuLiangQianChuan' => JuLiangQianChuanModule::class,
-        'JuLiangStarMap' => JuLiangStarMapModule::class,
-        'JuLiangLocalPush' => JuLiangLocalPushModule::class,
-    ];
+    private static ?array $moduleMap = null;
 
     /**
      * 构造函数，支持直接实例化.
@@ -72,11 +61,13 @@ class OceanEngineClient
      */
     public function __call(string $name, array $arguments)
     {
-        if (! isset(self::$moduleMap[$name])) {
+        $moduleMap = self::getModuleMap();
+
+        if (! isset($moduleMap[$name])) {
             throw new \BadMethodCallException("未定义的方法 '{$name}'。");
         }
-        $className = self::$moduleMap[$name];
-        return new $className($this);
+
+        return new ChainProxy($this, $moduleMap[$name]);
     }
 
     /**
@@ -130,11 +121,58 @@ class OceanEngineClient
      */
     public function module(string $name)
     {
-        if (! isset(self::$moduleMap[$name])) {
+        $moduleMap = self::getModuleMap();
+
+        if (! isset($moduleMap[$name])) {
             throw new \InvalidArgumentException("模块 {$name} 不存在。");
         }
-        $className = self::$moduleMap[$name];
-        return new $className($this);
+
+        return new ChainProxy($this, $moduleMap[$name]);
+    }
+
+    public function Account(): ChainProxy
+    {
+        return $this->module('Account');
+    }
+
+    public function DataReports(): ChainProxy
+    {
+        return $this->module('DataReports');
+    }
+
+    public function EnterpriseAccount(): ChainProxy
+    {
+        return $this->module('EnterpriseAccount');
+    }
+
+    public function JuLiangAds(): ChainProxy
+    {
+        return $this->module('JuLiangAds');
+    }
+
+    public function JuLiangLocalPush(): ChainProxy
+    {
+        return $this->module('JuLiangLocalPush');
+    }
+
+    public function JuLiangQianChuan(): ChainProxy
+    {
+        return $this->module('JuLiangQianChuan');
+    }
+
+    public function JuLiangStarMap(): ChainProxy
+    {
+        return $this->module('JuLiangStarMap');
+    }
+
+    public function Materials(): ChainProxy
+    {
+        return $this->module('Materials');
+    }
+
+    public function Tools(): ChainProxy
+    {
+        return $this->module('Tools');
     }
 
     /**
@@ -164,5 +202,47 @@ class OceanEngineClient
     {
         HttpRequest::setRetryEnabled($enabled);
         return $this;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function getModuleMap(): array
+    {
+        if (self::$moduleMap !== null) {
+            return self::$moduleMap;
+        }
+
+        $apiDir = dirname(__DIR__, 2) . '/Api';
+        $moduleMap = [];
+
+        $items = scandir($apiDir);
+        if ($items === false) {
+            self::$moduleMap = $moduleMap;
+            return $moduleMap;
+        }
+
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+
+            $moduleDir = $apiDir . '/' . $item;
+            if (! is_dir($moduleDir)) {
+                continue;
+            }
+
+            // 限制为合法模块名，避免特殊目录污染模块入口。
+            if (! preg_match('/^[A-Za-z_][A-Za-z0-9_]*$/', $item)) {
+                continue;
+            }
+
+            $moduleMap[$item] = 'Api\\' . $item;
+        }
+
+        ksort($moduleMap);
+        self::$moduleMap = $moduleMap;
+
+        return $moduleMap;
     }
 }

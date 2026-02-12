@@ -1,0 +1,173 @@
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Marketing PHP SDK.
+ *
+ * @link     https://github.com/westng/oceanengine-sdk-php
+ * @document https://github.com/westng/oceanengine-sdk-php
+ * @contact  westng
+ * @license  https://github.com/westng/oceanengine-sdk-php/blob/main/LICENSE
+ */
+
+namespace Tests\Integration\Concerns;
+
+trait LoadsEnvConfig
+{
+    /**
+     * @return array{0:string,1:string}
+     */
+    private function resolveTokenAndAdvertiserId(): array
+    {
+        $dotenv = $this->loadDotEnvValues();
+
+        $token = $this->firstAvailableEnvValue(['TOKEN'], $dotenv);
+        $advertiserId = $this->normalizeAdvertiserId($this->firstAvailableEnvValue(
+            ['ADVERTISER_ID', 'ADVERTISER_IDS'],
+            $dotenv
+        ));
+
+        return [$token, $advertiserId];
+    }
+
+    /**
+     * @return array{0:string,1:string,2:string,3:string}
+     */
+    private function resolveOauthCredentials(): array
+    {
+        $dotenv = $this->loadDotEnvValues();
+
+        $appId = $this->firstAvailableEnvValue(['APPID'], $dotenv);
+        $secret = $this->firstAvailableEnvValue(['SECRET'], $dotenv);
+        $authCode = $this->firstAvailableEnvValue(['AUTH_CODE'], $dotenv);
+        $refreshToken = $this->firstAvailableEnvValue(['REFRESH_TOKEN'], $dotenv);
+
+        return [$appId, $secret, $authCode, $refreshToken];
+    }
+
+    /**
+     * @param array<string> $keys
+     * @param array<string, string> $dotenv
+     */
+    private function firstAvailableEnvValue(array $keys, array $dotenv): string
+    {
+        foreach ($keys as $key) {
+            $runtime = getenv($key);
+            if (is_string($runtime) && trim($runtime) !== '') {
+                return trim($runtime);
+            }
+
+            if (isset($dotenv[$key]) && trim($dotenv[$key]) !== '') {
+                return trim($dotenv[$key]);
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function loadDotEnvValues(): array
+    {
+        $path = dirname(__DIR__, 3) . '/.env';
+        if (! is_file($path)) {
+            return [];
+        }
+
+        $values = [];
+        $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if ($lines === false) {
+            return [];
+        }
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            if (str_starts_with($line, 'export ')) {
+                $line = trim(substr($line, 7));
+            }
+
+            $parts = explode('=', $line, 2);
+            if (count($parts) !== 2) {
+                continue;
+            }
+
+            $key = trim($parts[0]);
+            $value = trim($parts[1]);
+            if ($key === '') {
+                continue;
+            }
+
+            if ((str_starts_with($value, '"') && str_ends_with($value, '"'))
+                || (str_starts_with($value, '\'') && str_ends_with($value, '\''))) {
+                $value = substr($value, 1, -1);
+            }
+
+            $values[$key] = $value;
+        }
+
+        return $values;
+    }
+
+    private function normalizeAdvertiserId(string $rawValue): string
+    {
+        $rawValue = trim($rawValue);
+        if ($rawValue === '') {
+            return '';
+        }
+
+        // Support JSON array style, e.g. [1805994941666500]
+        if (str_starts_with($rawValue, '[') && str_ends_with($rawValue, ']')) {
+            $decoded = json_decode($rawValue, true);
+            if (is_array($decoded) && isset($decoded[0])) {
+                return trim((string) $decoded[0]);
+            }
+
+            $rawValue = trim($rawValue, '[]');
+        }
+
+        if (str_contains($rawValue, ',')) {
+            $parts = array_filter(array_map('trim', explode(',', $rawValue)));
+            if ($parts === []) {
+                return '';
+            }
+            return (string) array_values($parts)[0];
+        }
+
+        return $rawValue;
+    }
+
+    /**
+     * @template T
+     * @param callable():T $callback
+     * @return T
+     */
+    private function runWithNetworkGuard(callable $callback)
+    {
+        try {
+            return $callback();
+        } catch (\Throwable $e) {
+            $message = strtolower($e->getMessage());
+            $networkKeywords = [
+                'could not resolve host',
+                'connection timed out',
+                'failed to connect',
+                'connection refused',
+                'network is unreachable',
+                'operation timed out',
+            ];
+
+            foreach ($networkKeywords as $keyword) {
+                if (str_contains($message, $keyword)) {
+                    self::markTestSkipped('Network unavailable for integration test: ' . $e->getMessage());
+                }
+            }
+
+            throw $e;
+        }
+    }
+}
