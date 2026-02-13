@@ -24,9 +24,20 @@ use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\NullLogger;
+use Swoole\Coroutine;
 
 class HttpRequest
 {
+    private const RUNTIME_MODE_AUTO = 'auto';
+
+    private const RUNTIME_MODE_FPM = 'fpm';
+
+    private const RUNTIME_MODE_CLI = 'cli';
+
+    private const RUNTIME_MODE_SWOOLE = 'swoole';
+
+    private const CLIENT_POOL_MAX_SIZE = 32;
+
     public static int $connectTimeout = 20;
 
     public static int $readTimeout = 30;
@@ -48,6 +59,11 @@ class HttpRequest
     private static array $clientPool = [];
 
     /**
+     * Runtime mode override.
+     */
+    private static string $runtimeMode = self::RUNTIME_MODE_AUTO;
+
+    /**
      * 发送 HTTP 请求.
      *
      * @param string $url 请求地址
@@ -55,7 +71,6 @@ class HttpRequest
      * @param null|array<string, mixed>|string $postFields 请求体
      * @param array<string, string> $headers 请求头
      * @param array<string, mixed> $runtimeConfig
-     * @return HttpResponse
      */
     public static function curl(
         string $url,
@@ -65,7 +80,8 @@ class HttpRequest
         array $runtimeConfig = []
     ): HttpResponse {
         $config = self::normalizeRuntimeConfig($runtimeConfig);
-        $client = self::getClient($config);
+        $runtimeMode = self::resolveRuntimeMode($config);
+        $client = self::getClient($config, $runtimeMode);
         $method = strtoupper($method);
 
         $options = [
@@ -108,7 +124,6 @@ class HttpRequest
      * @param null|array<string, mixed> $data 数据体
      * @param string $msg 提示消息
      * @param int $code 状态码
-     * @return string
      */
     public static function renderJSON(?array $data = [], string $msg = 'ok', int $code = 200): string
     {
@@ -127,7 +142,6 @@ class HttpRequest
      * @param array<int, int> $retryableStatusCodes 可重试 HTTP 状态码
      * @param bool $enableRetry 是否启用重试
      * @param array<int, int> $retryableBusinessCodes 可重试业务状态码
-     * @return void
      */
     public static function setRetryConfig(
         int $maxRetries,
@@ -153,7 +167,6 @@ class HttpRequest
      * 启用或禁用默认重试机制.
      *
      * @param bool $enabled 是否启用重试
-     * @return void
      */
     public static function setRetryEnabled(bool $enabled): void
     {
@@ -162,32 +175,48 @@ class HttpRequest
     }
 
     /**
-     * @param array<string, mixed> $config
-     * @return Client
+     * 设置运行环境模式。
+     *
+     * 支持 auto/fpm/cli/swoole，默认 auto（自动识别）。
+     *
+     * @param string $mode 运行模式
      */
-    private static function getClient(array $config): Client
+    public static function setRuntimeMode(string $mode): void
     {
-        $cacheKey = md5((string) json_encode([
-            'enable_retry' => $config['enable_retry'],
-            'max_retries' => $config['max_retries'],
-            'retry_delay' => $config['retry_delay'],
-            'retryable_status_codes' => $config['retryable_status_codes'],
-            'retryable_business_codes' => $config['retryable_business_codes'],
-        ], JSON_UNESCAPED_SLASHES));
+        $normalizedMode = self::normalizeRuntimeMode($mode);
+        if ($normalizedMode === null) {
+            throw new \InvalidArgumentException('Unsupported runtime mode. Allowed values: auto, fpm, cli, swoole.');
+        }
+
+        self::$runtimeMode = $normalizedMode;
+        self::$clientPool = [];
+    }
+
+    /**
+     * 获取当前生效的运行模式。
+     */
+    public static function getRuntimeMode(): string
+    {
+        return self::resolveRuntimeMode();
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    private static function getClient(array $config, string $runtimeMode): Client
+    {
+        if (! self::shouldUseClientPool($config, $runtimeMode)) {
+            return self::createClient($config);
+        }
+
+        $cacheKey = self::buildClientCacheKey($config, $runtimeMode);
 
         if (! isset(self::$clientPool[$cacheKey])) {
-            $stack = HandlerStack::create();
-
-            if ($config['enable_retry']) {
-                $stack->push(self::createRetryMiddleware($config));
+            if (count(self::$clientPool) >= self::CLIENT_POOL_MAX_SIZE) {
+                array_shift(self::$clientPool);
             }
 
-            $stack->push(self::createLogMiddleware());
-
-            self::$clientPool[$cacheKey] = new Client([
-                'handler' => $stack,
-                'verify' => false,
-            ]);
+            self::$clientPool[$cacheKey] = self::createClient($config);
         }
 
         return self::$clientPool[$cacheKey];
@@ -195,7 +224,57 @@ class HttpRequest
 
     /**
      * @param array<string, mixed> $config
-     * @return callable
+     */
+    private static function createClient(array $config): Client
+    {
+        $stack = HandlerStack::create();
+
+        if ($config['enable_retry']) {
+            $stack->push(self::createRetryMiddleware($config));
+        }
+
+        $stack->push(self::createLogMiddleware());
+
+        return new Client([
+            'handler' => $stack,
+            'verify' => false,
+        ]);
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    private static function buildClientCacheKey(array $config, string $runtimeMode): string
+    {
+        return md5((string) json_encode([
+            'runtime_mode' => $runtimeMode,
+            'enable_retry' => $config['enable_retry'],
+            'max_retries' => $config['max_retries'],
+            'retry_delay' => $config['retry_delay'],
+            'retryable_status_codes' => $config['retryable_status_codes'],
+            'retryable_business_codes' => $config['retryable_business_codes'],
+        ], JSON_UNESCAPED_SLASHES));
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    private static function shouldUseClientPool(array $config, string $runtimeMode): bool
+    {
+        if (array_key_exists('reuse_client', $config)) {
+            return (bool) $config['reuse_client'];
+        }
+
+        // 协程常驻环境下默认禁用全局复用，避免跨协程共享状态。
+        if ($runtimeMode === self::RUNTIME_MODE_SWOOLE) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param array<string, mixed> $config
      */
     private static function createRetryMiddleware(array $config): callable
     {
@@ -257,8 +336,6 @@ class HttpRequest
 
     /**
      * 创建日志中间件.
-     *
-     * @return callable
      */
     private static function createLogMiddleware(): callable
     {
@@ -305,7 +382,9 @@ class HttpRequest
             $retryDelay = max(0, (int) $runtimeConfig['retry_delay']);
         }
 
-        return [
+        $runtimeMode = self::normalizeRuntimeMode($runtimeConfig['runtime_mode'] ?? null);
+
+        $result = [
             'read_timeout' => $readTimeout,
             'connect_timeout' => $connectTimeout,
             'enable_retry' => $enableRetry,
@@ -320,6 +399,16 @@ class HttpRequest
                 self::$retryableBusinessCodes
             ),
         ];
+
+        if ($runtimeMode !== null) {
+            $result['runtime_mode'] = $runtimeMode;
+        }
+
+        if (array_key_exists('reuse_client', $runtimeConfig)) {
+            $result['reuse_client'] = (bool) $runtimeConfig['reuse_client'];
+        }
+
+        return $result;
     }
 
     /**
@@ -341,6 +430,82 @@ class HttpRequest
         }
 
         return $normalized === [] ? $default : array_values(array_unique($normalized));
+    }
+
+    /**
+     * @param null|array<string, mixed> $runtimeConfig
+     */
+    private static function resolveRuntimeMode(?array $runtimeConfig = null): string
+    {
+        if ($runtimeConfig !== null && isset($runtimeConfig['runtime_mode'])) {
+            return (string) $runtimeConfig['runtime_mode'];
+        }
+
+        if (self::$runtimeMode !== self::RUNTIME_MODE_AUTO) {
+            return self::$runtimeMode;
+        }
+
+        $envRuntimeMode = self::normalizeRuntimeMode(getenv('OCEANENGINE_RUNTIME_MODE') ?: null);
+        if ($envRuntimeMode !== null && $envRuntimeMode !== self::RUNTIME_MODE_AUTO) {
+            return $envRuntimeMode;
+        }
+
+        if (self::isSwooleRuntime()) {
+            return self::RUNTIME_MODE_SWOOLE;
+        }
+
+        if (self::isFpmRuntime()) {
+            return self::RUNTIME_MODE_FPM;
+        }
+
+        return self::RUNTIME_MODE_CLI;
+    }
+
+    private static function normalizeRuntimeMode(mixed $mode): ?string
+    {
+        if (! is_string($mode)) {
+            return null;
+        }
+
+        $normalized = strtolower(trim($mode));
+        $allowed = [
+            self::RUNTIME_MODE_AUTO,
+            self::RUNTIME_MODE_FPM,
+            self::RUNTIME_MODE_CLI,
+            self::RUNTIME_MODE_SWOOLE,
+        ];
+
+        if (! in_array($normalized, $allowed, true)) {
+            return null;
+        }
+
+        return $normalized;
+    }
+
+    private static function isFpmRuntime(): bool
+    {
+        return PHP_SAPI === 'fpm-fcgi' || PHP_SAPI === 'cgi-fcgi';
+    }
+
+    private static function isSwooleRuntime(): bool
+    {
+        if (extension_loaded('swoole') || extension_loaded('openswoole')) {
+            return true;
+        }
+
+        if (defined('SWOOLE_VERSION') || defined('OPENSWOOLE_VERSION')) {
+            return true;
+        }
+
+        if (! class_exists(Coroutine::class, false)) {
+            return false;
+        }
+
+        try {
+            return Coroutine::getCid() > -1;
+        } catch (\Throwable $e) {
+            return false;
+        }
     }
 
     /**
@@ -376,7 +541,6 @@ class HttpRequest
      * 是否包含文件上传.
      *
      * @param array<string, mixed> $data
-     * @return bool
      */
     private static function containsFile(array $data): bool
     {
