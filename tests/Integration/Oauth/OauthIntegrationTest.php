@@ -42,7 +42,7 @@ final class OauthIntegrationTest extends TestCase
             'custom_state'
         );
 
-        $this->printIntegrationOutput('OAuth authorize URL', $url);
+        $this->printIntegrationOutput('获取应用授权URL', $url);
 
         $parts = parse_url($url);
         self::assertSame('https', $parts['scheme'] ?? null);
@@ -72,7 +72,7 @@ final class OauthIntegrationTest extends TestCase
             return $auth->getAccessToken($authCode);
         });
 
-        $this->printIntegrationOutput('OAuth getAccessToken response', $payload);
+        $this->printIntegrationOutput('获取Access Token', $payload);
 
         self::assertIsArray($payload);
         self::assertArrayHasKey('code', $payload);
@@ -94,7 +94,7 @@ final class OauthIntegrationTest extends TestCase
             return $auth->refreshToken($refreshToken);
         });
 
-        $this->printIntegrationOutput('OAuth refreshToken response', $payload);
+        $this->printIntegrationOutput('刷新Refresh Token', $payload);
 
         self::assertIsArray($payload);
         self::assertArrayHasKey('code', $payload);

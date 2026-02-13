@@ -45,13 +45,8 @@ final class LiveApiSmokeTest extends TestCase
                 ->send();
         });
 
-        $this->printIntegrationOutput('AccountInfo response', $response->getBody());
-
         self::assertInstanceOf(HttpResponse::class, $response);
-        self::assertGreaterThan(0, strlen($response->getBody()));
-
-        $payload = json_decode($response->getBody(), true);
-        self::assertIsArray($payload);
+        $payload = $this->assertIntegrationHttpResponse($response, '获取千川广告账户全量信息');
         self::assertArrayHasKey('code', $payload);
     }
 }

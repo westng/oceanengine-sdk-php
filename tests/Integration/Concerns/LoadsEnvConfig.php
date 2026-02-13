@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Concerns;
 
+use Core\Http\HttpResponse;
+use OceanEngineSDK\OceanEngineClient;
+
 trait LoadsEnvConfig
 {
     /**
@@ -234,5 +237,44 @@ trait LoadsEnvConfig
         );
 
         return is_string($encoded) ? $encoded : '[Unable to encode payload]';
+    }
+
+    /**
+     * 输出并校验集成测试 HTTP 响应。
+     *
+     * @return array<string, mixed>
+     */
+    private function assertIntegrationHttpResponse(HttpResponse $response, string $label): array
+    {
+        $this->printIntegrationOutput($label, $response->getBody());
+
+        $body = trim($response->getBody());
+        self::assertNotSame('', $body, '响应体不应为空。');
+
+        $payload = json_decode($body, true);
+        self::assertIsArray($payload, '响应体应为 JSON 对象。');
+        self::assertArrayHasKey('code', $payload, '响应体应包含 code 字段。');
+
+        return $payload;
+    }
+
+    /**
+     * @param callable(OceanEngineClient,int):object $requestBuilder
+     * @return array<string, mixed>
+     */
+    private function runModuleSmokeRequest(
+        string $token,
+        int $advertiserId,
+        string $label,
+        callable $requestBuilder
+    ): array {
+        $response = $this->runWithNetworkGuard(function () use ($token, $advertiserId, $requestBuilder): HttpResponse {
+            $client = new OceanEngineClient($token);
+            $request = $requestBuilder($client, $advertiserId);
+
+            return $request->send();
+        });
+
+        return $this->assertIntegrationHttpResponse($response, $label);
     }
 }

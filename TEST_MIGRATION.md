@@ -28,7 +28,11 @@ composer test:unit
 composer test:module
 composer test:integration
 composer test:all
+composer test:integration:file -- tests/Integration/Account/AccountInfo/AccountInfoIntegrationTest.php
+composer test:integration:file -- tests/Integration/JuLiangQianChuan/AdvertisingMgmt
 ```
+
+`test:integration:file` 支持传入任意集成测试文件或目录，方便按模块逐步验证。
 
 ## 集成测试配置
 
