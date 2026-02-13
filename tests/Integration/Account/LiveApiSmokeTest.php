@@ -45,7 +45,7 @@ final class LiveApiSmokeTest extends TestCase
                 ->send();
         });
 
-        fwrite(STDOUT, "\n[Integration] AccountInfo response:\n" . $response->getBody() . "\n");
+        $this->printIntegrationOutput('AccountInfo response', $response->getBody());
 
         self::assertInstanceOf(HttpResponse::class, $response);
         self::assertGreaterThan(0, strlen($response->getBody()));

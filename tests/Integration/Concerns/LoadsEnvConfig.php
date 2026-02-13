@@ -15,6 +15,23 @@ namespace Tests\Integration\Concerns;
 trait LoadsEnvConfig
 {
     /**
+     * 统一输出集成测试信息，JSON 内容会自动美化。
+     *
+     * @param array<mixed>|string $payload
+     */
+    private function printIntegrationOutput(string $label, array|string $payload): void
+    {
+        fwrite(
+            STDOUT,
+            sprintf(
+                "\n[Integration] %s:\n%s\n",
+                $label,
+                $this->formatIntegrationPayload($payload)
+            )
+        );
+    }
+
+    /**
      * 读取 TOKEN 与广告主 ID 配置。
      *
      * @return array{0:string,1:string}
@@ -182,5 +199,40 @@ trait LoadsEnvConfig
 
             throw $e;
         }
+    }
+
+    /**
+     * @param array<mixed>|string $payload
+     */
+    private function formatIntegrationPayload(array|string $payload): string
+    {
+        if (is_array($payload)) {
+            return $this->encodeJsonForDisplay($payload);
+        }
+
+        $normalized = str_replace(["\r\n", "\r"], "\n", trim($payload));
+        if ($normalized === '') {
+            return '(empty)';
+        }
+
+        $decoded = json_decode($normalized, true);
+        if (is_array($decoded)) {
+            return $this->encodeJsonForDisplay($decoded);
+        }
+
+        return $normalized;
+    }
+
+    /**
+     * @param array<mixed> $payload
+     */
+    private function encodeJsonForDisplay(array $payload): string
+    {
+        $encoded = json_encode(
+            $payload,
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+        );
+
+        return is_string($encoded) ? $encoded : '[Unable to encode payload]';
     }
 }

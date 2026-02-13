@@ -42,7 +42,7 @@ final class OauthIntegrationTest extends TestCase
             'custom_state'
         );
 
-        fwrite(STDOUT, "\n[Integration] OAuth authorize URL:\n{$url}\n");
+        $this->printIntegrationOutput('OAuth authorize URL', $url);
 
         $parts = parse_url($url);
         self::assertSame('https', $parts['scheme'] ?? null);
@@ -72,7 +72,7 @@ final class OauthIntegrationTest extends TestCase
             return $auth->getAccessToken($authCode);
         });
 
-        fwrite(STDOUT, "\n[Integration] OAuth getAccessToken response:\n" . json_encode($payload, JSON_UNESCAPED_UNICODE) . "\n");
+        $this->printIntegrationOutput('OAuth getAccessToken response', $payload);
 
         self::assertIsArray($payload);
         self::assertArrayHasKey('code', $payload);
@@ -94,7 +94,7 @@ final class OauthIntegrationTest extends TestCase
             return $auth->refreshToken($refreshToken);
         });
 
-        fwrite(STDOUT, "\n[Integration] OAuth refreshToken response:\n" . json_encode($payload, JSON_UNESCAPED_UNICODE) . "\n");
+        $this->printIntegrationOutput('OAuth refreshToken response', $payload);
 
         self::assertIsArray($payload);
         self::assertArrayHasKey('code', $payload);
