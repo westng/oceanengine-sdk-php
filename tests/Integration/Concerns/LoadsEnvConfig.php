@@ -15,6 +15,8 @@ namespace Tests\Integration\Concerns;
 trait LoadsEnvConfig
 {
     /**
+     * 读取 TOKEN 与广告主 ID 配置。
+     *
      * @return array{0:string,1:string}
      */
     private function resolveTokenAndAdvertiserId(): array
@@ -31,6 +33,8 @@ trait LoadsEnvConfig
     }
 
     /**
+     * 读取 OAuth 相关配置。
+     *
      * @return array{0:string,1:string,2:string,3:string}
      */
     private function resolveOauthCredentials(): array
@@ -46,6 +50,8 @@ trait LoadsEnvConfig
     }
 
     /**
+     * 从运行时环境变量或 .env 中按顺序取值。
+     *
      * @param array<string> $keys
      * @param array<string, string> $dotenv
      */
@@ -66,6 +72,8 @@ trait LoadsEnvConfig
     }
 
     /**
+     * 加载项目根目录 .env 文件。
+     *
      * @return array<string, string>
      */
     private function loadDotEnvValues(): array
@@ -113,6 +121,9 @@ trait LoadsEnvConfig
         return $values;
     }
 
+    /**
+     * 归一化广告主 ID，兼容数组和逗号分隔格式。
+     */
     private function normalizeAdvertiserId(string $rawValue): string
     {
         $rawValue = trim($rawValue);
@@ -142,11 +153,13 @@ trait LoadsEnvConfig
     }
 
     /**
+     * 包装网络调用，遇到网络不可用时跳过测试。
+     *
      * @template T
      * @param callable():T $callback
      * @return T
      */
-    private function runWithNetworkGuard(callable $callback)
+    private function runWithNetworkGuard(callable $callback): mixed
     {
         try {
             return $callback();

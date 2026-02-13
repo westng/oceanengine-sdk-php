@@ -34,6 +34,12 @@ class ChainProxy extends BaseModule
      */
     private static array $childClassCache = [];
 
+    /**
+     * 构造链式模块代理。
+     *
+     * @param OceanEngineClient $client SDK 客户端实例
+     * @param string $namespace 当前链式节点命名空间
+     */
     public function __construct(OceanEngineClient $client, string $namespace)
     {
         parent::__construct($client);
@@ -41,6 +47,10 @@ class ChainProxy extends BaseModule
     }
 
     /**
+     * 动态访问子模块节点。
+     *
+     * @param string $name 子模块名称
+     * @return self
      * @throws OceanEngineException
      */
     public function __get(string $name): self
@@ -60,9 +70,13 @@ class ChainProxy extends BaseModule
     }
 
     /**
+     * 动态调用请求类或继续向下解析子模块。
+     *
+     * @param string $name 方法名
+     * @param array<int, mixed> $arguments 方法参数
      * @return mixed
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         $classBaseName = ucfirst($name);
         $className = $this->namespace . '\\' . $classBaseName;
@@ -92,6 +106,8 @@ class ChainProxy extends BaseModule
     }
 
     /**
+     * 扫描并缓存当前命名空间下可访问的子模块。
+     *
      * @return array<string, string>
      */
     private function discoverProviders(): array
@@ -115,7 +131,13 @@ class ChainProxy extends BaseModule
     }
 
     /**
+     * 递归扫描目录，构建子模块映射。
+     *
+     * @param string $baseDir 扫描基目录
+     * @param string $baseNamespace 基础命名空间
+     * @param string $relativePath 相对路径
      * @param array<string, string> $providers
+     * @return void
      */
     private function scanDirectory(string $baseDir, string $baseNamespace, string $relativePath, array &$providers): void
     {
@@ -144,6 +166,12 @@ class ChainProxy extends BaseModule
         }
     }
 
+    /**
+     * 将命名空间转换为 SDK Api 目录路径。
+     *
+     * @param string $namespace 命名空间
+     * @return string
+     */
     private function namespaceToDir(string $namespace): string
     {
         $prefix = 'Api';
@@ -159,6 +187,12 @@ class ChainProxy extends BaseModule
         return $relative === '' ? $apiBaseDir : $apiBaseDir . '/' . $relative;
     }
 
+    /**
+     * 解析当前节点下的子目录请求类。
+     *
+     * @param string $classBaseName 类名（不含命名空间）
+     * @return null|string
+     */
     private function resolveChildClass(string $classBaseName): ?string
     {
         $childClasses = $this->discoverChildClasses();
@@ -170,6 +204,8 @@ class ChainProxy extends BaseModule
     }
 
     /**
+     * 发现并缓存子目录中的请求类。
+     *
      * @return array<string, string>
      */
     private function discoverChildClasses(): array

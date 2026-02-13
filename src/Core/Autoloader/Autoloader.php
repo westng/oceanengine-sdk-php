@@ -49,6 +49,9 @@ class Autoloader
 
     /**
      * 自动加载类.
+     *
+     * @param string $className 类全限定名
+     * @return void
      */
     public static function autoload(string $className): void
     {
@@ -92,6 +95,8 @@ class Autoloader
 
     /**
      * 加载当前目录下的所有子目录（用于补充命名空间映射）.
+     *
+     * @return void
      */
     public static function loadDirectories(): void
     {
@@ -111,6 +116,9 @@ class Autoloader
 
     /**
      * 添加新的自动加载路径.
+     *
+     * @param string $path 命名空间路径
+     * @return void
      */
     public static function addAutoloadPath(string $path): void
     {
@@ -123,6 +131,12 @@ class Autoloader
         self::$dynamicPathMap[$normalized] = $normalized;
     }
 
+    /**
+     * 判断类名是否属于当前 SDK 命名空间。
+     *
+     * @param string $className 类全限定名
+     * @return bool
+     */
     private static function isProjectClass(string $className): bool
     {
         $prefixes = array_merge(array_keys(self::$replacePath), array_keys(self::$dynamicPathMap));
@@ -135,6 +149,12 @@ class Autoloader
         return false;
     }
 
+    /**
+     * 将传入类名映射为 src 目录下的相对类路径。
+     *
+     * @param string $className 类全限定名
+     * @return null|string
+     */
     private static function normalizeClassName(string $className): ?string
     {
         $pathMap = array_merge(self::$replacePath, self::$dynamicPathMap);
@@ -150,6 +170,12 @@ class Autoloader
         return null;
     }
 
+    /**
+     * 解析 tests 命名空间对应的本地测试文件路径。
+     *
+     * @param string $className 类全限定名
+     * @return null|string
+     */
     private static function resolveTestFile(string $className): ?string
     {
         $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, substr($className, 6));

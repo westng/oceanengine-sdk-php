@@ -50,7 +50,12 @@ class HttpRequest
     /**
      * 发送 HTTP 请求.
      *
+     * @param string $url 请求地址
+     * @param string $method HTTP 方法
+     * @param null|array<string, mixed>|string $postFields 请求体
+     * @param array<string, string> $headers 请求头
      * @param array<string, mixed> $runtimeConfig
+     * @return HttpResponse
      */
     public static function curl(
         string $url,
@@ -99,6 +104,11 @@ class HttpRequest
 
     /**
      * 构建 JSON 返回体（可用于测试或 API 输出）.
+     *
+     * @param null|array<string, mixed> $data 数据体
+     * @param string $msg 提示消息
+     * @param int $code 状态码
+     * @return string
      */
     public static function renderJSON(?array $data = [], string $msg = 'ok', int $code = 200): string
     {
@@ -111,6 +121,13 @@ class HttpRequest
 
     /**
      * 设置默认重试配置（仅作用于未传 runtimeConfig 的请求）.
+     *
+     * @param int $maxRetries 最大重试次数
+     * @param int $retryDelay 重试基础间隔（毫秒）
+     * @param array<int, int> $retryableStatusCodes 可重试 HTTP 状态码
+     * @param bool $enableRetry 是否启用重试
+     * @param array<int, int> $retryableBusinessCodes 可重试业务状态码
+     * @return void
      */
     public static function setRetryConfig(
         int $maxRetries,
@@ -134,6 +151,9 @@ class HttpRequest
 
     /**
      * 启用或禁用默认重试机制.
+     *
+     * @param bool $enabled 是否启用重试
+     * @return void
      */
     public static function setRetryEnabled(bool $enabled): void
     {
@@ -143,6 +163,7 @@ class HttpRequest
 
     /**
      * @param array<string, mixed> $config
+     * @return Client
      */
     private static function getClient(array $config): Client
     {
@@ -174,6 +195,7 @@ class HttpRequest
 
     /**
      * @param array<string, mixed> $config
+     * @return callable
      */
     private static function createRetryMiddleware(array $config): callable
     {
@@ -235,6 +257,8 @@ class HttpRequest
 
     /**
      * 创建日志中间件.
+     *
+     * @return callable
      */
     private static function createLogMiddleware(): callable
     {
@@ -321,6 +345,9 @@ class HttpRequest
 
     /**
      * 构建multipart数据用于文件上传.
+     *
+     * @param array<string, mixed> $data
+     * @return array<int, array<string, mixed>>
      */
     private static function buildMultipartData(array $data): array
     {
@@ -347,6 +374,9 @@ class HttpRequest
 
     /**
      * 是否包含文件上传.
+     *
+     * @param array<string, mixed> $data
+     * @return bool
      */
     private static function containsFile(array $data): bool
     {

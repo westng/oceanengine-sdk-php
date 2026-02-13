@@ -84,9 +84,12 @@ class OceanEngineClient
     /**
      * 魔术方法，动态调用模块，返回模块实例.
      *
+     * @param string $name 模块方法名
+     * @param array<int, mixed> $arguments 传入参数（保留）
+     * @return mixed
      * @throws \BadMethodCallException
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         $moduleMap = self::getModuleMap();
 
@@ -99,8 +102,12 @@ class OceanEngineClient
 
     /**
      * 静态魔术方法，禁止调用（建议使用实例化调用模块）.
+     *
+     * @param string $name 模块方法名
+     * @param array<int, mixed> $arguments 传入参数（保留）
+     * @return mixed
      */
-    public static function __callStatic(string $name, array $arguments)
+    public static function __callStatic(string $name, array $arguments): mixed
     {
         throw new \BadMethodCallException("请先实例化客户端再调用模块，例如：\$client = new OceanEngineClient(TOKEN); \$client->{$name}();");
     }

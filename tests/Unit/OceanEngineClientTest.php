@@ -113,6 +113,9 @@ final class OceanEngineClientTest extends TestCase
         self::assertSame([408, 429, 500, 502, 503, 504], $this->readPrivateProperty($clientB, 'retryableStatusCodes'));
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function testRetryEnabledSwitchOnlyAffectsCurrentClient(): void
     {
         $clientA = new OceanEngineClient('token-a');
@@ -125,9 +128,12 @@ final class OceanEngineClientTest extends TestCase
     }
 
     /**
+     * @param object $object
+     * @param string $propertyName
      * @return mixed
+     * @throws \ReflectionException
      */
-    private function readPrivateProperty(object $object, string $propertyName)
+    private function readPrivateProperty(object $object, string $propertyName): mixed
     {
         $ref = new \ReflectionObject($object);
         $property = $ref->getProperty($propertyName);

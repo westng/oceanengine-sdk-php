@@ -19,6 +19,9 @@ class RequestCheckUtil
     /**
      * 判断参数是否为空.
      *
+     * @param mixed $value 待校验值
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkNotNull(mixed $value, string $fieldName): void
@@ -31,6 +34,10 @@ class RequestCheckUtil
     /**
      * 限制字符串参数的长度.
      *
+     * @param string $value 参数值
+     * @param int $maxLength 最大长度
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkMaxLength(string $value, int $maxLength, string $fieldName): void
@@ -43,6 +50,10 @@ class RequestCheckUtil
     /**
      * 限制数组或逗号分隔字符串的最大长度.
      *
+     * @param array<string>|string $value 参数值
+     * @param int $maxSize 最大数量
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkMaxListSize(array|string $value, int $maxSize, string $fieldName): void
@@ -60,6 +71,10 @@ class RequestCheckUtil
     /**
      * 检查值是否在允许字段内.
      *
+     * @param array<string>|string $value 参数值
+     * @param array<string> $allowed 允许值列表
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkAllowField(array|string $value, array $allowed, string $fieldName): void
@@ -81,6 +96,10 @@ class RequestCheckUtil
     /**
      * 检查最大值.
      *
+     * @param float|int $value 参数值
+     * @param float|int $maxValue 最大值
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkMaxValue(float|int $value, float|int $maxValue, string $fieldName): void
@@ -99,6 +118,10 @@ class RequestCheckUtil
     /**
      * 检查最小值.
      *
+     * @param float|int $value 参数值
+     * @param float|int $minValue 最小值
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkMinValue(float|int $value, float|int $minValue, string $fieldName): void
@@ -117,6 +140,9 @@ class RequestCheckUtil
     /**
      * 检查文件是否存在.
      *
+     * @param string $filePath 文件路径
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkFileExist(string $filePath, string $fieldName): void
@@ -128,6 +154,9 @@ class RequestCheckUtil
 
     /**
      * 判断是否为空.
+     *
+     * @param mixed $value 待校验值
+     * @return bool
      */
     public static function checkEmpty(mixed $value): bool
     {
@@ -147,6 +176,9 @@ class RequestCheckUtil
     /**
      * 判断是否为数字.
      *
+     * @param mixed $value 待校验值
+     * @param string $fieldName 参数名
+     * @return void
      * @throws InvalidParamException
      */
     public static function checkNumeric(mixed $value, string $fieldName): void

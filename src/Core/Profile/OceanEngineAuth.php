@@ -37,6 +37,12 @@ class OceanEngineAuth
 
     /**
      * AuthClient constructor.
+     *
+     * @param string $app_id 应用 ID
+     * @param string $secret 应用密钥
+     * @param bool $is_sandbox 是否沙箱环境
+     * @param null|string $server_url 生产环境地址
+     * @param null|string $box_url 沙箱环境地址
      */
     public function __construct(
         string $app_id,
